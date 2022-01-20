@@ -1,0 +1,1 @@
+# Squared NFT Minter Dapp

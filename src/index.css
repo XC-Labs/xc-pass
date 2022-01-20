@@ -1,0 +1,468 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+ul[class],
+ol[class] {
+  padding: 0;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul[class],
+ol[class],
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  background-color: white;
+  font-family: 'Archivo', sans-serif;
+}
+p {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+ul[class],
+ol[class] {
+  list-style: none;
+}
+
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+article > * + * {
+  margin-top: 1em;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+.app-wrapper{
+  animation: bgSlide 180s linear 0s infinite;
+  background-color: #fff;
+}
+@keyframes bgSlide {
+  0%{
+    background-position-x: 0%;
+    background-position-y: 0%;
+  }
+  100%{
+    background-position-x: 100%;
+    background-position-y: 5%;
+  }
+}
+header.ant-layout-header {
+  background-color: #ffffffdd !important;
+}
+.ant-menu {
+  background-color: transparent;
+}
+span.ant-menu-title-content a.active {
+  font-weight: bold;
+}
+svg.menu-icon {
+  padding-top: 23px;
+  margin-left: 10px;
+}
+.header-wallet.not-logged:hover, .header-wallet.not-logged:focus {
+  background-color: #ff8e67 !important;
+}
+.logo-container {
+  height: 40px;
+}
+hr {
+  opacity: 0.2;
+}
+.home {
+  text-align: center;
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.home .main-logo{
+  width: 360px;
+}
+.home h1{
+  color: rgb(255 107 16);
+  font-size: 10vw;
+  font-weight: bold;
+  text-shadow: 2px 2px #77777766;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+}
+.home h2.subtitle {
+  margin-top: -60px;
+  margin-bottom: 40px;
+  color: #ffffffcc;
+  font-size: 2vw;
+  text-shadow: 1.2px 1.2px #00000066;
+}
+.home .ant-btn {
+  width: 240px;
+  height: 60px;
+  margin: 10px;
+  box-shadow: 2px 2px 10px 2px #99999966;
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.ant-card {
+  background: #ffffffdd !important;
+}
+.ant-card-head-title {
+  font-size: 26px;
+  font-weight: bold;
+}
+.ant-card-head-title .address {
+  font-size: 14px;
+}
+.ant-col.ant-col-8 {
+  padding: 10px;
+}
+.ant-card-cover {
+  padding-top: 20px;
+}
+.amount-minted h4 {
+  text-align: right;
+  font-size: 12px;
+}
+label.ant-form-item-required {
+  font-size: 21px;
+  font-weight: 500;
+  color: #262626;
+  width: 100%;
+  font-family: Roboto, sans-serif;
+}
+.wrong-network {
+  text-align: center;
+  margin: 10px 0;
+  padding: 10px;
+  background-color: #ff000099;
+  color: white;
+  border-radius: 4px;
+  animation: pulse 1s ease-in-out 0s infinite forwards;
+}
+.whitelisted {
+  background: white;
+  padding: 40px 60px;
+  border-radius: 4px;
+  text-align: center;
+  font-weight: bold;
+}
+.whitelist-active {
+  text-align: center;
+  margin: 10px 0;
+  padding: 10px;
+  background-color: rgb(111 142 227);
+  color: white;
+  border-radius: 4px;
+  animation: pulse 1s ease-in-out 0s infinite forwards;
+}
+@keyframes pulse {
+  0%{
+    transform: scale(1);
+  }
+  50%{
+    transform: scale(1.01);
+  }
+  100%{
+    transform: scale(1);
+  }
+}
+.minting-inputs{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.minting-inputs .ant-row.ant-form-item:first-of-type {
+  width: 70%;
+  margin: 0 !important;
+}
+.minting-inputs .ant-row.ant-form-item:nth-of-type(2){
+  width: 30%;
+}
+.minting-inputs button {
+  width: 100%;
+  height: 66px;
+  margin-top: 5px;
+  background-color: rgb(111 142 227);
+  color: white;
+}
+input#mint__mintAmount {
+  font-size: 36px;
+  text-align: center;
+  font-weight: bold;
+}
+.successfulMint{
+  text-align: center;
+  animation: bounce 0.5s ease-in-out 0s 1 forwards;
+}
+.successfulMint svg path{
+  fill: #27ab07;
+}
+.successfulMint svg.external-link path {
+  fill: #1890ff;
+}
+.mintError{
+  text-align: center;
+  animation: bounce 0.5s ease-in-out 0s 1 forwards;
+}
+.mintError svg path{
+  fill: #b50505;
+}
+
+@keyframes bounce {
+  0%{
+    transform: scale(0);
+  }
+  70%{
+    transform: scale(1.2);
+  }
+  100%{
+    transform: scale(1);
+  }
+}
+
+.mintLoading{
+  text-align: center;
+  animation: minting 2s linear 0s infinite;
+}
+.mintLoading svg path{
+  fill: #0b43bd;
+}
+@keyframes minting {
+  0%{
+    transform: rotate(0deg);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+}
+.ant-card-meta {
+  margin-bottom: 10px;
+}
+.ant-card-meta-detail{
+  text-align: center;
+}
+.ant-card-cover img {
+  height: 100px;
+  width: auto;
+  margin: 0 auto;
+}
+
+.nft-list {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+div#mixer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.nft-list > .nft {
+  cursor: pointer;
+}
+.mixer-options {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+div#clear-selection, div#get-selection {
+  cursor: pointer;
+  text-align: center;
+  color: white;
+  padding: 4px 20px;
+  border-radius: 4px;
+}
+div#get-selection{
+  background: #2605df63;
+}
+div#get-selection:hover {
+  background: #2605df93;
+}
+div#clear-selection{
+  background: #cc000099;
+}
+div#clear-selection:hover {
+  background: #cc0000bb;
+}
+.sc-function-box {
+  background-color: #efefef;
+  width: 100%;
+  display: flex;
+  padding: 20px 30px;
+  text-align: center;
+  border-radius: 4px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.sc-function-box input {
+  width: 50% !important;
+}
+.sc-function-box button {
+  width: 20%;
+}
+h4.sc-function-name {
+  font-size: 16px;
+  font-weight: bold;
+  width: 20%;
+}
+.sc-stats-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.sc-stats {
+  background-color: #efefef;
+  text-align: center;
+  padding: 10px 14px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  min-width: 15%;
+}
+h4.sc-stats-name {
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+span.sc-stats-value {
+  text-transform: uppercase;
+  font-size: 12px;
+}
+.ant-col.sc-result {
+  text-align: center;
+  width: 100%;
+  height: 20px;
+  background: #d2d2d277;
+  font-weight: bold;
+  font-size: 14px;
+  margin-top: -30px;
+  border-radius: 0 0 4px 4px;
+}
+
+@media screen and (max-width: 768px) {
+  @keyframes bgSlide {
+    0%{
+      background-position-x: 0%;
+      background-position-y: 0%;
+    }
+    100%{
+      background-position-x: 1000%;
+      background-position-y: 100%;
+    }
+  }
+  .header-wallet {
+      width: 100px !important;
+  }
+  .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu {
+      padding: 0 10px;
+  }
+  header.ant-layout-header {
+      flex-wrap: wrap;
+      flex-direction: column;
+      justify-content: center !important;
+      align-items: center !important;
+  }
+  .logo-container{
+    width: 60px;
+  }
+  ul.ant-menu-overflow.ant-menu.ant-menu-root.ant-menu-horizontal.ant-menu-light {
+    width: 50% !important;
+    margin-left: 0px !important;
+  }
+  li.ant-menu-overflow-item.ant-menu-overflow-item-rest.ant-menu-submenu.ant-menu-submenu-horizontal {
+      padding-left: 0;
+  }
+  .ant-menu-item a {
+      font-size: 12px;
+  }
+  button.ant-btn.ant-dropdown-trigger span:first-of-type, 
+  .chain-selector {
+    display: none;
+  }
+  .header-wallet.not-logged {
+      padding: 0 !important;
+  }
+  p.auth-button {
+    color: white !important;
+    font-size: 10px;
+  }
+  p.header-address {
+      font-size: 8px;
+  }
+  .home h1 {
+      font-size: 18vw;
+      line-height: 20vw;
+  }
+  .home .main-logo{
+    width: 220px;
+  }
+  .home h2.subtitle {
+    margin-top: 0px;
+    font-size: 6vw;
+  }
+  .home .ant-btn {
+      font-size: 20px;
+  }
+  .minter-wrapper {
+      width: 90vw !important;
+      flex-direction: column;
+  }
+  .minter-wrapper > div {
+    width: 100% !important;
+  }
+  .ant-card-head-title {
+      font-size: 24px;
+  }
+  .ant-card-head-title p {
+      font-size: 10px;
+  }
+  .how-to-container {
+      width: 90vw !important;
+  }
+  .ant-col.ant-col-8.gutter-row {
+      flex: 0 0 100%;
+      max-width: 100%;
+  }
+}
