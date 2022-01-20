@@ -1,1 +1,3 @@
-# Squared NFT Minter Dapp
+# XC Pass for XC Labs
+
+Minter dApp
