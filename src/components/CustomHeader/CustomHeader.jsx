@@ -1,4 +1,3 @@
-
 import { Menu, Layout } from "antd";
 import { NavLink } from "react-router-dom";
 import Account from "../Account";
@@ -15,30 +14,7 @@ export const Logo = () => (
   );
 
 export default function Roadmap(props) {
-    const { isAuthenticated, isOwner } = props;
-
-    const styles = {
-        header: {
-          position: "fixed",
-          zIndex: 1,
-          width: "100%",
-          background: "#fff",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          fontFamily: "Roboto, sans-serif",
-          borderBottom: "2px solid rgba(0, 0, 0, 0.06)",
-          padding: "0 20px",
-          boxShadow: "0 1px 10px rgb(151 164 175 / 10%)",
-        },
-        headerRight: {
-          display: "flex",
-          gap: "20px",
-          alignItems: "center",
-          fontSize: "15px",
-          fontWeight: "600",
-        },
-      };
+    const { isAuthenticated, isOwner, isWhitelistActive } = props;
 
     const adminMenuLink = () => {
         if(isOwner){
@@ -50,52 +26,55 @@ export default function Roadmap(props) {
 
     if(window.ethereum){
         return <>
-                <Header style={styles.header}>
-                <Logo />
-                <Menu
-                theme="light"
-                mode="horizontal"
-                overflowedIndicator={menuIcon}
-                style={{
-                    display: "flex",
-                    fontSize: "17px",
-                    fontWeight: "500",
-                    width: "100%",
-                    marginLeft: "100px",
-                }}
-                defaultSelectedKeys={["home"]}
-                >
+                <Header className="main-header">
+                    
+                    <NavLink to="/"><Logo /></NavLink>
+                
+                    <Menu
+                    theme="light"
+                    mode="horizontal"
+                    overflowedIndicator={menuIcon}
+                    style={{
+                        display: "flex",
+                        fontSize: "17px",
+                        fontWeight: "500",
+                        width: "100%",
+                        marginLeft: "80px",
+                    }}
+                    defaultSelectedKeys={[""]}
+                    >
+                        <Menu.Item key="roadmap">
+                            <NavLink to="/roadmap">Roadmap</NavLink>
+                        </Menu.Item>
+                        <Menu.Item  
+                            key="mint" 
+                            disabled={isAuthenticated && !isWhitelistActive ? false : true}
+                        >
+                            <NavLink to="/mint">Mint your XC Pass</NavLink>
+                        </Menu.Item>
+                        <Menu.Item key="what-we-do">
+                            <NavLink to="/what-we-do">What We Do</NavLink>
+                        </Menu.Item>
+                        <Menu.Item key="meet-the-team">
+                            <NavLink to="/meet-the-team">Meet the Team</NavLink>
+                        </Menu.Item>
+                        <Menu.Item key="gallery" disabled={isAuthenticated ? false : true}>
+                            <NavLink to="/gallery">My Passes</NavLink>
+                        </Menu.Item>
+                        <Menu.Item key="faq">
+                            <NavLink to="/faq">FAQs</NavLink>
+                        </Menu.Item>
+                        { adminMenuLink() }
+                    </Menu>
 
-                <Menu.Item key="home">
-                    <NavLink to="/">Home</NavLink>
-                </Menu.Item>
-                <Menu.Item  
-                    key="mint" 
-                    disabled={isAuthenticated ? false : true}
-                >
-                    <NavLink to="/mint">Mint</NavLink>
-                </Menu.Item>
-                <Menu.Item key="roadmap">
-                    <NavLink to="/roadmap">Roadmap</NavLink>
-                </Menu.Item>
-                <Menu.Item key="gallery" disabled={isAuthenticated ? false : true}>
-                    <NavLink to="/gallery">My Passes</NavLink>
-                </Menu.Item>
-                <Menu.Item key="how">
-                    <NavLink to="/how-to">FAQ</NavLink>
-                </Menu.Item>
-                <Menu.Item key="snowflake">
-                    <a href="https://snowflake.market/wallet" target="_blank" rel="noreferrer">Snowflake</a>
-                </Menu.Item>
-                { adminMenuLink() }
-                </Menu>
-                <div style={styles.headerRight}>
-                <Account />
-                </div>
+                    <div className="main-header-right">
+                        <Account />
+                    </div>
+
                 </Header>
             </>
     }else{
-        return  <Header style={styles.header}>
+        return  <Header className="main-header">
                     <Logo />
                 </Header>
     }

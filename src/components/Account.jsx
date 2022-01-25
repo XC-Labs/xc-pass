@@ -7,22 +7,6 @@ import { useState } from "react";
 import Address from "./Address/Address";
 import { SelectOutlined } from "@ant-design/icons";
 import { getExplorer } from "helpers/networks";
-const styles = {
-  account: {
-    height: "42px",
-    padding: "0 15px",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    width: "180px",
-    borderRadius: "12px",
-    backgroundColor: "rgb(255 107 16)",
-    cursor: "pointer",
-  },
-  text: {
-    color: "#fff",
-  },
-};
 
 function Account() {
   const { authenticate, isAuthenticated, logout } = useMoralis();
@@ -32,18 +16,17 @@ function Account() {
   if (!isAuthenticated) {
     return (
       <div className="header-wallet not-logged"
-        style={styles.account}
         onClick={() => authenticate({ signingMessage: "Welcome to XC Pass!" })}
       >
-        <p className="auth-button" style={styles.text}>Connect Wallet</p>
+        <p className="auth-button">Connect Wallet</p>
       </div>
     );
   }
 
   return (
     <>
-      <div className="header-wallet" style={styles.account} onClick={() => setIsModalVisible(true)}>
-        <p className="header-address" style={{ marginRight: "5px", ...styles.text }}>
+      <div className="header-wallet" onClick={() => setIsModalVisible(true)}>
+        <p className="header-address">
           {getEllipsisTxt(walletAddress, 6)}
         </p>
         <Blockie currentWallet scale={3} />

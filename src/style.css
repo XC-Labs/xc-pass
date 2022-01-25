@@ -6,12 +6,12 @@
 .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-open::after,
 .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-selected::after,
 .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-selected::after {
-  border-bottom: 2px solid rgb(255 142 103) !important;
+  border-bottom: 2px solid #535353 !important;
 }
 
 .ant-menu-horizontal > .ant-menu-item-selected a,
 .ant-menu-horizontal > .ant-menu-item a:hover {
-  color: rgb(255 107 16) !important;
+  color: #535353 !important;
 }
 
 .ant-modal-content {

@@ -1,3 +1,27 @@
+:root{
+  --primary-color: #535353;
+  --secondary-color: #7e7e7e;
+}
+
+@font-face {
+  font-family: "Calibre";
+  src: url("./assets/fonts/Calibre-Regular.woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Calibre";
+  src: url("./assets/fonts/Calibre-Light.woff");
+  font-weight: 100;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Calibre";
+  src: url("./assets/fonts/Calibre-Semibold.woff");
+  font-weight: bold;
+  font-style: normal;
+}
+
 *,
 *::before,
 *::after {
@@ -32,7 +56,7 @@ body {
   text-rendering: optimizeSpeed;
   line-height: 1.5;
   background-color: white;
-  font-family: 'Archivo', sans-serif;
+  font-family: 'Calibre';
 }
 p {
   margin-top: 1em;
@@ -43,7 +67,12 @@ ul[class],
 ol[class] {
   list-style: none;
 }
-
+a{
+  color: var(--primary-color);
+}
+a:hover{
+  color: var(--secondary-color);
+}
 a:not([class]) {
   text-decoration-skip-ink: auto;
 }
@@ -63,61 +92,127 @@ textarea,
 select {
   font: inherit;
 }
-.app-wrapper{
-  animation: bgSlide 180s linear 0s infinite;
-  background-color: #fff;
+.ant-layout {
+  justify-content: space-between;
 }
-@keyframes bgSlide {
-  0%{
-    background-position-x: 0%;
-    background-position-y: 0%;
-  }
-  100%{
-    background-position-x: 100%;
-    background-position-y: 5%;
-  }
+.app-wrapper{
+  background-color: #e5e5e5;
+}
+.content-wrap{
+  display: flex;
+  justify-content: center;
+  color: #041836;
+  padding: 10px;
+}
+.content-wrap.home{
+  justify-content: flex-start;
+}
+.main-header{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Calibre';
+  padding: 0 40px;
+}
+.main-header-right{
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  font-size: 15px;
+  font-weight: bold;
 }
 header.ant-layout-header {
-  background-color: #ffffffdd !important;
+  background-color: transparent !important;
 }
 .ant-menu {
   background-color: transparent;
 }
-span.ant-menu-title-content a.active {
+span.ant-menu-title-content a {
+  text-transform: uppercase;
+  font-family: 'Calibre';
+  font-size: 12px;
   font-weight: bold;
+  letter-spacing: 1.5px;
 }
 svg.menu-icon {
   padding-top: 23px;
   margin-left: 10px;
 }
+.header-wallet{
+  height: 42px;
+  padding: 0 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 180px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.header-wallet.not-logged {
+  background-color: var(--primary-color);
+  color: #fff;
+}
 .header-wallet.not-logged:hover, .header-wallet.not-logged:focus {
-  background-color: #ff8e67 !important;
+  background-color: var(--secondary-color) !important;
+}
+.header-address {
+  margin-right: 5px;
+  font-size: 12px;
+}
+.header-address::before {
+  content: '●';
+  padding-right: 5px;
+  width: 10px !important;
+  height: 10px;
+  color: limegreen;
 }
 .logo-container {
   height: 40px;
 }
+.main-footer {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  padding: 40px;
+  background-color: white;
+}
+.footer-links {
+  width: 90%;
+}
+.footer-links a {
+  padding: 0 10px;
+  font-size: 14px;
+  color: var(--primary-color);
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+}
 hr {
   opacity: 0.2;
 }
-.home {
-  text-align: center;
+.content-wrap.home .home {
+  margin: 0 140px;
+  width: 60vw;
   height: 60vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  align-content: flex-start;
 }
-
 .home .main-logo{
   width: 360px;
 }
-.home h1{
-  color: rgb(255 107 16);
-  font-size: 10vw;
-  font-weight: bold;
-  text-shadow: 2px 2px #77777766;
-  text-transform: uppercase;
-  margin-bottom: 40px;
+h1{
+  color: var(--primary-color);
+  font-family: "Calibre";
+  font-size: 52px;
+  font-weight: 100;
+  line-height: 54px;
+  margin-bottom: 20px;
 }
 .home h2.subtitle {
   margin-top: -60px;
@@ -127,13 +222,28 @@ hr {
   text-shadow: 1.2px 1.2px #00000066;
 }
 .home .ant-btn {
-  width: 240px;
-  height: 60px;
-  margin: 10px;
-  box-shadow: 2px 2px 10px 2px #99999966;
-  font-size: 24px;
-  font-weight: bold;
-  text-transform: uppercase;
+  background-color: var(--primary-color);
+  height: 42px;
+  padding: 0px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.home .ant-btn a{
+  color: white;
+  font-size: 12px;
+  font-family: "Archivo";
+}
+a.home-secondary-cta {
+  width: 40%;
+  text-align: center;
+  color: var(--primary-color);
+  font-size: 12px;
+  margin-top: 10px;
+  text-decoration: underline;
 }
 .ant-card {
   background: #ffffffdd !important;
@@ -162,66 +272,69 @@ label.ant-form-item-required {
   width: 100%;
   font-family: Roboto, sans-serif;
 }
-.wrong-network {
-  text-align: center;
-  margin: 10px 0;
-  padding: 10px;
-  background-color: #ff000099;
-  color: white;
-  border-radius: 4px;
-  animation: pulse 1s ease-in-out 0s infinite forwards;
+span.anticon.anticon-warning {
+  font-size: 18px;
 }
-.whitelisted {
-  background: white;
-  padding: 40px 60px;
-  border-radius: 4px;
+.wrong-network {
+  width: 50%;
   text-align: center;
-  font-weight: bold;
+  margin: 10px auto;
+  padding: 10px;
+  color: var(--secondary-color);
+  border-radius: 4px;
 }
 .whitelist-active {
+  width: 50%;
   text-align: center;
-  margin: 10px 0;
+  margin: 10px auto;
   padding: 10px;
-  background-color: rgb(111 142 227);
-  color: white;
+  color: var(--secondary-color);
   border-radius: 4px;
-  animation: pulse 1s ease-in-out 0s infinite forwards;
-}
-@keyframes pulse {
-  0%{
-    transform: scale(1);
-  }
-  50%{
-    transform: scale(1.01);
-  }
-  100%{
-    transform: scale(1);
-  }
 }
 .minting-inputs{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
 }
 .minting-inputs .ant-row.ant-form-item:first-of-type {
-  width: 70%;
+  width: 100%;
   margin: 0 !important;
 }
 .minting-inputs .ant-row.ant-form-item:nth-of-type(2){
-  width: 30%;
-}
-.minting-inputs button {
   width: 100%;
-  height: 66px;
-  margin-top: 5px;
-  background-color: rgb(111 142 227);
+}
+.minting-inputs button, button.ant-btn {
+  width: 100%;
+  margin-top: 20px;
+  background-color: var(--primary-color);
+  border-radius: 30px;
+  color: white;
+  border: none;
+}
+.ant-btn:hover, .ant-btn:focus, .ant-btn:active {
+  text-decoration: none;
+  background: var(--secondary-color);
+  border: none;
   color: white;
 }
 input#mint__mintAmount {
   font-size: 36px;
   text-align: center;
   font-weight: bold;
+  margin-top: 20px;
+  border: none;
+}
+input#mint__mintAmount:focus {
+  outline: none;
+  box-shadow: none;
+}
+.minter-announcement {
+  position: absolute;
+  top: 64px;
+  left: 0;
+  width: 100%;
+  background-color: white;
 }
 .successfulMint{
   text-align: center;
@@ -231,7 +344,7 @@ input#mint__mintAmount {
   fill: #27ab07;
 }
 .successfulMint svg.external-link path {
-  fill: #1890ff;
+  fill: var(--primary-color);
 }
 .mintError{
   text-align: center;
@@ -240,7 +353,6 @@ input#mint__mintAmount {
 .mintError svg path{
   fill: #b50505;
 }
-
 @keyframes bounce {
   0%{
     transform: scale(0);
@@ -252,13 +364,12 @@ input#mint__mintAmount {
     transform: scale(1);
   }
 }
-
 .mintLoading{
   text-align: center;
   animation: minting 2s linear 0s infinite;
 }
 .mintLoading svg path{
-  fill: #0b43bd;
+  fill: var(--primary-color);
 }
 @keyframes minting {
   0%{
@@ -279,7 +390,6 @@ input#mint__mintAmount {
   width: auto;
   margin: 0 auto;
 }
-
 .nft-list {
   display: flex;
   flex-direction: row;
@@ -289,38 +399,71 @@ input#mint__mintAmount {
   align-items: center;
   gap: 10px;
 }
-
-div#mixer-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
 .nft-list > .nft {
   cursor: pointer;
 }
-.mixer-options {
+.whitelist-container, .minter-container{
+  width: 50%;
   display: flex;
-  justify-content: space-between;
-  margin: 10px 0;
+  flex-direction: column;
 }
-div#clear-selection, div#get-selection {
-  cursor: pointer;
+.how-to-container, .roadmap-container, .about-container, .team-container, .gallery-container {
+  width: 50%;
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+}
+.minter-left-side {
+  background-color: black;
+  border-radius: 10px 0 0 10px;
+  overflow: hidden;
+}
+.minter-right-side {
+  background-color: white;
+  padding: 40px;
+  border-radius: 0 10px 10px 0;
+}
+.minter-modal {
+  background: #72727299;
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.modal-container {
   text-align: center;
-  color: white;
-  padding: 4px 20px;
-  border-radius: 4px;
+  width: 360px;
+  padding: 40px;
+  border-radius: 20px;
+  background-color: white;
 }
-div#get-selection{
-  background: #2605df63;
+.close-modal {
+  margin-top: 40px;
+  border: 1px solid;
+  width: 100%;
+  text-align: center;
+  padding-top: 6px;
+  border-radius: 20px;
+  cursor: pointer;
 }
-div#get-selection:hover {
-  background: #2605df93;
+a.see-transaction {
+  display: block;
+  margin-top: 10px;
+  border: 1px solid var(--primary-color);
+  width: 100%;
+  text-align: center;
+  padding-top: 6px;
+  border-radius: 20px;
+  cursor: pointer;
 }
-div#clear-selection{
-  background: #cc000099;
-}
-div#clear-selection:hover {
-  background: #cc0000bb;
+.close-modal:disabled {
+  background-color: #e2e2e2;
+  cursor: not-allowed;
 }
 .sc-function-box {
   background-color: #efefef;
@@ -382,15 +525,8 @@ span.sc-stats-value {
 }
 
 @media screen and (max-width: 768px) {
-  @keyframes bgSlide {
-    0%{
-      background-position-x: 0%;
-      background-position-y: 0%;
-    }
-    100%{
-      background-position-x: 1000%;
-      background-position-y: 100%;
-    }
+  .how-to-container, .roadmap-container, .about-container, .team-container, .gallery-container {
+    width: 100%;
   }
   .header-wallet {
       width: 100px !important;

@@ -1,12 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
 import { MoralisProvider } from "react-moralis";
-import "./index.css";
-import bg from './assets/bg.png';
 import { MoralisDappProvider } from "./providers/MoralisDappProvider/MoralisDappProvider";
-
-/** Get your free Moralis Account https://moralis.io/ */
+import App from "./App";
+import "./index.css";
 
 const APP_ID = process.env.REACT_APP_MORALIS_APPLICATION_ID;
 const SERVER_URL = process.env.REACT_APP_MORALIS_SERVER_URL;
@@ -17,7 +14,7 @@ const Application = () => {
     return (
       <MoralisProvider appId={APP_ID} serverUrl={SERVER_URL}>
         <MoralisDappProvider>
-          <div className="app-wrapper" style={{backgroundImage: `url(${bg})`}}>
+          <div className="app-wrapper">
             <App isServerInfo/>
           </div>
         </MoralisDappProvider>
@@ -31,7 +28,6 @@ const Application = () => {
     );
   }
 };
-
 ReactDOM.render(
   // <React.StrictMode>
   <Application />,

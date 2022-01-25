@@ -1,5 +1,4 @@
 import { useMoralisDapp } from "providers/MoralisDappProvider/MoralisDappProvider";
-import { Card } from "antd";
 import { useEffect, useState } from "react";
 import { useMoralis } from "react-moralis";
 import NftListView from './NftListView';
@@ -29,12 +28,11 @@ export default function Gallery(props) {
     },[walletAddress])
 
     return (
-            <Card 
-            style={{ marginTop: "25", width: "80vw", borderRadius: "8px" }}
-            title={`Gallery (${ nftList[0]?.length ? nftList[0]?.length : "0"})`}
-            size="large"
-            >
-                <NftListView list={nftList} nftSize={200}/>
-            </Card>
+            <div className="gallery-container">
+                <h1><strong>{`Gallery (${ nftList[0]?.length ? nftList[0]?.length : "0"})`}</strong></h1>
+                <NftListView list={nftList} nftSize={200}/>   
+            </div>
+            
+
     )
 }
