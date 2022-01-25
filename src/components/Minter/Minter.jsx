@@ -130,7 +130,7 @@ export default function Minter(props) {
       </Col>
       <Col span={12} className="minter-right-side">
         <h1>XC-Pass</h1>
-        <p>XC-Pass unlocks access to our community, early investment opportunities, whitelist for our NFTs, and a spot in our trading desk to earn 30% on your investment. Buy more passes to increase your level and benefits in our community. <NavLink to="/roadmap">Learn more.</NavLink></p>
+        <h3>XC-Pass unlocks access to our community, early investment opportunities, whitelist for our NFTs, and a spot in our trading desk to earn 30% on your investment. Buy more passes to increase your level and benefits in our community. <NavLink to="/roadmap">Learn more.</NavLink></h3>
 
         <Form.Provider
             onFormFinish={async (name, { forms }) => {
@@ -188,7 +188,7 @@ export default function Minter(props) {
               }
             }}
           >
-              <Form layout="vertical" name="mint">
+              <Form layout="vertical" name="mint" initialValues={{_mintAmount: '0'}}>
               <span>XC-Pass price 1 AVAX ($98.5 USD).</span><br/>
               <span>Max. 50 XC-Passes per user’s wallet.</span>
                 <div className="minting-inputs">
@@ -198,7 +198,7 @@ export default function Minter(props) {
                     required
                     style={{ marginTop: "25px", marginBottom: "15px" }}
                   >
-                    <Input type="number" defaultValue="0" min="1" max="5" />
+                    <Input type="number" min="1" max="5" />
                   </Form.Item>
                   <span>XP Passes minted: {amountMinted}/50</span>
                   <Form.Item style={{ marginBottom: "5px" }}>

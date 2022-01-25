@@ -214,15 +214,12 @@ h1{
   line-height: 54px;
   margin-bottom: 20px;
 }
-.home h2.subtitle {
-  margin-top: -60px;
-  margin-bottom: 40px;
-  color: #ffffffcc;
-  font-size: 2vw;
-  text-shadow: 1.2px 1.2px #00000066;
+h3 {
+  margin: 0 0 20px;
 }
 .home .ant-btn {
   background-color: var(--primary-color);
+  color: white;
   height: 42px;
   padding: 0px 20px;
   display: flex;
@@ -244,6 +241,16 @@ a.home-secondary-cta {
   font-size: 12px;
   margin-top: 10px;
   text-decoration: underline;
+}
+.ant-btn[disabled]{
+  cursor: not-allowed;
+}
+.ant-btn[disabled], .ant-btn[disabled]:hover, .ant-btn[disabled]:focus, .ant-btn[disabled]:active {
+  color: white;
+  border-color: var(--secondary-color);
+  background: var(--secondary-color);
+  text-shadow: none;
+  box-shadow: none;
 }
 .ant-card {
   background: #ffffffdd !important;
