@@ -22,7 +22,7 @@ import "antd/dist/antd.css";
 import "./style.css";
 
 const App = () => {
-    const contractAddress = "0xcA216C479642700cB67920d399E5e7ce8E01DF15"; //Fuji
+    const contractAddress = "0x2C8e71aBF007e5286057612d365F661e8069492d"; //Fuji
     const { Moralis, isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading } = useMoralis();
     const { walletAddress } = useMoralisDapp();
     const [contractOwnerAddress, setContractOwnerAddress] = useState("");
@@ -87,25 +87,25 @@ const App = () => {
               </Route>
 
               <Route path="/roadmap">
-                <div className="content-wrap">
+                <div className="content-wrap roadmap">
                   <Roadmap />
                 </div>
               </Route>
 
               <Route path="/what-we-do">
-                <div className="content-wrap">
+                <div className="content-wrap about">
                   <About />
                 </div>
               </Route>
 
               <Route path="/meet-the-team">
-                <div className="content-wrap">
+                <div className="content-wrap team">
                   <Team />
                 </div>
               </Route>
 
               <Route path="/whitelist">
-                <div className="content-wrap">
+                <div className="content-wrap whitelist">
                   {isWhitelistActive || <Redirect to="/" /> }
                   {isAuthenticated || <Redirect to="/" /> }
                   <Whitelist isAuthenticated={isAuthenticated} contractAddress={contractAddress} isWhitelistActive={isWhitelistActive} abi={abi}/>
@@ -113,34 +113,34 @@ const App = () => {
               </Route>
 
               <Route path="/mint">
-                <div className="content-wrap">
+                <div className="content-wrap mint">
                   {isAuthenticated || <Redirect to="/" /> }
                   <Minter isAuthenticated={isAuthenticated} contractAddress={contractAddress} abi={abi}/>
                 </div>
               </Route>
 
               <Route path="/gallery">
-                <div className="content-wrap">
+                <div className="content-wrap gallery">
                   {isAuthenticated || <Redirect to="/" /> }
                   <Gallery isAuthenticated={isAuthenticated} contractAddress={contractAddress} abi={abi}/>
                 </div>
               </Route>
 
               <Route path="/faq">
-                <div className="content-wrap">
+                <div className="content-wrap faq">
                   <Faq contractAddress={contractAddress}/>
                 </div>
               </Route>
 
               <Route path="/xc-labs-admin">
-                <div className="content-wrap">
+                <div className="content-wrap admin">
                   {isAuthenticated || <Redirect to="/" /> }
                   <Admin isAuthenticated={isAuthenticated} isOwner={isOwner} contractAddress={contractAddress} abi={abi}/>
                 </div>
               </Route>
 
               <Route path="/nonauthenticated">
-                <div className="content-wrap">
+                <div className="content-wrap nonauthenticated">
                   Please login using the "Authenticate" button
                 </div>
               </Route>

@@ -19,6 +19,8 @@ export default function Admin(props) {
   const [tokensInWallet, setTokensInWallet] = useState(undefined);
   const [tokenToCheck, setTokenToCheck] = useState("");
   const [ownerOfToken, setOwnerOfToken] = useState("");
+  const [ownerOfContract, setOwnerOfContract] = useState("");
+  const [ownerAmountToMint, setOwnerAmountToMint] = useState("");
 
   const styles = {
       admin_title: {
@@ -121,41 +123,6 @@ export default function Admin(props) {
                 <Col className="sc-stats"><h4 className="sc-stats-name">Cost</h4><span className="sc-stats-value">{cost} AVAX</span></Col>
                 <Col className="sc-stats"><h4 className="sc-stats-name">Base URI</h4><span className="sc-stats-value">{baseUri}</span></Col>
             </Row>
-
-            <Form.Provider
-              onFormFinish={async () => {
-                const options = {
-                  contractAddress,
-                  functionName: 'withdraw',
-                  abi,
-                };
-                setResponses({ ...responses, "withdraw": { result: null, isLoading: true } });
-                Moralis.executeFunction(options).then((response) =>{
-                    openNotification({
-                        message: "Withdrawal Successful",
-                        description: response.transactionHash,
-                      });
-                    setResponses({ ...responses, "withdraw": { result: response, isLoading: false } });
-                });
-
-              }}
-            >
-                <Form layout="vertical" name="withdraw">
-                    <Row>
-                    <Col className="sc-function-box">
-                        <h4 className="sc-function-name">Withdraw funds</h4>
-                        <Button
-                        type="primary"
-                        size="large"
-                        htmlType="submit"
-                        loading={responses["withdraw"]?.isLoading}
-                        >
-                        Withdraw
-                        </Button>
-                    </Col>
-                    </Row>
-                </Form>
-            </Form.Provider>
             
             <Form.Provider
               onFormFinish={async () => {
@@ -461,6 +428,121 @@ export default function Admin(props) {
                         </Button>
                     </Col>
                     <Col className="sc-result">{ownerOfToken}</Col>
+                    </Row>
+                </Form>
+            </Form.Provider>
+
+            <Form.Provider
+              onFormFinish={async () => {
+                const options = {
+                  contractAddress,
+                  functionName: 'withdraw',
+                  abi,
+                };
+                setResponses({ ...responses, "withdraw": { result: null, isLoading: true } });
+                Moralis.executeFunction(options).then((response) =>{
+                    openNotification({
+                        message: "Withdrawal Successful",
+                        description: response.transactionHash,
+                      });
+                    setResponses({ ...responses, "withdraw": { result: response, isLoading: false } });
+                });
+
+              }}
+            >
+                <Form layout="vertical" name="withdraw" className="sc-function-warning">
+                    <Row>
+                    <Col className="sc-function-box">
+                        <h4 className="sc-function-name">Withdraw funds</h4>
+                        <Button
+                        type="primary"
+                        size="large"
+                        htmlType="submit"
+                        loading={responses["withdraw"]?.isLoading}
+                        >
+                        Withdraw
+                        </Button>
+                    </Col>
+                    </Row>
+                </Form>
+            </Form.Provider>
+
+            <Form.Provider
+              onFormFinish={async () => {
+                const options = {
+                  contractAddress,
+                  functionName: 'mintToOwner',
+                  abi,
+                  params: {
+                    "_mintAmount": ownerAmountToMint
+                  }
+                };
+                setResponses({ ...responses, "mintToOwner": { result: null, isLoading: true } });
+                Moralis.executeFunction(options).then((response) =>{
+                    openNotification({
+                        message: "Initial Owner Supply Mint Successful",
+                        description: response.transactionHash,
+                      });
+                    setResponses({ ...responses, "withmintToOwnerdraw": { result: response, isLoading: false } });
+                });
+
+              }}
+            >
+                <Form layout="vertical" name="mintToOwner" className="sc-function-warning">
+                    <Row>
+                    <Col className="sc-function-box">
+                        <h4 className="sc-function-name">Mint Initial Owner Supply<br/><small>(max 50 per transaction or it might fail. Total: 1777)</small></h4>
+                        
+                        <Input type="number" max="50" value={ownerAmountToMint} onChange={(e)=>{setOwnerAmountToMint(e.target.value)}}/>
+                        <Button
+                        type="primary"
+                        size="large"
+                        htmlType="submit"
+                        loading={responses["mintToOwner"]?.isLoading}
+                        >
+                        Mint
+                        </Button>
+                    </Col>
+                    </Row>
+                </Form>
+            </Form.Provider>
+
+            <Form.Provider
+            onFormFinish={async () => {
+                const options = {
+                contractAddress,
+                functionName: 'transferOwnership',
+                abi,
+                params: {
+                    "newOwner": ownerOfContract
+                }
+                };
+                setResponses({ ...responses, "transferOwnership": { result: null, isLoading: true } });
+                Moralis.executeFunction(options).then((response) =>{
+                    setOwnerOfToken(response);
+                    openNotification({
+                        message: "Ownership Transfer Successful",
+                        description: response.transactionHash,
+                    });
+                    setResponses({ ...responses, "transferOwnership": { result: response, isLoading: false } });
+                });
+
+            }}
+            >
+                <Form layout="vertical" name="transferOwnership" className="sc-function-warning">
+                    <Row>
+                    <Col className="sc-function-box">
+                        <h4 className="sc-function-name">Transfer Ownership of Contract</h4>
+                        <Input type="text" value={ownerOfContract} onChange={(e)=>{setOwnerOfContract(e.target.value)}}/>
+                        <Button
+                        type="primary"
+                        size="large"
+                        htmlType="submit"
+                        loading={responses["transferOwnership"]?.isLoading}
+                        >
+                        Transfer
+                        </Button>
+                    </Col>
                     </Row>
                 </Form>
             </Form.Provider>

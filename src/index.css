@@ -95,17 +95,20 @@ select {
 .ant-layout {
   justify-content: space-between;
 }
+.ant-modal {
+  top: unset !important;
+  width: unset !important;
+  transform-origin: 100% 100% !important;
+  overflow: hidden;
+}
 .app-wrapper{
   background-color: #e5e5e5;
 }
 .content-wrap{
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   color: #041836;
   padding: 10px;
-}
-.content-wrap.home{
-  justify-content: flex-start;
 }
 .main-header{
   width: 100%;
@@ -194,7 +197,7 @@ hr {
   opacity: 0.2;
 }
 .content-wrap.home .home {
-  margin: 0 140px;
+  margin: 0 10%;
   width: 60vw;
   height: 60vh;
   display: flex;
@@ -214,7 +217,20 @@ h1{
   line-height: 54px;
   margin-bottom: 20px;
 }
+h2{
+  color: var(--primary-color);
+  font-family: "Calibre";
+  font-size: 36px;
+  font-weight: 100;
+  line-height: 42px;
+  margin-bottom: 20px;
+}
+.roadmap-container .h2-with-separator {
+  padding-top: 40px;
+  border-top: 1px solid #c2c2c2;
+}
 h3 {
+  font-size: 22px;
   margin: 0 0 20px;
 }
 .home .ant-btn {
@@ -251,6 +267,16 @@ a.home-secondary-cta {
   background: var(--secondary-color);
   text-shadow: none;
   box-shadow: none;
+}
+.ant-collapse {
+  background: none;
+  border: none;
+}
+.ant-collapse-content{
+  background: none;
+}
+.ant-collapse-header {
+  font-size: 22px;
 }
 .ant-card {
   background: #ffffffdd !important;
@@ -410,15 +436,39 @@ input#mint__mintAmount:focus {
   cursor: pointer;
 }
 .whitelist-container, .minter-container{
-  width: 50%;
+  width: 60%;
   display: flex;
   flex-direction: column;
+  margin: 0 20%;
 }
 .how-to-container, .roadmap-container, .about-container, .team-container, .gallery-container {
   width: 50%;
   min-height: 60vh;
   display: flex;
   flex-direction: column;
+  margin: 0 10%;
+}
+.how-to-container p {
+  font-size: 16px;
+}
+.roadmap-heading {
+  margin: 100px 0;
+}
+span.project-separator {
+  font-size: 22px;
+}
+.xc-project {
+  margin-bottom: 60px;
+}
+.project-images {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+.project-images img {
+  width: 240px;
+  margin-right: 10px;
+  border-radius: 10px;
 }
 .minter-left-side {
   background-color: black;
@@ -482,6 +532,9 @@ a.see-transaction {
   align-items: center;
   justify-content: space-between;
   margin-bottom: 10px;
+}
+.sc-function-warning .sc-function-box{
+  background-color: rgba(206, 51, 51, 0.808);
 }
 .sc-function-box input {
   width: 50% !important;
