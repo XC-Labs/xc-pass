@@ -4,7 +4,7 @@ import xcpass3 from '../../assets/roadmap-render-xc_pass/xc_pass_6.jpg';
 import axo01 from '../../assets/roadmap-axoloots/01.jpg';
 import axo02 from '../../assets/roadmap-axoloots/02.jpg';
 import axo03 from '../../assets/roadmap-axoloots/03.jpg';
-import sym01 from '../../assets/roadmap-symbiotik/01.png';
+import sym01 from '../../assets/roadmap-symbiotik/01.jpg';
 import sym02 from '../../assets/roadmap-symbiotik/02.jpg';
 
 export default function Roadmap(props) {
