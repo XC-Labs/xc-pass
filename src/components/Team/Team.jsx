@@ -1,15 +1,113 @@
+import {Button} from 'antd';
+import bio from '../../assets/bio.png';
+
 const Team = () => {
     return <div className="team-container">
-    <h1><strong>Meet The Team</strong></h1>
-    <p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam lectus, bibendum ut massa eget, ultricies efficitur sem. Aliquam erat volutpat. Maecenas fringilla mi quis eros maximus ullamcorper. Pellentesque at justo turpis. Quisque ac luctus mi. Nunc sit amet nulla eget lacus efficitur elementum non et enim. Sed tempor porta nunc eget tempus. Donec libero velit, mollis in risus eget, viverra placerat ex. In ullamcorper pretium magna ut fringilla. Donec bibendum, libero in mattis facilisis, massa odio finibus tellus, et lacinia magna elit quis odio. Nam non dapibus lorem. Nunc dignissim est sed nibh eleifend, quis pretium magna semper. Pellentesque in eleifend libero. In porta sem nunc, volutpat finibus urna bibendum condimentum.
-    </p>
-    <p>
-Vivamus tincidunt leo at tristique congue. Donec faucibus lorem lacus, vitae lobortis tortor imperdiet a. Mauris in vulputate tortor. Fusce in orci sit amet dui lacinia posuere. Aliquam placerat elit est. Pellentesque orci lectus, iaculis ut turpis ut, dignissim tincidunt orci. Curabitur placerat, neque eget aliquam semper, dui sem faucibus lacus, quis commodo urna lacus ac nisi. Nunc sed nisl dui. Cras semper et est a egestas. Integer congue velit porttitor, hendrerit lacus a, varius libero. Phasellus elementum faucibus scelerisque.
-    </p>
-    <p>
-Donec ac odio egestas, varius neque id, commodo odio. Suspendisse porta velit in sapien scelerisque imperdiet. Praesent ornare est eget tellus fermentum blandit. Etiam justo lorem, varius in imperdiet vehicula, volutpat ac sapien. Donec justo ex, fermentum a vestibulum eu, fringilla in lorem. Etiam tincidunt neque ac malesuada eleifend. Suspendisse mi nibh, malesuada at ante vel, consequat auctor risus. Fusce hendrerit elit vitae sollicitudin eleifend. Fusce nec dolor neque. Ut in rutrum mauris. Quisque eget dui non orci ultricies pharetra. Integer viverra, tortor sit amet bibendum consectetur, nulla nisl imperdiet leo, vel congue libero orci eget ex. Duis faucibus nibh vel sem fermentum mollis.
-    </p>
+    <h1>Meet The Team</h1>
+    <h1 className="extra-big">
+        We are<br/><strong>Dreamers</strong>
+    </h1>
+    <h2>Collectively, we have 100 years of experience building and scaling tech products.</h2>
+
+    <div className="team-block-container">
+        <div className="team-block">
+            <div className="team-block-image">
+                <img src={bio} alt="Bio" />
+            </div>
+            <div className="team-block-info">
+                <h4>joxx</h4>
+                <h5>joxx | xc labs | symbiotik#8416</h5>
+                <p>gm</p>
+            </div>
+        </div>
+        <div className="team-block">
+            <div className="team-block-image">
+                <img src={bio} alt="Bio" />
+            </div>
+            <div className="team-block-info">
+                <h4>alex</h4>
+                <h5>errederruiz#8614</h5>
+                <p>creative chief</p>
+            </div>
+        </div>
+        <div className="team-block">
+            <div className="team-block-image">
+                <img src={bio} alt="Bio" />
+            </div>
+            <div className="team-block-info">
+                <h4>maw</h4>
+                <h5>mawmawmaw#0600</h5>
+                <p>head of tech</p>
+            </div>
+        </div>
+        <div className="team-block">
+            <div className="team-block-image">
+                <img src={bio} alt="Bio" />
+            </div>
+            <div className="team-block-info">
+                <h4>rox</h4>
+                <h5>roxpi122#2979</h5>
+                <p>head of research</p>
+            </div>
+        </div>
+        <div className="team-block">
+            <div className="team-block-image">
+                <img src={bio} alt="Bio" />
+            </div>
+            <div className="team-block-info">
+                <h4>ram&oacute;n</h4>
+                <h5>Roma / XC-Labs#6488</h5>
+                <p>counseling & advisory</p>
+            </div>
+        </div>
+        <div className="team-block">
+            <div className="team-block-image">
+                <img src={bio} alt="Bio" />
+            </div>
+            <div className="team-block-info">
+                <h4>cheko</h4>
+                <h5>Chekov#8800</h5>
+                <p>counseling & advisory</p>
+            </div>
+        </div>
+        <div className="team-block">
+            <div className="team-block-image">
+                <img src={bio} alt="Bio" />
+            </div>
+            <div className="team-block-info">
+                <h4>Antonio</h4>
+                <h5>antoniohdz90#3861</h5>
+                <p>Trading Desk</p>
+            </div>
+        </div>
+        <div className="team-block">
+            <div className="team-block-image">
+                <img src={bio} alt="Bio" />
+            </div>
+            <div className="team-block-info">
+                <h4>alex</h4>
+                <h5>luis96pack#0810</h5>
+                <p>community builder</p>
+            </div>
+        </div>
+        <div className="team-block">
+            <div className="team-block-image">
+                <img src={bio} alt="Bio" />
+            </div>
+            <div className="team-block-info">
+                <h4>Juvenal</h4>
+                <h5>Juvencrypto#2835</h5>
+                <p>community builder</p>
+            </div>
+        </div>
+    </div>
+    <h2>We’re building our team and would love to hear from you. Contact us and let’s make some history. </h2>
+    <Button
+        className="about-cta button"
+        size="large"
+    >
+        Apply Now
+    </Button>
 </div>
 }
 

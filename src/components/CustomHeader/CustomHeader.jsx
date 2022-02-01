@@ -23,59 +23,55 @@ export default function Roadmap(props) {
                 </Menu.Item>
         }
     }
-
-    if(window.ethereum){
-        return <>
-                <Header className="main-header">
-                    
-                    <NavLink to="/"><Logo /></NavLink>
+    return <>
+            <Header className="main-header">
                 
-                    <Menu
-                    theme="light"
-                    mode="horizontal"
-                    overflowedIndicator={menuIcon}
-                    style={{
-                        display: "flex",
-                        fontSize: "17px",
-                        fontWeight: "500",
-                        width: "100%",
-                        marginLeft: "80px",
-                    }}
-                    defaultSelectedKeys={[""]}
-                    >
-                        <Menu.Item key="roadmap">
-                            <NavLink to="/roadmap">Roadmap</NavLink>
-                        </Menu.Item>
+                <NavLink to="/"><Logo /></NavLink>
+            
+                <Menu
+                theme="light"
+                mode="horizontal"
+                overflowedIndicator={menuIcon}
+                style={{
+                    display: "flex",
+                    fontSize: "17px",
+                    fontWeight: "500",
+                    width: "100%",
+                    marginLeft: "80px",
+                }}
+                defaultSelectedKeys={[""]}
+                >
+                    <Menu.Item key="roadmap">
+                        <NavLink to="/roadmap">Roadmap</NavLink>
+                    </Menu.Item>
+                    <Menu.Item key="xc-pass">
+                        <NavLink to="/xc-pass">XC Pass</NavLink>
+                    </Menu.Item>
+                    <Menu.Item key="what-we-do">
+                        <NavLink to="/what-we-do">What We Do</NavLink>
+                    </Menu.Item>
+                    <Menu.Item key="meet-the-team">
+                        <NavLink to="/meet-the-team">Meet the Team</NavLink>
+                    </Menu.Item>
+                    <Menu.Item key="faq">
+                        <NavLink to="/faq">FAQs</NavLink>
+                    </Menu.Item>
+                    { adminMenuLink() }
+                </Menu>
+
+                <div className="main-header-right">
+                    <Menu>
                         <Menu.Item  
-                            key="mint" 
+                            key="mint"
+                            className="mint-header-button"
                             disabled={isAuthenticated && !isWhitelistActive ? false : true}
                         >
                             <NavLink to="/mint">Mint your XC Pass</NavLink>
                         </Menu.Item>
-                        <Menu.Item key="what-we-do">
-                            <NavLink to="/what-we-do">What We Do</NavLink>
-                        </Menu.Item>
-                        <Menu.Item key="meet-the-team">
-                            <NavLink to="/meet-the-team">Meet the Team</NavLink>
-                        </Menu.Item>
-                        <Menu.Item key="gallery" disabled={isAuthenticated ? false : true}>
-                            <NavLink to="/gallery">My Passes</NavLink>
-                        </Menu.Item>
-                        <Menu.Item key="faq">
-                            <NavLink to="/faq">FAQs</NavLink>
-                        </Menu.Item>
-                        { adminMenuLink() }
                     </Menu>
+                    <Account />
+                </div>
 
-                    <div className="main-header-right">
-                        <Account />
-                    </div>
-
-                </Header>
-            </>
-    }else{
-        return  <Header className="main-header">
-                    <Logo />
-                </Header>
-    }
+            </Header>
+        </>
 }

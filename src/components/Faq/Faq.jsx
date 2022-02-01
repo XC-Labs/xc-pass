@@ -11,7 +11,7 @@ const Faq = (props) => {
     const {contractAddress} = props;
 
 return <div className="how-to-container">
-            <h1><strong>FAQs</strong></h1>
+            <h1>FAQs</h1>
             <Collapse accordion>
                 
                 <Panel header="What is XC Labs?" key="1">
@@ -25,7 +25,7 @@ return <div className="how-to-container">
                 <Panel header="What does your “Chain-Agnostic” approach means?" key="3">
                     <p>As blockchain technology gets massively adopted, several chains will serve different features, industries and even communites. We aim to reach the true potential of the ecosystem through all the collective work that is being held under all of the projects available.</p>
                 </Panel>
-                <Panel header="Who´s the team behind?" key="4">
+                <Panel header="Who's the team behind?" key="4">
                     <p>Visit the Team Section</p>
                 </Panel>
                 <Panel header="What is the XC Pass functionality? " key="5">

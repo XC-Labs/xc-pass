@@ -2,8 +2,9 @@ import { useMoralisDapp } from "providers/MoralisDappProvider/MoralisDappProvide
 import { Button, Row, Col, Form } from "antd";
 import { useState, useEffect } from "react";
 import { useMoralis } from "react-moralis";
+
 export default function Whitelist(props) {
-  const { isAuthenticated, contractAddress, abi, isWhitelistActive } = props;
+  const { isAuthenticated, contractAddress, abi, isWhitelistRegActive } = props;
   const { Moralis } = useMoralis();
   const { walletAddress, chainId } = useMoralisDapp();
   const [userAddress, setUserAddress] = useState("");
@@ -52,7 +53,7 @@ export default function Whitelist(props) {
     setUserAddress(walletAddress);
   },[walletAddress])
 
-  if(isWhitelistActive){
+  if(isWhitelistRegActive){
     if(isChecked){
       if(isWhitelisted){
         return <div className="whitelist-container">

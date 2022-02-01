@@ -10,8 +10,7 @@ import {
 
 export default function Minter(props) {
   const nftPrice = "1";
-  const whitelist = true;
-  const { isAuthenticated, contractAddress, abi } = props;
+  const { isAuthenticated, contractAddress, isWhitelistActive, abi } = props;
   const { Moralis } = useMoralis();
   const { walletAddress, chainId } = useMoralisDapp();
   const [amountMinted, setAmountMinted] = useState(0);
@@ -105,7 +104,7 @@ export default function Minter(props) {
           }
           
           {// eslint-disable-next-line
-          whitelist!=true || 
+          isWhitelistActive!=true || 
           <div className="whitelist-active"><WarningFilled/> Whitelist is active at the moment. Only people who registered will be able to mint.</div>
           }
       </div>
