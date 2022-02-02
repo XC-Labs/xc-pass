@@ -3,14 +3,14 @@ import { Button, Input, Form, notification, Row, Col } from "antd";
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { useMoralis } from "react-moralis";
-import nft from '../../assets/nft.jpg';
+import nft from '../../assets/xcpass.png';
 import {
   WarningFilled
 } from '@ant-design/icons';
 
 export default function Minter(props) {
   const nftPrice = "1";
-  const { isAuthenticated, contractAddress, isWhitelistActive, abi } = props;
+  const { isAuthenticated, contractAddress, isWhitelistSaleActive, abi } = props;
   const { Moralis } = useMoralis();
   const { walletAddress, chainId } = useMoralisDapp();
   const [amountMinted, setAmountMinted] = useState(0);
@@ -104,7 +104,7 @@ export default function Minter(props) {
           }
           
           {// eslint-disable-next-line
-          isWhitelistActive!=true || 
+          isWhitelistSaleActive!=true || 
           <div className="whitelist-active"><WarningFilled/> Whitelist is active at the moment. Only people who registered will be able to mint.</div>
           }
       </div>
@@ -129,7 +129,7 @@ export default function Minter(props) {
       </Col>
       <Col span={12} className="minter-right-side">
         <h1>XC-Pass</h1>
-        <h3>XC-Pass unlocks access to our community, early investment opportunities, whitelist for our NFTs, and a spot in our trading desk to earn 30% on your investment. Buy more passes to increase your level and benefits in our community. <NavLink to="/roadmap">Learn more.</NavLink></h3>
+        <h3>XC-Pass unlocks access to our community. <NavLink to="/xc-pass">Learn more.</NavLink></h3>
 
         <Form.Provider
             onFormFinish={async (name, { forms }) => {
@@ -188,8 +188,8 @@ export default function Minter(props) {
             }}
           >
               <Form layout="vertical" name="mint" initialValues={{_mintAmount: '0'}}>
-              <span>XC-Pass price 1 AVAX ($98.5 USD).</span><br/>
-              <span>Max. 50 XC-Passes per user’s wallet.</span>
+              <span>XC-Pass price: 1 AVAX (<a href="https://coinmarketcap.com/currencies/avalanche/" rel="noreferrer" target="_blank">Check price</a>) + Gas</span><br/>
+              <span>Max. per wallet: 50 XC-Passes</span>
                 <div className="minting-inputs">
                   <Form.Item
                     label=""

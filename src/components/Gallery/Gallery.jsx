@@ -1,7 +1,9 @@
 import { useMoralisDapp } from "providers/MoralisDappProvider/MoralisDappProvider";
 import { useEffect, useState } from "react";
 import { useMoralis } from "react-moralis";
-import NftListView from './NftListView';
+import {Row, Col, Button } from "antd";
+import { NavLink } from "react-router-dom";
+import nft from '../../assets/nft.jpg';
 
 export default function Gallery(props) {
     
@@ -29,8 +31,21 @@ export default function Gallery(props) {
 
     return (
             <div className="gallery-container">
-                <h1><strong>{`Gallery (${ nftList[0]?.length ? nftList[0]?.length : "0"})`}</strong></h1>
-                <NftListView list={nftList} nftSize={200}/>   
+                <Row>
+                    <Col span={12} className="gallery-left-side">
+                        <img src={nft} alt="NFT Preview" />
+                    </Col>
+                    <Col span={12} className="gallery-right-side">
+                        <h1>XC-Pass</h1>
+                        <h3>XC-Pass unlocks access to our community, early investment opportunities, whitelist for our NFTs, and a spot in our trading desk to earn 30% on your investment. Buy more passes to increase your level and benefits in our community. <NavLink to="/xc-pass">Learn more.</NavLink></h3>
+
+                        <div className="gallery-user-amount">You've got: {nftList[0]?.length} passes</div>
+
+                        <Button>
+                            <NavLink to="/mint">Mint a XC Pass</NavLink>
+                        </Button>
+                    </Col>
+                    </Row>
             </div>
             
 

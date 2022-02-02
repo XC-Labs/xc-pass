@@ -229,7 +229,7 @@ a.sidebar-inner-menu-element, li.sidebar-inner-menu-element span a{
 .footer-links a {
   padding: 0 10px;
   font-size: 14px;
-  color: var(--primary-color);
+  color: var(--primary-gray);
   text-transform: uppercase;
   font-weight: bold;
   letter-spacing: 1.5px;
@@ -523,7 +523,7 @@ input#mint__mintAmount:focus {
 .collections-inner-container .ant-card-cover {
   padding: 0;
 }
-.collections-inner-container .ant-card-cover .ant-card-cover img {
+.collections-inner-container .ant-card-cover img {
   height: unset;
 }
 .about-block {
@@ -615,15 +615,19 @@ span.project-separator {
   margin-right: 10px;
   border-radius: 10px;
 }
-.minter-left-side {
+.gallery-left-side {
   background-color: black;
   border-radius: 10px 0 0 10px;
   overflow: hidden;
 }
-.minter-right-side {
+.gallery-right-side {
   background-color: white;
   padding: 40px;
   border-radius: 0 10px 10px 0;
+}
+.minter-left-side {
+  max-width: 30%;
+  margin-right: 40px;
 }
 .minter-modal {
   background: #72727299;

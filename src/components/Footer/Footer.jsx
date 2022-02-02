@@ -11,7 +11,7 @@ const Footer = () => {
                 <Logo />
                 <div className='footer-links'>
                     <a href="https://maw.dev" title="Medium" target="_noblank" rel="noreferrer">Medium</a>
-                    <a href="https://maw.dev" title="Discord" target="_noblank" rel="noreferrer">Discord</a>
+                    <a href="https://discord.com/invite/mTYgkkeA28" title="Discord" target="_noblank" rel="noreferrer">Discord</a>
                     <a href="https://maw.dev" title="Twitter" target="_noblank" rel="noreferrer">Twitter</a>
                 </div>
             </div>
