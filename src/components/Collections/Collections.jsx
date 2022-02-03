@@ -5,7 +5,7 @@ import nft from '../../assets/nft.jpg';
 const Collections = () => {
     const { Meta } = Card;
     return <div className="collections-container">
-        <h1>Collections</h1>
+        <h1 className="extra-big">Collections</h1>
         <div className='collections-inner-container'>
             <NavLink to="/collections/xc-pass">
                 <Card

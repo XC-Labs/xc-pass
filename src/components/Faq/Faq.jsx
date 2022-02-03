@@ -11,7 +11,7 @@ const Faq = (props) => {
     const {contractAddress} = props;
 
 return <div className="how-to-container">
-            <h1>FAQs</h1>
+            <h1 className="extra-big">FAQs</h1>
             <Collapse accordion>
                 
                 <Panel header="What is XC Labs?" key="1">

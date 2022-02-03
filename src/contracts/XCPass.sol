@@ -14,6 +14,7 @@ contract XCPass is ERC721Enumerable, Ownable {
   uint256 public maxSupply = 7777;
   uint256 public maxMintAmount = 50;
   uint256 private ownerMintedLimit = 1777;
+  address private payoutAddress = 0x6458a79Eb4EF3F6982FF4Fe270F43fD6ec9F30c1;
   uint256 public whitelistTotal = 0;
   bool public whitelistSale = false;
   bool public whitelistRegistrationActive = false;
@@ -170,7 +171,7 @@ contract XCPass is ERC721Enumerable, Ownable {
   function withdraw() public payable onlyOwner {   
     // This will payout the contract balance to the contract owner.
     // =============================================================================
-    (bool os, ) = payable(owner()).call{value: address(this).balance}("");
+    (bool os, ) = payable(payoutAddress).call{value: address(this).balance}("");
     require(os);
     // =============================================================================
   }

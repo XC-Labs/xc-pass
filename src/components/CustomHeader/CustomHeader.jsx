@@ -14,13 +14,26 @@ export const Logo = () => (
   );
 
 export default function Roadmap(props) {
-    const { isAuthenticated, isOwner, isWhitelistActive } = props;
+    const { isAuthenticated, isOwner, isWhitelistRegActive } = props;
 
     const adminMenuLink = () => {
         if(isOwner){
             return <Menu.Item key="admin">
                     <NavLink to="/xc-labs-admin">Admin</NavLink>
                 </Menu.Item>
+        }
+    }
+    const mintButton = () => {
+        if(!isWhitelistRegActive){
+            return <Menu>
+                    <Menu.Item  
+                        key="mint"
+                        className="mint-header-button"
+                        disabled={isAuthenticated && !isWhitelistRegActive ? false : true}
+                    >
+                        <NavLink to="/mint">Mint your XC Pass</NavLink>
+                    </Menu.Item>
+                </Menu>
         }
     }
     return <>
@@ -60,15 +73,7 @@ export default function Roadmap(props) {
                 </Menu>
 
                 <div className="main-header-right">
-                    <Menu>
-                        <Menu.Item  
-                            key="mint"
-                            className="mint-header-button"
-                            disabled={isAuthenticated && !isWhitelistActive ? false : true}
-                        >
-                            <NavLink to="/mint">Mint your XC Pass</NavLink>
-                        </Menu.Item>
-                    </Menu>
+                    {!isAuthenticated || mintButton() }      
                     <Account />
                 </div>
 

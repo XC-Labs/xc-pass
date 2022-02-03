@@ -10,7 +10,7 @@ import sym02 from '../../assets/roadmap-symbiotik/02.jpg';
 export default function Roadmap(props) {
     return <div className="roadmap-container">
                 <div className="roadmap-heading">
-                    <h1>Roadmap</h1>
+                    <h1 className='extra-big'>Roadmap</h1>
                     <h2>Our work is focused on exploring the boundaries of NFT technology. Being part of our community means being part of the future.</h2>
                 </div>
                 <h2>Q1 2022</h2>

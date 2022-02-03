@@ -35,7 +35,7 @@ function Account() {
         footer={null}
         onCancel={() => setIsModalVisible(false)}
         bodyStyle={{
-          backgroundColor: "#535353",
+          backgroundColor: "#FF7C11",
           color: "white",
           position: "fixed",
           right: "0px",
@@ -75,6 +75,7 @@ function Account() {
             style={{
               width: "100%",
               marginTop: "10px",
+              border: "1px solid white",
               borderRadius: "20px",
               fontSize: "16px",
               fontWeight: "500",

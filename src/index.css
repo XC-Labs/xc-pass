@@ -1,9 +1,10 @@
 :root{
   --primary-color: #5900ff;
   --secondary-color: #5900ffda;
-  --primary-gray: #535353;
-  --secondary-gray: #7e7e7e;
-  --bg-color: #e5e5e5;
+  --accent-color: #FF7C11;
+  --primary-gray: #000;
+  --secondary-gray: #3c3c3c;
+  --bg-color: #ffffff;
 }
 
 @font-face {
@@ -64,6 +65,7 @@ body {
   font-family: 'Calibre';
 }
 p {
+  color: var(--primary-gray);
   margin-top: 1em;
   margin-bottom: 1em;
 }
@@ -105,6 +107,23 @@ select {
   width: unset !important;
   transform-origin: 100% 100% !important;
   overflow: hidden;
+}
+.ant-modal-body {
+  padding: 0;
+}
+.nft-metadata {
+  padding: 20px;
+}
+.ant-modal-title {
+  font-weight: bold;
+  font-size: 26px;
+}
+.ant-modal.nft-viewer-modal {
+  width: 360px !important;
+  margin: 40px auto;
+}
+button.ant-btn.cancel-button-modal {
+  display: none;
 }
 .ant-menu-horizontal{
   border-bottom: none;
@@ -175,6 +194,9 @@ svg.menu-icon {
 .header-wallet.not-logged:hover, .header-wallet.not-logged:focus {
   background-color: var(--secondary-color) !important;
 }
+p.auth-button {
+  font-weight: bold;
+}
 .header-address {
   margin-right: 5px;
   font-size: 12px;
@@ -187,7 +209,7 @@ svg.menu-icon {
   color: limegreen;
 }
 .logo-container {
-  height: 40px;
+  width: 80px;
 }
 .sidebar-container {
   display: flex;
@@ -214,6 +236,9 @@ a.sidebar-inner-menu-element, li.sidebar-inner-menu-element span a{
   text-transform: uppercase;
   padding: 10px;
 }
+.sidebar-container p.address, p.header-address {
+  font-weight: 400;
+}
 .main-footer {
   display: flex;
   align-items: center;
@@ -222,9 +247,6 @@ a.sidebar-inner-menu-element, li.sidebar-inner-menu-element span a{
   justify-content: space-between;
   padding: 40px;
   background-color: white;
-}
-.footer-links {
-  width: 90%;
 }
 .footer-links a {
   padding: 0 10px;
@@ -235,7 +257,7 @@ a.sidebar-inner-menu-element, li.sidebar-inner-menu-element span a{
   letter-spacing: 1.5px;
 }
 hr {
-  opacity: 0.2;
+  opacity: 0.8;
   width: 100%;
 }
 .content-wrap.home .home {
@@ -254,36 +276,43 @@ hr {
 h1{
   color: var(--primary-gray);
   font-family: "Calibre";
-  font-size: 52px;
+  font-size: 72px;
   font-weight: 400;
-  line-height: 54px;
+  line-height: 64px;
   margin-bottom: 20px;
 }
 h1.extra-big {
-  font-size: 120px;
+  color: var(--primary-color);
+  font-size: 122px;
   line-height: 90px;
+  margin-bottom: 80px;
+}
+.home h1.extra-big span, .mint h1.extra-big span{
+  color: var(--primary-gray);
 }
 h2{
   color: var(--primary-gray);
   font-family: "Calibre";
-  font-size: 36px;
+  font-size: 46px;
   font-weight: 400;
   line-height: 42px;
   margin-bottom: 20px;
 }
 .roadmap-container .h2-with-separator {
   padding-top: 40px;
-  border-top: 1px solid #c2c2c2;
+  border-top: 1px solid var(--primary-gray);
 }
 h3 {
-  font-size: 22px;
+  font-size: 30px;
+  line-height: 32px;
+  font-weight: 400;
   margin: 0 0 20px;
 }
 p{
   font-weight: 100;
 }
-.home .ant-btn {
-  background-color: var(--primary-color);
+button.main-cta.button {
+  background-color: var(--accent-color);
   color: white;
   height: 42px;
   padding: 0px 20px;
@@ -299,10 +328,10 @@ p{
   font-size: 12px;
   font-family: "Archivo";
 }
-a.home-secondary-cta {
+a.secondary-cta {
   width: 40%;
   text-align: center;
-  color: var(--primary-color);
+  color: var(--primary-gray);
   font-size: 12px;
   margin-top: 10px;
   text-decoration: underline;
@@ -325,7 +354,7 @@ a.home-secondary-cta {
   background: none;
 }
 .ant-collapse-header {
-  font-size: 22px;
+  font-size: 28px;
 }
 .ant-card {
   background: #ffffffdd !important;
@@ -387,32 +416,70 @@ span.anticon.anticon-warning {
   width: 100%;
 }
 .minting-inputs button, button.ant-btn {
-  width: 240px;
+  width: 100%;
   margin-top: 20px;
-  background-color: var(--primary-color);
+  background-color: var(--accent-color);
   border-radius: 30px;
   color: white;
   border: none;
 }
-.minting-inputs button{
-  width: 100%;
+.minting-inputs span{
+  color: white;
 }
-.ant-btn:hover, .ant-btn:focus, .ant-btn:active {
+button.main-cta.button:hover, .ant-btn:hover, .ant-btn:focus, .ant-btn:active {
   text-decoration: none;
   background: var(--secondary-color);
   border: none;
   color: white;
 }
-input#mint__mintAmount {
-  font-size: 36px;
-  text-align: center;
-  font-weight: bold;
-  margin-top: 20px;
-  border: none;
+.about-cta.button {
+  width: 40%;
 }
-input#mint__mintAmount:focus {
+.mint-amount{
+  position: relative;
+  margin-top: 20px;
+}
+.mint-amount .ant-form-item-control-input-content {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+.mint-amount input.ant-input-number-input {
+  font-size: 56px;
+  text-align: center;
+  color: white;
+  border: none;
   outline: none;
+  background-color: transparent;
+  width: 100px;
+  height: 100px;
+  padding: 40px 0 0;
+}
+.mint-amount .ant-input-number {
+  border: none !important;
+  background-color: transparent;
+  padding: 0;
+}
+.ant-input-number-focused {
+  border: none !important;
+  outline: none !important;
   box-shadow: none;
+}
+[type='number']::-webkit-inner-spin-button, [type='number']::-webkit-outer-spin-button {
+  display: none;
+}
+button.change-amount-button {
+  background-color: transparent;
+  border: 2px solid white;
+  border-radius: 50%;
+  min-width: 40px;
+  width: 40px;
+  height: 40px;
+  font-size: 44px;
+  line-height: 48px;
+  color: white;
+  cursor: pointer;
 }
 .minter-announcement {
   position: absolute;
@@ -430,7 +497,7 @@ input#mint__mintAmount:focus {
   fill: #27ab07;
 }
 .successfulMint svg.external-link path {
-  fill: var(--primary-color);
+  fill: var(--accent-color);
 }
 .mintError{
   text-align: center;
@@ -450,12 +517,27 @@ input#mint__mintAmount:focus {
     transform: scale(1);
   }
 }
-.mintLoading{
+.mintLoading, .successfulMint {
+  position: relative;
   text-align: center;
-  animation: minting 2s linear 0s infinite;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-size: 100%;
 }
-.mintLoading svg path{
-  fill: var(--primary-color);
+.progress-circle-animation, .mint-loading-content, .successful-circle {
+  position: absolute;
+}
+.progress-circle-animation{
+  animation: minting 1.5s linear 0s infinite;
+}
+.mint-loading-content h3 {
+  font-size: 36px;
+  margin-bottom: 0;
 }
 @keyframes minting {
   0%{
@@ -464,6 +546,10 @@ input#mint__mintAmount:focus {
   100%{
     transform: rotate(360deg);
   }
+}
+.ant-notification-notice-message{
+  font-size: 22px;
+  font-weight: bold;
 }
 .ant-card-meta {
   margin-bottom: 10px;
@@ -495,7 +581,7 @@ input#mint__mintAmount:focus {
   margin: 100px 20%;
 }
 .team-container {
-  width: 70%;
+  width: 60%;
   display: flex;
   flex-direction: column;
   margin: 100px 0 100px 10%;
@@ -511,6 +597,12 @@ input#mint__mintAmount:focus {
   margin: 40px 0 80px;
   font-size: 9vw;
   line-height: 7vw;
+}
+.ant-collapse-content {
+  border-top: none;
+}
+.ant-collapse > .ant-collapse-item {
+  border-bottom: 1px solid var(--primary-gray);
 }
 .collections-inner-container {
   display: flex;
@@ -532,15 +624,23 @@ input#mint__mintAmount:focus {
   align-content: center;
   align-items: center;
   justify-content: center;
-  gap: 40px
+  gap: 40px;
+  margin: 40px 0;
 }
-.about-block .extra-big {
-  margin: 60px 0 0;
+.about-block .content-wrapper .extra-big {
+  margin: 20px 0 0;
+}
+.about-block .content-wrapper p {
+  padding-left: 110px;
+}
+.about-block .nfts-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  width: 480px;
 }
 .nft-wrapper {
-  min-width: 40%;
-  height: 250px;
-  background: black;
+  cursor: pointer;
 }
 .team-block-container {
   margin: 40px 0 80px;
@@ -559,9 +659,7 @@ input#mint__mintAmount:focus {
   min-width: 40%;
 }
 .roadmap-heading h2 {
-  font-weight: 100;
   margin-bottom: 100px;
-  color: var(--primary-gray);
 }
 .pass-container{
   margin: 100px auto;
@@ -571,10 +669,34 @@ input#mint__mintAmount:focus {
 .pass-heading {
   width: 500px;
   margin: 0 auto 60px;
+  text-align: center;
+}
+.pass-heading button.main-cta.button {
+  margin: 0 auto;
+  width: 320px;
+}
+.pass-heading img.xc-pass-logo{
+  width: 220px;
+  margin: 0 auto;
+}
+.pass-heading img.xc-pass-token{
+  width: 340px;
+  margin: 0 auto;
+}
+.pass-heading h2 {
+  color: var(--accent-color);
+  font-weight: bold;
+}
+.pass-heading h3 {
+  font-size: 20px;
+  margin: 20px;
 }
 .pass-container p, .about-container p {
   font-size: 22px;
-  font-weight: 100;
+  font-weight: 400;
+}
+.pass-container .reasons-container .reason p {
+  font-size: 18px;
 }
 .reasons-container {
   margin-top: 60px;
@@ -596,7 +718,7 @@ input#mint__mintAmount:focus {
   text-align: left;
 }
 .how-to-container p{
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 100;
 }
 span.project-separator {
@@ -609,6 +731,7 @@ span.project-separator {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
+  gap: 10px;
 }
 .project-images img {
   width: 240px;
@@ -628,6 +751,11 @@ span.project-separator {
 .minter-left-side {
   max-width: 30%;
   margin-right: 40px;
+}
+form#mint {
+  background-color: var(--primary-color);
+  border-radius: 20px;
+  padding: 20px;
 }
 .minter-modal {
   background: #72727299;
@@ -650,17 +778,23 @@ span.project-separator {
 }
 .close-modal {
   margin-top: 40px;
-  border: 1px solid;
+  background-color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  color: white;
   width: 100%;
   text-align: center;
   padding-top: 6px;
   border-radius: 20px;
   cursor: pointer;
 }
+.close-modal:hover {
+  background-color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+}
 a.see-transaction {
   display: block;
   margin-top: 10px;
-  border: 1px solid var(--primary-color);
+  color: var(--accent-color);
   width: 100%;
   text-align: center;
   padding-top: 6px;
@@ -668,7 +802,7 @@ a.see-transaction {
   cursor: pointer;
 }
 .close-modal:disabled {
-  background-color: #e2e2e2;
+  background-color: var(--secondary-color);
   cursor: not-allowed;
 }
 .sc-function-box {
@@ -733,9 +867,25 @@ span.sc-stats-value {
   border-radius: 0 0 4px 4px;
 }
 
+
+
+
 @media screen and (max-width: 768px) {
-  .how-to-container, .roadmap-container, .about-container, .team-container, .gallery-container {
+  .content-wrap.home .home, .how-to-container, .roadmap-container, .pass-container, .pass-heading, .about-container, .team-container,.whitelist-container, .minter-container, .collections-container, .gallery-container, button.main-cta.button, a.secondary-cta, .pass-heading button.main-cta.button {
     width: 100%;
+  }
+  .how-to-container, .roadmap-container, .pass-container, .about-container, .team-container, .whitelist-container, .minter-container, .collections-container, .gallery-container{
+      margin: 100px 0;
+      padding: 0 20px;
+  }
+  .main-header {
+    position: relative;
+    padding: 0px 20px;
+  }
+  .main-header-right {
+    position: absolute;
+    right: 80px;
+    top: 14px;
   }
   .header-wallet {
       width: 100px !important;
@@ -743,18 +893,23 @@ span.sc-stats-value {
   .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu {
       padding: 0 10px;
   }
+  .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-selected {
+      color: var(--primary-color);
+  }
   header.ant-layout-header {
-      flex-wrap: wrap;
-      flex-direction: column;
-      justify-content: center !important;
-      align-items: center !important;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
   }
   .logo-container{
     width: 60px;
   }
   ul.ant-menu-overflow.ant-menu.ant-menu-root.ant-menu-horizontal.ant-menu-light {
-    width: 50% !important;
-    margin-left: 0px !important;
+    width: 60px !important;
+    margin-left: auto !important;
+    justify-content: flex-end;
+  }
+  li.ant-menu-item-selected a{
+      color: white;
   }
   li.ant-menu-overflow-item.ant-menu-overflow-item-rest.ant-menu-submenu.ant-menu-submenu-horizontal {
       padding-left: 0;
@@ -763,7 +918,7 @@ span.sc-stats-value {
       font-size: 12px;
   }
   button.ant-btn.ant-dropdown-trigger span:first-of-type, 
-  .chain-selector {
+  .chain-selector, .mint-header-button {
     display: none;
   }
   .header-wallet.not-logged {
@@ -776,38 +931,78 @@ span.sc-stats-value {
   p.header-address {
       font-size: 8px;
   }
-  .home h1 {
-      font-size: 18vw;
-      line-height: 20vw;
+  h1 {
+      font-size: 34px;
+      line-height: 30px;
   }
-  .home .main-logo{
-    width: 220px;
+  h1.extra-big, .about-container .extra-big, .team-container .extra-big {
+      font-size: 64px;
+      line-height: 60px;
   }
-  .home h2.subtitle {
-    margin-top: 0px;
-    font-size: 6vw;
+  h2 {
+      color: var(--primary-gray);
+      font-family: "Calibre";
+      font-size: 26px;
+      font-weight: 400;
+      line-height: 30px;
+      margin-bottom: 20px;
   }
-  .home .ant-btn {
-      font-size: 20px;
+  button.main-cta.button {
+    padding: 10px 20px;
+}
+  .pass-container p, .about-container p {
+      font-size: 16px;
   }
-  .minter-wrapper {
-      width: 90vw !important;
-      flex-direction: column;
+  .project-images {
+      justify-content: center;
   }
-  .minter-wrapper > div {
-    width: 100% !important;
+  .reason-container > h1.extra-big {
+      min-width: 30%;
+      font-size: 100px;
   }
-  .ant-card-head-title {
-      font-size: 24px;
+  .about-block {
+      gap: 10px;
   }
-  .ant-card-head-title p {
-      font-size: 10px;
+  .about-block .content-wrapper p {
+      padding-left: 20px;
   }
-  .how-to-container {
-      width: 90vw !important;
+  .about-block .nfts-wrapper {
+      gap: 10px;
   }
-  .ant-col.ant-col-8.gutter-row {
-      flex: 0 0 100%;
+  .team-block {
+      justify-content: flex-start;
+      gap: 6px;
+  }
+  .team-block-container {
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+  }
+  .minter-left-side {
       max-width: 100%;
+      margin-right: 20px;
+      flex: auto;
+  }
+  .minter-right-side {
+      max-width: 100%;
+  }
+  .minter-right-side h3 {
+      font-size: 15px;
+      line-height: 16px;
+  }
+  .minting-info {
+    margin: 20px;
+}
+  .gallery-right-side {
+      padding: 16px;
+  }
+  .gallery-right-side h3{
+      font-size: 15px;
+      line-height: 14px;
+  }
+  .footer-links {
+      margin-left: 20px;
+  }
+  .footer-links a {
+      font-size: 12px;
   }
 }

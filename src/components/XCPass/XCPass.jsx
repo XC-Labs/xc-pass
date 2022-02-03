@@ -1,20 +1,21 @@
 import { Button } from "antd";
 import { NavLink } from "react-router-dom";
 import xcpass from '../../assets/xcpass.png';
+import xcpasslogo from '../../assets/xcpass-logo.png';
 
 export default function XCPass(props) {
     const { isAuthenticated, isWhitelistRegActive } = props;
     return <div className="pass-container">
                 <div className="pass-heading">
-                    <h2>Join our community, get future-ready.</h2>
-                    <div style={{backgroundImage: `url(${xcpass})`, backgroundRepeat: "no-repeat", backgroundPosition: "center", backgroundSize: "260px", height: "480px", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "40px"}}>
-                        <h1 className="extra-big">XC—PASS</h1>
-                    </div>
+                    <img src={xcpasslogo} className="xc-pass-logo" alt="XC Pass Logo"/>
+                    <h3>by XC-LABS</h3>
+                    <img src={xcpass} className="xc-pass-token" alt="XC Pass"/>
+
                     <p><strong>XC-Pass</strong> unlocks access to our community, early investment opportunities, whitelist for our NFTs, and a spot in our trading desk to earn additional yield on your investments. Buy more passes to leverage your governance power in our future DAO and increase your benefits in our community.</p>
 
                     {isWhitelistRegActive &&
                         <Button
-                            className="home-cta button"
+                            className="main-cta button"
                             size="large"
                             disabled={isAuthenticated ? false : true}
                         >
@@ -23,7 +24,7 @@ export default function XCPass(props) {
                     }
                     {!isWhitelistRegActive &&
                         <Button
-                            className="home-cta button"
+                            className="main-cta button"
                             size="large"
                             disabled={isAuthenticated ? false : true}
                         >
@@ -80,7 +81,7 @@ export default function XCPass(props) {
                 <h2>Ready for the future?</h2>
                 {isWhitelistRegActive &&
                     <Button
-                        className="home-cta button"
+                        className="main-cta button"
                         size="large"
                         disabled={isAuthenticated ? false : true}
                     >
@@ -89,7 +90,7 @@ export default function XCPass(props) {
                 }
                 {!isWhitelistRegActive &&
                     <Button
-                        className="home-cta button"
+                        className="main-cta button"
                         size="large"
                         disabled={isAuthenticated ? false : true}
                     >
