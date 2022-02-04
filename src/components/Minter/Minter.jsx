@@ -112,15 +112,15 @@ export default function Minter(props) {
   },[walletAddress])
   
   return <div className="minter-container">
-      <div className="minter-modal" style={modalInView ? {display: "flex"} : {display: "none"}} onClick={()=>{mintSuccess ? setModalInView(false) : setModalInView(true)}}>
+      <div className="minter-modal" style={modalInView ? {display: "flex"} : {display: "none"}} onClick={()=>{!mintOn ? setModalInView(false) : setModalInView(true)}}>
         <div className="modal-container">
           
             { renderedResult() }
             
             <button 
-            className="close-modal" 
-            disabled={mintOn ? true : false}
-            onClick={()=>{setModalInView(false)}}>
+              className="close-modal" 
+              disabled={mintOn ? true : false}
+              onClick={()=>{setModalInView(false)}}>
               {mintOn ? "Please wait..." : "Close"}
             </button>
           
@@ -168,7 +168,7 @@ export default function Minter(props) {
                     .on("receipt", (receipt) => {
                       setResponses({ ...responses, [name]: { result: null, isLoading: false } });
                       openNotification({
-                        message: "Transaction Confirmed",
+                        message: "Transaction Successful",
                         description: `${receipt.transactionHash}`,
                       });
                       console.log(receipt);
@@ -183,7 +183,6 @@ export default function Minter(props) {
                         message: "Transaction Error",
                         description: "Something went wrong with the transaction. Feel free to try again.",
                       });
-                      setMintOn(false);
                       setMintSuccess(false);
                       setMintError(true);
                     });
