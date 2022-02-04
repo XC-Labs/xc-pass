@@ -29,8 +29,12 @@ const About = () => {
     <h1 className="extra-big">
         Reality is what we want it to be.
     </h1>
-    <h2>Our Assessment</h2>
-    <p>Development spaces today aren’t entirely physical. Virtual and augmented reality playgrounds are now enhancers of our human experience and we use it to evolve our nature.</p>
+    <p>Development spaces today aren’t entirely physical. Virtual and augmented playgrounds are enhancers of our human experience. We participate, collect and invest in what we believe.</p>
+
+    <br/>
+    <br/>
+    
+    <h2>What we do:</h2>
 
     <div className="about-block">
         <div className="nfts-wrapper">
