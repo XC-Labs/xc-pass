@@ -119,6 +119,7 @@ div#loading-app {
   }
 }
 .ant-layout {
+  position: relative;
   background-color: var(--bg-color);
   justify-content: space-between;
 }
@@ -162,6 +163,9 @@ button.ant-btn.cancel-button-modal {
   display: flex;
   justify-content: flex-start;
   margin: 100px 10%;
+}
+.content-wrap.mint{
+  position: unset;
 }
 .main-header{
   background-color: transparent;
