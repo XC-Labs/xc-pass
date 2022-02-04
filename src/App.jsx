@@ -175,7 +175,6 @@ const App = () => {
                   {renderedWarning()}
                 </div>
                 <div className="content-wrap mint">
-                  {isWhitelistRegActive || <Redirect to="/" /> }
                   {isAuthenticated || <Redirect to="/" /> }
                   <Minter 
                     isAuthenticated={isAuthenticated}
