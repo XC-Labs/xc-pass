@@ -183,6 +183,7 @@ export default function Minter(props) {
                         message: "Transaction Error",
                         description: "Something went wrong with the transaction. Feel free to try again.",
                       });
+                      setMintOn(false);
                       setMintSuccess(false);
                       setMintError(true);
                     });
