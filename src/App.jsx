@@ -3,6 +3,9 @@ import { useMoralisDapp } from "providers/MoralisDappProvider/MoralisDappProvide
 import { useMoralis } from "react-moralis";
 import { HashRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import { Layout } from "antd";
+import {
+  WarningFilled
+} from '@ant-design/icons';
 
 import Home from "components/Home/Home";
 import CustomHeader from "components/CustomHeader/CustomHeader";
@@ -25,11 +28,12 @@ import "./style.css";
 const App = () => {
     const contractAddress = "0x2C8e71aBF007e5286057612d365F661e8069492d"; //Fuji
     const { Moralis, isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading } = useMoralis();
-    const { walletAddress } = useMoralisDapp();
+    const { walletAddress, chainId } = useMoralisDapp();
     const [contractOwnerAddress, setContractOwnerAddress] = useState("");
     const [isOwner, setIsOwner] = useState(undefined);
-    const [isWhitelistRegActive, setIsWhitelistRegActive] = useState(false);
-    const [isWhitelistSaleActive, setIsWhitelistSaleActive] = useState(false);
+    const [isMintingPaused, setMintingPaused] = useState(null);
+    const [isWhitelistRegActive, setIsWhitelistRegActive] = useState(null);
+    const [isWhitelistSaleActive, setIsWhitelistSaleActive] = useState(null);
 
     useEffect(() => {
       if (isAuthenticated && !isWeb3Enabled && !isWeb3EnableLoading) enableWeb3();
@@ -39,12 +43,22 @@ const App = () => {
     useEffect(()=>{
       if(isWeb3Enabled){
         getOwner();
+        getMintingPaused();
         getWhitelistRegActive();
         getWhitelistSaleActive();
       }
       // eslint-disable-next-line
     });
 
+    const getMintingPaused = async () => {
+      const options = {
+        contractAddress,
+        functionName: 'paused',
+        abi,
+      };
+      const response = await Moralis.executeFunction(options);
+      setMintingPaused(response);
+    }
     const getWhitelistRegActive = async () => {
       const options = {
         contractAddress,
@@ -73,6 +87,18 @@ const App = () => {
       setContractOwnerAddress(response);
     }
 
+    const renderedWarning = () => {
+      if(isMintingPaused){
+        return <div className="minting-paused"><WarningFilled/> Minting is not active at the moment.</div>
+      }
+      if(chainId===43113){
+        return <div className="wrong-network"><WarningFilled/> To be able to mint, please connect to <strong>Fuji Testnet</strong>.</div>
+      }
+      if(isWhitelistSaleActive===true){
+        return <div className="whitelist-active"><WarningFilled/> Whitelist sale is Live. Only whitelisted wallets will be able to buy. Be sure to interact with our real contract: {contractAddress}</div>
+      }
+    }
+
     useEffect(()=>{
       // eslint-disable-next-line
       if(contractOwnerAddress?.toLowerCase() == walletAddress?.toLowerCase()){
@@ -85,18 +111,30 @@ const App = () => {
     return (
       <Layout style={{ height: "100vh", overflow: "auto" }}>
         <Router>
-          <CustomHeader isAuthenticated={isAuthenticated} isOwner={isOwner} isWhitelistRegActive={isWhitelistRegActive}/>
+          <CustomHeader
+            isAuthenticated={isAuthenticated}
+            isOwner={isOwner}
+            isMintingPaused={isMintingPaused}
+            isWhitelistRegActive={isWhitelistRegActive}
+          />
             <Switch>
 
               <Route path="/" exact>
                 <div className="content-wrap home">
-                  <Home isAuthenticated={isAuthenticated} isWhitelistRegActive={isWhitelistRegActive}/>
+                  <Home
+                    isAuthenticated={isAuthenticated}
+                    isWhitelistRegActive={isWhitelistRegActive}
+                    isMintingPaused={isMintingPaused}
+                  />
                 </div>
               </Route>
 
               <Route path="/xc-pass">
                 <div className="content-wrap xc-pass">
-                  <XCPass isAuthenticated={isAuthenticated} isWhitelistRegActive={isWhitelistRegActive}/>
+                  <XCPass
+                    isAuthenticated={isAuthenticated}
+                    isWhitelistRegActive={isWhitelistRegActive}
+                  />
                 </div>
               </Route>
 
@@ -122,40 +160,71 @@ const App = () => {
                 <div className="content-wrap whitelist">
                   {isWhitelistRegActive || <Redirect to="/" /> }
                   {isAuthenticated || <Redirect to="/" /> }
-                  <Whitelist isAuthenticated={isAuthenticated} contractAddress={contractAddress} isWhitelistRegActive={isWhitelistRegActive} abi={abi}/>
+                  <Whitelist
+                    isAuthenticated={isAuthenticated}
+                    contractAddress={contractAddress}
+                    isWhitelistRegActive={isWhitelistRegActive}
+                    abi={abi}
+                  />
                 </div>
               </Route>
 
               <Route path="/mint">
-                <div className="content-wrap mint">
-                  {isAuthenticated || <Redirect to="/" /> }
-                  <Minter isAuthenticated={isAuthenticated} contractAddress={contractAddress} isWhitelistRegActive={isWhitelistRegActive} isWhitelistSaleActive={isWhitelistSaleActive} abi={abi}/>
+                <>
+                <div className="minter-announcement">
+                  {renderedWarning()}
                 </div>
+                <div className="content-wrap mint">
+                  {isWhitelistRegActive || <Redirect to="/" /> }
+                  {isAuthenticated || <Redirect to="/" /> }
+                  <Minter 
+                    isAuthenticated={isAuthenticated}
+                    contractAddress={contractAddress}
+                    isMintingPaused={isMintingPaused}
+                    abi={abi}
+                  />
+                </div>
+                </>
               </Route>
 
               <Route path="/collections/xc-pass">
                 <div className="content-wrap gallery">
                   {isAuthenticated || <Redirect to="/" /> }
-                  <Gallery isAuthenticated={isAuthenticated} contractAddress={contractAddress} abi={abi}/>
+                  <Gallery
+                    isAuthenticated={isAuthenticated}
+                    contractAddress={contractAddress}
+                    abi={abi}
+                  />
                 </div>
               </Route>
               <Route path="/collections">
                 <div className="content-wrap collections">
                   {isAuthenticated || <Redirect to="/" /> }
-                  <Collections isAuthenticated={isAuthenticated} contractAddress={contractAddress} abi={abi}/>
+                  <Collections
+                    isAuthenticated={isAuthenticated}
+                    contractAddress={contractAddress}
+                    abi={abi}
+                  />
                 </div>
               </Route>
               
               <Route path="/faq">
                 <div className="content-wrap faq">
-                  <Faq contractAddress={contractAddress}/>
+                  <Faq
+                    contractAddress={contractAddress}
+                  />
                 </div>
               </Route>
 
               <Route path="/xc-labs-admin">
                 <div className="content-wrap admin">
                   {isAuthenticated || <Redirect to="/" /> }
-                  <Admin isAuthenticated={isAuthenticated} isOwner={isOwner} contractAddress={contractAddress} abi={abi}/>
+                  <Admin
+                    isAuthenticated={isAuthenticated}
+                    isOwner={isOwner}
+                    contractAddress={contractAddress}
+                    abi={abi}
+                  />
                 </div>
               </Route>
 

@@ -2,7 +2,7 @@
   --primary-color: #5900ff;
   --secondary-color: #5900ffda;
   --accent-color: #FF7C11;
-  --primary-gray: #000;
+  --primary-gray: #241f20;
   --secondary-gray: #3c3c3c;
   --bg-color: #ffffff;
 }
@@ -69,7 +69,6 @@ p {
   margin-top: 1em;
   margin-bottom: 1em;
 }
-
 ul[class],
 ol[class] {
   list-style: none;
@@ -77,7 +76,7 @@ ol[class] {
 a{
   color: var(--primary-color);
 }
-a:hover, .ant-menu-item a:hover, a.sidebar-inner-menu-element:hover{
+a:hover, .ant-menu-item a:hover{
   color: var(--secondary-color);
 }
 a:not([class]) {
@@ -98,15 +97,42 @@ textarea,
 select {
   font: inherit;
 }
+div#loading-app {
+  position: absolute;
+  inset: 0;
+  background: white;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  animation: loadingApp 2s ease-in-out forwards;
+}
+@keyframes loadingApp{
+  50%{
+    opacity: 1;
+    z-index: 10;
+  }
+  100%{
+    opacity: 0;
+    z-index: -10;
+  }
+}
 .ant-layout {
   background-color: var(--bg-color);
   justify-content: space-between;
 }
-.ant-modal {
+.ant-modal.sidebar-modal {
   top: unset !important;
   width: unset !important;
   transform-origin: 100% 100% !important;
   overflow: hidden;
+}
+.ant-modal.wallet-options-modal{
+  text-align: center;
+}
+.ant-modal.wallet-options-modal img {
+  width: 20px;
 }
 .ant-modal-body {
   padding: 0;
@@ -132,9 +158,10 @@ button.ant-btn.cancel-button-modal {
   border-right: none;
 }
 .content-wrap{
+  position: relative;
   display: flex;
   justify-content: flex-start;
-  padding: 10px;
+  margin: 100px 10%;
 }
 .main-header{
   background-color: transparent;
@@ -143,7 +170,7 @@ button.ant-btn.cancel-button-modal {
   justify-content: space-between;
   align-items: center;
   font-family: 'Calibre';
-  padding: 0 40px;
+  padding: 0 10%;
 }
 .main-header-right{
   display: flex;
@@ -195,7 +222,32 @@ svg.menu-icon {
   background-color: var(--secondary-color) !important;
 }
 p.auth-button {
+  color: white;
   font-weight: bold;
+}
+.wallet-options-container{
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  padding: 20px;
+}
+.wallet-option {
+  width: 200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  background: var(--primary-color);
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.wallet-option span.wallet-name {
+  color: white;
+  font-size: 14px;
+  padding: 10px;
+  width: 120px;
 }
 .header-address {
   margin-right: 5px;
@@ -234,10 +286,19 @@ a.sidebar-inner-menu-element, li.sidebar-inner-menu-element span a{
   font-weight: normal;
   letter-spacing: 1px;
   text-transform: uppercase;
-  padding: 10px;
+  padding: 10px 30px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+a.sidebar-inner-menu-element:hover{
+  background-color: var(--accent-color);
+  color: white;
 }
 .sidebar-container p.address, p.header-address {
   font-weight: 400;
+}
+.sidebar-container p.address {
+  color: white;
 }
 .main-footer {
   display: flex;
@@ -261,8 +322,6 @@ hr {
   width: 100%;
 }
 .content-wrap.home .home {
-  margin: 0 10%;
-  width: 60vw;
   height: 60vh;
   display: flex;
   flex-direction: column;
@@ -283,8 +342,8 @@ h1{
 }
 h1.extra-big {
   color: var(--primary-color);
-  font-size: 122px;
-  line-height: 90px;
+  font-size: 180px;
+  line-height: 120px;
   margin-bottom: 80px;
 }
 .home h1.extra-big span, .mint h1.extra-big span{
@@ -309,13 +368,14 @@ h3 {
   margin: 0 0 20px;
 }
 p{
-  font-weight: 100;
+  font-size: 16px;
+  font-weight: 400;
 }
 button.main-cta.button {
   background-color: var(--accent-color);
   color: white;
   height: 42px;
-  padding: 0px 20px;
+  padding: 10px 20px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -323,9 +383,10 @@ button.main-cta.button {
   border-radius: 20px;
   cursor: pointer;
 }
-.home .ant-btn a{
+.home .ant-btn a, .main-cta a, .about-cta.button{
   color: white;
-  font-size: 12px;
+  font-size: 14px;
+  font-weight: bold;
   font-family: "Archivo";
 }
 a.secondary-cta {
@@ -341,8 +402,8 @@ a.secondary-cta {
 }
 .ant-btn[disabled], .ant-btn[disabled]:hover, .ant-btn[disabled]:focus, .ant-btn[disabled]:active {
   color: white;
-  border-color: var(--secondary-color);
-  background: var(--secondary-color);
+  border-color: var(--secondary-gray);
+  background: var(--secondary-gray);
   text-shadow: none;
   box-shadow: none;
 }
@@ -386,21 +447,18 @@ label.ant-form-item-required {
 span.anticon.anticon-warning {
   font-size: 18px;
 }
-.wrong-network {
-  width: 50%;
-  text-align: center;
-  margin: 10px auto;
-  padding: 10px;
-  color: var(--secondary-color);
-  border-radius: 4px;
+.minter-announcement {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 64px;
 }
-.whitelist-active {
-  width: 50%;
+.whitelist-active, .wrong-network, .minting-paused {
   text-align: center;
-  margin: 10px auto;
   padding: 10px;
-  color: var(--secondary-color);
-  border-radius: 4px;
+  background-color: #c2c2c2;
+  color: white;
+  font-weight: 400;
 }
 .minting-inputs{
   display: flex;
@@ -417,14 +475,14 @@ span.anticon.anticon-warning {
 }
 .minting-inputs button, button.ant-btn {
   width: 100%;
-  margin-top: 20px;
   background-color: var(--accent-color);
   border-radius: 30px;
   color: white;
   border: none;
 }
-.minting-inputs span{
-  color: white;
+.minting-inputs > span {
+  color: #fff;
+  margin: 20px;
 }
 button.main-cta.button:hover, .ant-btn:hover, .ant-btn:focus, .ant-btn:active {
   text-decoration: none;
@@ -443,7 +501,7 @@ button.main-cta.button:hover, .ant-btn:hover, .ant-btn:focus, .ant-btn:active {
   display: flex;
   align-items: center;
   align-content: center;
-  justify-content: center;
+  justify-content: space-between;
 }
 .mint-amount input.ant-input-number-input {
   font-size: 56px;
@@ -453,8 +511,8 @@ button.main-cta.button:hover, .ant-btn:hover, .ant-btn:focus, .ant-btn:active {
   outline: none;
   background-color: transparent;
   width: 100px;
-  height: 100px;
-  padding: 40px 0 0;
+  height: 80px;
+  padding: 20px 0 0;
 }
 .mint-amount .ant-input-number {
   border: none !important;
@@ -481,13 +539,11 @@ button.change-amount-button {
   color: white;
   cursor: pointer;
 }
-.minter-announcement {
-  position: absolute;
-  top: 64px;
-  left: 0;
-  width: 100%;
-  background-color: white;
-  z-index: 1;
+.minting-info {
+  font-size: 14px;
+  font-weight: 400;
+  text-align: left;
+  padding: 20px;
 }
 .successfulMint{
   text-align: center;
@@ -522,7 +578,7 @@ button.change-amount-button {
   text-align: center;
   width: 200px;
   height: 200px;
-  margin: 0 auto;
+  margin: 10px auto 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -574,29 +630,15 @@ button.change-amount-button {
 .nft-list > .nft {
   cursor: pointer;
 }
-.whitelist-container, .minter-container, .collections-container, .gallery-container{
-  width: 60%;
-  display: flex;
-  flex-direction: column;
-  margin: 100px 20%;
-}
-.team-container {
-  width: 60%;
-  display: flex;
-  flex-direction: column;
-  margin: 100px 0 100px 10%;
-}
-.how-to-container, .roadmap-container, .pass-container, .about-container {
-  width: 50%;
+.whitelist-container, .minter-container, .collections-container, .gallery-container, .team-container, .how-to-container, .roadmap-container, .pass-container, .about-container {
+  width: 100%;
+  max-width: 1168px;
   min-height: 60vh;
   display: flex;
   flex-direction: column;
-  margin: 100px 10%;
 }
 .about-container .extra-big, .team-container .extra-big{
   margin: 40px 0 80px;
-  font-size: 9vw;
-  line-height: 7vw;
 }
 .ant-collapse-content {
   border-top: none;
@@ -637,7 +679,7 @@ button.change-amount-button {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
-  width: 480px;
+  width: 60%;
 }
 .nft-wrapper {
   cursor: pointer;
@@ -662,7 +704,8 @@ button.change-amount-button {
   margin-bottom: 100px;
 }
 .pass-container{
-  margin: 100px auto;
+  width: 60%;
+  margin: 0px auto;
   align-items: center;
   text-align: center;
 }
@@ -749,13 +792,32 @@ span.project-separator {
   border-radius: 0 10px 10px 0;
 }
 .minter-left-side {
-  max-width: 30%;
+  max-width: 320px;
   margin-right: 40px;
+}
+.minter-right-side {
+  max-width: 360px;
+}
+.gallery-right-side img.xc-pass-logo {
+  margin: 40px 0;
+}
+.gallery-user-amount {
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 10px;
+}
+.ant-progress-success-bg, .ant-progress-bg {
+  background-color: rgb(1, 180, 1);
+}
+.ant-progress-success-bg, .ant-progress-bg {
+  background-color: var(--primary-color);
 }
 form#mint {
   background-color: var(--primary-color);
   border-radius: 20px;
-  padding: 20px;
+  padding: 40px;
+  margin-top: 40px;
 }
 .minter-modal {
   background: #72727299;
@@ -875,8 +937,7 @@ span.sc-stats-value {
     width: 100%;
   }
   .how-to-container, .roadmap-container, .pass-container, .about-container, .team-container, .whitelist-container, .minter-container, .collections-container, .gallery-container{
-      margin: 100px 0;
-      padding: 0 20px;
+      margin: 0;
   }
   .main-header {
     position: relative;
@@ -887,21 +948,12 @@ span.sc-stats-value {
     right: 80px;
     top: 14px;
   }
-  .header-wallet {
-      width: 100px !important;
-  }
-  .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu {
-      padding: 0 10px;
-  }
-  .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-selected {
-      color: var(--primary-color);
-  }
-  header.ant-layout-header {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-  }
-  .logo-container{
-    width: 60px;
+  .main-header .ant-menu-submenu-popup > .ant-menu {
+    background-color: var(--accent-color);
+  } 
+  .ant-menu-submenu-popup > .ant-menu .ant-menu-item a{  
+    font-size: 12px;
+    color: white;
   }
   ul.ant-menu-overflow.ant-menu.ant-menu-root.ant-menu-horizontal.ant-menu-light {
     width: 60px !important;
@@ -914,8 +966,21 @@ span.sc-stats-value {
   li.ant-menu-overflow-item.ant-menu-overflow-item-rest.ant-menu-submenu.ant-menu-submenu-horizontal {
       padding-left: 0;
   }
-  .ant-menu-item a {
-      font-size: 12px;
+  .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu {
+      padding: 0 10px;
+  }
+  .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-selected {
+      color: var(--primary-color);
+  }
+  header.ant-layout-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+  }
+  .header-wallet {
+      width: 100px !important;
+  }
+  .logo-container{
+    width: 60px;
   }
   button.ant-btn.ant-dropdown-trigger span:first-of-type, 
   .chain-selector, .mint-header-button {
@@ -938,6 +1003,9 @@ span.sc-stats-value {
   h1.extra-big, .about-container .extra-big, .team-container .extra-big {
       font-size: 64px;
       line-height: 60px;
+  }
+  .home h1.extra-big {
+    text-align: center;
   }
   h2 {
       color: var(--primary-gray);
@@ -967,6 +1035,7 @@ span.sc-stats-value {
       padding-left: 20px;
   }
   .about-block .nfts-wrapper {
+      width: 200%;
       gap: 10px;
   }
   .team-block {
@@ -991,11 +1060,26 @@ span.sc-stats-value {
   }
   .minting-info {
     margin: 20px;
-}
+  }
+  .collections-container {
+    align-items: center;
+  }
+  .collections-inner-container {
+    flex-direction: column;
+  }
+  .gallery-container .ant-row {
+    flex-direction: column;
+  }
+  .ant-col.ant-col-12.gallery-left-side, .ant-col.ant-col-12.gallery-right-side {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 20px;
+  }
   .gallery-right-side {
       padding: 16px;
   }
   .gallery-right-side h3{
+      margin: 40px 0;
       font-size: 15px;
       line-height: 14px;
   }

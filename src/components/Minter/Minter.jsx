@@ -4,16 +4,13 @@ import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { useMoralis } from "react-moralis";
 import nft from '../../assets/xcpass.png';
-import {
-  WarningFilled
-} from '@ant-design/icons';
 import mintingBg from '../../assets/minting.png';
 import successfulBg from '../../assets/successful.png';
 import logo from '../../assets/xcpass-logo-big.png';
 
 export default function Minter(props) {
   const nftPrice = "1";
-  const { isAuthenticated, contractAddress, isWhitelistSaleActive, abi } = props;
+  const { isAuthenticated, contractAddress, isMintingPaused, abi } = props;
   const { Moralis } = useMoralis();
   const { walletAddress, chainId } = useMoralisDapp();
   const [amountMinted, setAmountMinted] = useState(0);
@@ -114,22 +111,8 @@ export default function Minter(props) {
     setUserAddress(walletAddress);
   },[walletAddress])
   
-  return (
-    <div className="minter-container">
-
-      <div className="minter-announcement">
-          {// eslint-disable-next-line
-          chainId==43113 || 
-          <div className="wrong-network"><WarningFilled/> To be able to mint, please connect to <strong>Fuji Testnet</strong>.</div>
-          }
-          
-          {// eslint-disable-next-line
-          isWhitelistSaleActive!=true || 
-          <div className="whitelist-active"><WarningFilled/> Whitelist is active at the moment. Only people who registered will be able to mint.</div>
-          }
-      </div>
-
-      <div className="minter-modal" style={modalInView ? {display: "flex"} : {display: "none"}}>
+  return <div className="minter-container">
+      <div className="minter-modal" style={modalInView ? {display: "flex"} : {display: "none"}} onClick={()=>{mintSuccess ? setModalInView(false) : setModalInView(true)}}>
         <div className="modal-container">
           
             { renderedResult() }
@@ -143,108 +126,106 @@ export default function Minter(props) {
           
         </div>
       </div>
-    <h1 className="extra-big"><span>Mint your</span><br/><img src={logo} alt="XC Pass logo" /></h1>
-    <Row>
-      <Col span={12} className="minter-left-side">
-        <img src={nft} alt="NFT Preview" />
-      </Col>
-      <Col span={12} className="minter-right-side">
+      <h1 className="extra-big"><span>Mint your</span><br/><img src={logo} alt="XC Pass logo" /></h1>
+      <Row>
+        <Col span={12} className="minter-left-side">
+          <img src={nft} alt="NFT Preview" />
+        </Col>
+        <Col span={12} className="minter-right-side">
 
-        <Form.Provider
-            onFormFinish={async (name, { forms }) => {
-              setModalInView(true);
-              setMintOn(true);
-              const params = forms[name].getFieldsValue();
-              params._to = userAddress;
-              params._mintAmount = amountToMint;
+          <Form.Provider
+              onFormFinish={async (name, { forms }) => {
+                setModalInView(true);
+                setMintOn(true);
+                const params = forms[name].getFieldsValue();
+                params._to = userAddress;
+                params._mintAmount = amountToMint;
 
-              let isView = false;
+                let isView = false;
 
-              for (let method of abi) {
-                if (method.name !== name) continue;
-                if (method.stateMutability === "view") isView = true;
-              }
+                for (let method of abi) {
+                  if (method.name !== name) continue;
+                  if (method.stateMutability === "view") isView = true;
+                }
 
-              const options = {
-                contractAddress,
-                functionName: "mint",
-                abi,
-                params,
-                msgValue: Moralis.Units.ETH(nftPrice) * amountToMint
-              };
+                const options = {
+                  contractAddress,
+                  functionName: "mint",
+                  abi,
+                  params,
+                  msgValue: Moralis.Units.ETH(nftPrice) * amountToMint
+                };
 
-              if (!isView) {
-                const tx = await Moralis.executeFunction({ awaitReceipt: false, ...options });
-                tx.on("transactionHash", (hash) => {
-                  setResponses({ ...responses, [name]: { result: null, isLoading: true } });
-                  openNotification({
-                    message: "Transaction Sent",
-                    description: `${hash}`,
-                  });
-                })
-                  .on("receipt", (receipt) => {
-                    setResponses({ ...responses, [name]: { result: null, isLoading: false } });
+                if (!isView) {
+                  const tx = await Moralis.executeFunction({ awaitReceipt: false, ...options });
+                  tx.on("transactionHash", (hash) => {
+                    setResponses({ ...responses, [name]: { result: null, isLoading: true } });
                     openNotification({
-                      message: "Transaction Confirmed",
-                      description: `${receipt.transactionHash}`,
+                      message: "Transaction Sent",
+                      description: `${hash}`,
                     });
-                    console.log(receipt);
-                    setTxId(receipt.transactionHash);
-                    setMintOn(false);
-                    setMintSuccess(true);
                   })
-                  .on("error", (error) => {
-                    setResponses({ ...responses, [name]: { result: null, isLoading: false } });
-                    setMintOn(false);
-                    openNotification({
-                      message: "Transaction Error",
-                      description: "Something went wrong with the transaction. Feel free to try again.",
+                    .on("receipt", (receipt) => {
+                      setResponses({ ...responses, [name]: { result: null, isLoading: false } });
+                      openNotification({
+                        message: "Transaction Confirmed",
+                        description: `${receipt.transactionHash}`,
+                      });
+                      console.log(receipt);
+                      setTxId(receipt.transactionHash);
+                      setMintOn(false);
+                      setMintSuccess(true);
+                    })
+                    .on("error", (error) => {
+                      setResponses({ ...responses, [name]: { result: null, isLoading: false } });
+                      setMintOn(false);
+                      openNotification({
+                        message: "Transaction Error",
+                        description: "Something went wrong with the transaction. Feel free to try again.",
+                      });
+                      setMintSuccess(false);
+                      setMintError(true);
                     });
-                    setMintSuccess(false);
-                    setMintError(true);
-                  });
-              }
-            }}
-          >
-              <Form layout="vertical" name="mint" initialValues={{_mintAmount: '0'}}>
+                }
+              }}
+            >
+                <Form layout="vertical" name="mint" initialValues={{_mintAmount: '0'}}>
 
-                <div className="minting-inputs">
-                  <Form.Item
-                    className="mint-amount"
-                    name="_mintAmount"
-                    required
-                    style={{ marginTop: "25px", marginBottom: "15px" }}
-                  >
-                    <button className="change-amount-button" onClick={(e)=>subAmount(e)}>-</button>
-                    <InputNumber controls={false} type="number" min="1" max="50" value={amountToMint} onChange={(e)=>setAmountToMint(e.target.value)}/>
-                    <button className="change-amount-button" onClick={(e)=>addAmount(e)}>+</button>
-                    
-                  </Form.Item>
-                  <span>XP Passes minted: {amountMinted}/50</span>
-                  <Form.Item style={{ marginBottom: "5px" }}>
-                    <Button
-                      className="mint-button"
-                      size="large"
-                      htmlType="submit"
-                      loading={responses["mint"]?.isLoading}
-                      disabled={// eslint-disable-next-line
-                        !mintOn&&chainId==43113?false:true
-                      }
+                  <div className="minting-inputs">
+                    <Form.Item
+                      className="mint-amount"
+                      name="_mintAmount"
+                      required
+                      style={{ marginTop: "25px", marginBottom: "15px" }}
                     >
-                      {mintOn ? "Minting..." : "Mint a XC Pass"}
-                    </Button>
-                  </Form.Item>
-                </div>
-              </Form>
-          </Form.Provider>
-          <div className="minting-info">
-            <span>XC-Pass unlocks access to our community. <NavLink to="/xc-pass">Learn more.</NavLink></span><br/>
-            <span>XC-Pass price: 1 AVAX (<a href="https://coinmarketcap.com/currencies/avalanche/" rel="noreferrer" target="_blank">Check price</a>) + Gas</span><br/>
-            <span>Max. per wallet: 50 XC-Passes</span>
-          </div>
-
-      </Col>
-    </Row>
+                      <button className="change-amount-button" onClick={(e)=>subAmount(e)}>-</button>
+                      <InputNumber controls={false} type="number" min="1" max="50" value={amountToMint} onChange={(e)=>setAmountToMint(e.target.value)}/>
+                      <button className="change-amount-button" onClick={(e)=>addAmount(e)}>+</button>
+                      
+                    </Form.Item>
+                    <span>XP Passes minted: {amountMinted}/50</span>
+                    <Form.Item style={{ marginBottom: "5px" }}>
+                      <Button
+                        className="mint-button"
+                        size="large"
+                        htmlType="submit"
+                        loading={responses["mint"]?.isLoading}
+                        disabled={// eslint-disable-next-line
+                          !mintOn&&chainId==43113&&!isMintingPaused?false:true
+                        }
+                      >
+                        {mintOn ? "Minting..." : "Mint a XC Pass"}
+                      </Button>
+                    </Form.Item>
+                  </div>
+                </Form>
+            </Form.Provider>
+            <div className="minting-info">
+              <span>XC-Pass unlocks access to our community. <NavLink to="/xc-pass">Learn more.</NavLink></span><br/>
+              <span>XC-Pass price: 1 AVAX (<a href="https://coinmarketcap.com/currencies/avalanche/" rel="noreferrer" target="_blank">Check price</a>) + Gas</span><br/>
+              <span>Max. per wallet: 50 XC-Passes</span>
+            </div>
+        </Col>
+      </Row>
     </div>
-  );
 }

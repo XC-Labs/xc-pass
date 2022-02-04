@@ -119,7 +119,7 @@ export default function Whitelist(props) {
                                 !registrationOn&&chainId==43113?false:true
                               }
                             >
-                              {registrationOn ? "Registering..." : "Register your wallet"}
+                              {registrationOn ? "Whitelisting..." : "Whitelist your wallet!"}
                             </Button>
                           </Form.Item>
                         </div>

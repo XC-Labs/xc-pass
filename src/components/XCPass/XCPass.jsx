@@ -19,7 +19,7 @@ export default function XCPass(props) {
                             size="large"
                             disabled={isAuthenticated ? false : true}
                         >
-                            <NavLink to="/whitelist">Register in Whitelist</NavLink>
+                            <NavLink to="/whitelist">Whitelist your wallet!</NavLink>
                         </Button>
                     }
                     {!isWhitelistRegActive &&

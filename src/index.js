@@ -5,6 +5,8 @@ import { MoralisDappProvider } from "./providers/MoralisDappProvider/MoralisDapp
 import App from "./App";
 import "./index.css";
 import ReactGA from 'react-ga';
+import loaderLogo from './assets/header-logo.gif';
+
 ReactGA.initialize('G-JMBP4KTF8F');
 ReactGA.pageview(window.location.pathname + window.location.search);
 
@@ -18,6 +20,7 @@ const Application = () => {
       <MoralisProvider appId={APP_ID} serverUrl={SERVER_URL}>
         <MoralisDappProvider>
           <div className="app-wrapper">
+            <div id="loading-app"><img src={loaderLogo} alt="Loading..."/></div>
             <App isServerInfo/>
           </div>
         </MoralisDappProvider>

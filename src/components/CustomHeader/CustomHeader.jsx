@@ -1,6 +1,6 @@
 import { Menu, Layout } from "antd";
 import { NavLink } from "react-router-dom";
-import Account from "../Account";
+import Account from "../Account/Account";
 import headerLogo from '../../assets/header-logo.png';
 const { Header } = Layout;
 
@@ -14,7 +14,7 @@ export const Logo = () => (
   );
 
 export default function Roadmap(props) {
-    const { isAuthenticated, isOwner, isWhitelistRegActive } = props;
+    const { isAuthenticated, isOwner, isMintingPaused, isWhitelistRegActive } = props;
 
     const adminMenuLink = () => {
         if(isOwner){
@@ -24,16 +24,29 @@ export default function Roadmap(props) {
         }
     }
     const mintButton = () => {
-        if(!isWhitelistRegActive){
-            return <Menu>
-                    <Menu.Item  
-                        key="mint"
-                        className="mint-header-button"
-                        disabled={isAuthenticated && !isWhitelistRegActive ? false : true}
-                    >
-                        <NavLink to="/mint">Mint your XC Pass</NavLink>
-                    </Menu.Item>
-                </Menu>
+        if(!isMintingPaused){
+            if(isWhitelistRegActive){
+                return <Menu>
+                        <Menu.Item  
+                            key="whitelist"
+                            className="mint-header-button"
+                            disabled={isAuthenticated && isWhitelistRegActive ? false : true}
+                        >
+                            <NavLink to="/whitelist">Whitelist your wallet!</NavLink>
+                        </Menu.Item>
+                    </Menu>
+            }else{
+                return <Menu>
+                        <Menu.Item  
+                            key="mint"
+                            className="mint-header-button"
+                            disabled={isAuthenticated && !isMintingPaused ? false : true}
+                        >
+                            <NavLink to="/mint">Mint your XC Pass</NavLink>
+                        </Menu.Item>
+                    </Menu>
+            }
+                
         }
     }
     return <>
@@ -74,7 +87,7 @@ export default function Roadmap(props) {
 
                 <div className="main-header-right">
                     {!isAuthenticated || mintButton() }      
-                    <Account />
+                    <Account isMintingPaused={isMintingPaused}/>
                 </div>
 
             </Header>
