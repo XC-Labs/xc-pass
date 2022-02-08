@@ -11,7 +11,7 @@ export default function XCPass(props) {
                     <h3>by XC-LABS</h3>
                     <img src={xcpass} className="xc-pass-token" alt="XC Pass"/>
 
-                    <p><strong>XC-Pass</strong> unlocks access to our community, early investment opportunities, whitelist for our NFTs, and a spot in our trading desk to earn additional yield on your investments. Buy more passes to leverage your governance power in our future DAO and increase your benefits in our community.</p>
+                    <p>Unlocks access to our community, early investment opportunities, whitelist for our NFTs, and a spot in our trading desk to earn additional yield on your investments. Buy more passes to leverage your governance power in our future DAO and increase your benefits in our community.</p>
 
                     {isWhitelistRegActive &&
                         <Button
@@ -33,8 +33,8 @@ export default function XCPass(props) {
                     }
                 </div>
                 <hr/>
-                <br/><br/>
-                <h2>Reasons to mint a<br/><strong>XC Pass</strong></h2>
+                <br/><br/><br/><br/>
+                <h2>5 Reasons to mint a <strong>XC Pass</strong></h2>
                 <div className="reasons-container">
                     <div className="reason-container">
                         <h1 className="extra-big">1</h1>

@@ -4,7 +4,7 @@ import { useMoralis } from "react-moralis";
 import {Row, Col, Button, Progress } from "antd";
 import { NavLink } from "react-router-dom";
 import nft from '../../assets/nft.jpg';
-import xcpasslogo from '../../assets/xcpass-logo.png';
+import xcpasslogo from '../../assets/xcpass-logo-black.png';
 
 export default function Gallery(props) {
     
@@ -39,10 +39,10 @@ export default function Gallery(props) {
                     </Col>
                     <Col span={12} className="gallery-right-side">
                         <img src={xcpasslogo} className="xc-pass-logo" alt="XC Pass Logo"/>
-                        <h3>XC-Pass unlocks access to our community, early investment opportunities, whitelist for our NFTs, and a spot in our trading desk to earn 30% on your investment. Buy more passes to increase your level and benefits in our community. <NavLink to="/xc-pass">Learn more.</NavLink></h3>
+                        <h4>XC-Pass unlocks access to our community, early investment opportunities, whitelist for our NFTs, and a spot in our trading desk to earn 30% on your investment. Buy more passes to increase your level and benefits in our community. <NavLink to="/xc-pass">Learn more.</NavLink></h4>
                         <br/>
                         <Progress percent={percentage} status="active" />
-                        <div className="gallery-user-amount">You've got: {nftList[0]?.length} passes</div>
+                        <div className="gallery-user-amount">Minted: {nftList[0]?.length}/50</div>
                         <br/>
                         <Button>
                             <NavLink to="/mint">Mint a XC Pass</NavLink>

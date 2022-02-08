@@ -42,19 +42,19 @@ return <div className="how-to-container">
                 </Panel>
                 <Panel header="How to Mint a NFT" key="9">
                     <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-                        <Col className="gutter-row" span={8}>
+                        <Col className="gutter-row" span={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
                         <Card bordered={false} cover={<img alt="metamask" src={metamask} />}>
                             <Meta title="1. Install Metamask" />
                             <p>If you don't have <a href="https://metamask.io/" target="_blank" rel="noreferrer">Metamask</a> installed, first <a href="https://metamask.io/" target="_blank" rel="noreferrer">download it</a> and create an account. Be sure to keep your keys safe!</p>
                         </Card>
                         </Col>
-                        <Col className="gutter-row" span={8}>
+                        <Col className="gutter-row" span={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
                         <Card bordered={false} cover={<img alt="avalanche" src={avalanche} />}>
                             <Meta title="2. Switch to Fuji Testnet" />
                             <p>Switch to Fuji (Avalanche Testnet) and be sure to have some Test AVAX. If you need some, please visit an AVAX Faucet like: <a href="https://faucet.avax-test.network/" target="_blank" rel="noreferrer">Fuji Avalanche Testnet Faucet</a></p>
                         </Card>
                         </Col>
-                        <Col className="gutter-row" span={8}>
+                        <Col className="gutter-row" span={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
                         <Card bordered={false} cover={<img alt="authenticate" src={authenticate} />}>
                             <Meta title="3. Authenticate" />
                             <p>Authenticate with Metamask using the button in the top right of the site. Once you've done so, go to the <NavLink to="/mint">Minting Page</NavLink>.</p>
@@ -63,7 +63,7 @@ return <div className="how-to-container">
                     </Row>
                 </Panel>
                 <Panel header="What is the Contract Address?" key="10">
-                    <Address avatar="left" copyable address={contractAddress} size={8} />
+                    <Address copyable address={contractAddress}  />
                 </Panel>
             </Collapse>
         </div>

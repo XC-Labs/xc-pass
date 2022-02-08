@@ -31,9 +31,9 @@ const About = () => {
     };
     return <div className="about-container">
     <h1 className="extra-big">
-        Reality is what we want it to be.
+        Reality<br/>is what we<br/>want it to be.
     </h1>
-    <p>Development spaces today aren’t entirely physical. Virtual and augmented playgrounds are enhancers of our human experience. We participate, collect and invest in what we believe.</p>
+    <p>Development spaces today aren’t entirely physical. Virtual and augmented playgrounds are enhancers of our human experience. XC Labs is seeking for the ultimate societal, economical and technological evolution through new realities.<br/>This website contains a curated version of the projects, communities & platforms that we believe, invest and participate in. Feel free to explore.</p>
 
     <br/>
     <br/>
@@ -61,15 +61,17 @@ const About = () => {
                 <img src={cyberpunk} alt="Cyberpunk #254" onClick={()=>showModal({title: "Cyberpunk #254", collection: "Cyberpunk", number: "#254", image: cyberpunk, chain: "Cardano", contract: "8478d0f713a5740788bb00ec4d17f2c67b00b42a2b64cdd2c04559e5", owner: "https://cardanoscan.io/token/8478d0f713a5740788bb00ec4d17f2c67b00b42a2b64cdd2c04559e5.CBL254"})}/>
             </div>
         </div>
-        <div className="content-wrapper">
+        <div className="content-wrapper right">
             <h1 className="extra-big">Iterate</h1>
-            <p>In-house exploration of the future of blockchain technology through NFTs. We aim to build products for human adoption and virtual rebellion.</p>
+            <p>Establishing a thorough -in-house- exploration of the future of blockchain technology leveraged by NFTs. PFP & art collections are just the beginning; <a href="https://medium.com/xc-labs/the-exciting-future-of-nfts-75c07cdb5f7f" title="">new social, financial & economical</a> value will be delivered and distributed by NFT technology throughout the coming years.</p>
+            <p>We aim to build products for human adoption and virtual rebellion.</p>
         </div>
     </div>
     <div className="about-block">
         <div className="content-wrapper">
             <h1 className="extra-big">Acce-<br/>lerate</h1>
-            <p>Massify the future through our close kin: the Latinamerican Region. We leverage and push to market projects from the local to the metaversal.</p>
+            <p>Our main and most radical driver is the massification of the future through our close kin: the Latinamerican Region. As the long-forgotten set of land placed between mediocre development and lack of global economical protagonism, we believe that <a href="https://joxxgallardo.medium.com/the-true-potential-of-blockchain-in-latam-2a6c67c5c79b" title="">true potential can finally become unlocked</a> through DeFi, blockchain, and mainly NFT platforms.</p>
+            <p>We leverage and push to market projects starting from the local and reaching the metaversal.</p>
         </div>
         <div className="nfts-wrapper">
             <div className="nft-wrapper">
@@ -95,30 +97,31 @@ const About = () => {
     <div className="about-block">
         <div className="nfts-wrapper">
             <div className="nft-wrapper">
-                <img src={adidas} alt="" onClick={()=>showModal({title: "Adidas NFT", collection: "Adidas", number: "N/A", image: adidas, chain: "Ethereum", contract: "", owner: ""})}/>
+                <img src={adidas} alt="Adidas NFT" onClick={()=>showModal({title: "Adidas NFT", collection: "Adidas", number: "N/A", image: adidas, chain: "Ethereum", contract: "0x28472a58a490c5e09a238847f66a68a47cc76f0f", owner: "https://opensea.io/assets/0x28472a58a490c5e09a238847f66a68a47cc76f0f/0"})}/>
             </div>
             <div className="nft-wrapper">
                 &nbsp;
             </div>
             <div className="nft-wrapper">
-                <img src={apecoin} alt="" onClick={()=>showModal({title: "", collection: "", number: "#", image: apecoin, chain: "Ethereum", contract: "", owner: ""})}/>
+                <img src={apecoin} alt="PUNKS 2: Elite Ape Entry Coins" onClick={()=>showModal({title: "PUNKS 2: Elite Ape Entry Coins", collection: "Elite Ape Entry Coins", number: "N/A", image: apecoin, chain: "Ethereum", contract: "0xd0b53410454370a482979c0adaf3667c6308a801", owner: "https://opensea.io/assets/0xd0b53410454370a482979c0adaf3667c6308a801/0"})}/>
             </div>
             <div className="nft-wrapper">
-                <img src={moodroller} alt="" onClick={()=>showModal({title: "", collection: "", number: "#", image: moodroller, chain: "Ethereum", contract: "", owner: ""})}/>
+                <img src={moodroller} alt="MoodRoller #2094" onClick={()=>showModal({title: "MoodRoller #2094", collection: "MoodRollers by Lucas Zanotto", number: "#2094", image: moodroller, chain: "Ethereum", contract: "0xe3234e57ac38890a9136247eadfe1860316ff6ab", owner: "https://opensea.io/assets/0xe3234e57ac38890a9136247eadfe1860316ff6ab/2094"})}/>
             </div>
             <div className="nft-wrapper">
-                <img src={slimhood} alt="" onClick={()=>showModal({title: "", collection: "", number: "#", image: slimhood, chain: "Ethereum", contract: "", owner: ""})}/>
+                <img src={slimhood} alt="SlimHood #3083" onClick={()=>showModal({title: "SlimHood #3083", collection: "SlimHoods", number: "#3083", image: slimhood, chain: "Ethereum", contract: "0x2931b181ae9dc8f8109ec41c42480933f411ef94", owner: "https://opensea.io/assets/0x2931b181ae9dc8f8109ec41c42480933f411ef94/3083"})}/>
             </div>
             <div className="nft-wrapper">
-                <img src={superplastic} alt="" onClick={()=>showModal({title: "", collection: "", number: "#", image: superplastic, chain: "Ethereum", contract: "", owner: ""})}/>
+                <img src={superplastic} alt="SUPERPLASTIC: Cryptojankyz" onClick={()=>showModal({title: "STANK COMPLETE #106", collection: "SUPERPLASTIC: Cryptojankyz", number: "#106", image: superplastic, chain: "Ethereum", contract: "0x066f2d5ead7951f0d0038c19affd500b9f02c0e5", owner: "https://opensea.io/assets/0x066f2d5ead7951f0d0038c19affd500b9f02c0e5/10159"})}/>
             </div>
         </div>
-        <div className="content-wrapper">
+        <div className="content-wrapper right">
             <h1 className="extra-big">Multiply</h1>
-            <p>Resource & value allocation. We create from scratch and bridge legacy value to decentralize both power and capital towards the parallel worlds.</p>
+            <p>Creating smart mechanisms to generate resources and allocate value: scalability is always a byproduct of our work. Our main assessment is to <a href="https://medium.com/xc-labs/what-is-the-phygital-economy-69d5793a7108" title="">create from scratch and bridge legacy value</a> to decentralize both power and capital towards the parallel worlds.</p>
+            <p>We are builders of exponential value across the blockchain.</p>
         </div>
     </div>
-    <br/><br/>
+    <br/><br/><br/><br/>
     <h3>We’re always open to meet and partner with forward-thinking individuals and collectives. Contact us and let’s make some history. </h3>
     <Button
         className="about-cta button"

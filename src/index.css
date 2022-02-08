@@ -8,21 +8,9 @@
 }
 
 @font-face {
-  font-family: "Calibre";
-  src: url("./assets/fonts/Calibre-Regular.woff");
+  font-family: "Neue Haas Grotesk";
+  src: url("./assets/fonts/NHaasGroteskDSW02-55Rg.woff");
   font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Calibre";
-  src: url("./assets/fonts/Calibre-Light.woff");
-  font-weight: 100;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Calibre";
-  src: url("./assets/fonts/Calibre-Semibold.woff");
-  font-weight: bold;
   font-style: normal;
 }
 
@@ -62,7 +50,7 @@ body {
   text-rendering: optimizeSpeed;
   line-height: 1.5;
   background-color: white;
-  font-family: 'Calibre';
+  font-family: "Neue Haas Grotesk";
 }
 p {
   color: var(--primary-gray);
@@ -76,8 +64,11 @@ ol[class] {
 a{
   color: var(--primary-color);
 }
-a:hover, .ant-menu-item a:hover{
-  color: var(--secondary-color);
+a:hover{
+  color: white;
+}
+.ant-menu-item a:hover, .ant-menu-horizontal > .ant-menu-item-selected a.active{
+  color: var(--accent-color);
 }
 a:not([class]) {
   text-decoration-skip-ink: auto;
@@ -158,10 +149,10 @@ button.ant-btn.cancel-button-modal {
 .ant-menu-inline, .ant-menu-vertical, .ant-menu-vertical-left {
   border-right: none;
 }
-.content-wrap{
+.content-wrap {
   position: relative;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   margin: 100px 10%;
 }
 .content-wrap.mint{
@@ -173,8 +164,8 @@ button.ant-btn.cancel-button-modal {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-family: 'Calibre';
-  padding: 0 10%;
+  font-family: "Neue Haas Grotesk";
+  padding: 0 20px;
 }
 .main-header-right{
   display: flex;
@@ -187,10 +178,13 @@ button.ant-btn.cancel-button-modal {
   background-color: var(--primary-color);
   border-radius: 20px;
 }
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-selected::after {
+  border-bottom: 2px solid var(--accent-color) !important;
+}
 .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
   background-color: var(--secondary-color);
 }
-.mint-header-button span.ant-menu-title-content a{
+.mint-header-button span.ant-menu-title-content a, .mint-header-button span.ant-menu-title-content a:hover{
   color: white;
   text-transform: capitalize;
 }
@@ -199,7 +193,7 @@ button.ant-btn.cancel-button-modal {
 }
 span.ant-menu-title-content a {
   text-transform: uppercase;
-  font-family: 'Calibre';
+  font-family: "Neue Haas Grotesk";
   font-size: 12px;
   font-weight: bold;
   letter-spacing: 1.5px;
@@ -220,14 +214,13 @@ svg.menu-icon {
 }
 .header-wallet.not-logged {
   background-color: var(--primary-color);
-  color: #fff;
+  color: white;
 }
 .header-wallet.not-logged:hover, .header-wallet.not-logged:focus {
   background-color: var(--secondary-color) !important;
 }
 p.auth-button {
   color: white;
-  font-weight: bold;
 }
 .wallet-options-container{
   display: flex;
@@ -299,7 +292,6 @@ a.sidebar-inner-menu-element, li.sidebar-inner-menu-element span a{
 }
 a.sidebar-inner-menu-element:hover{
   background-color: var(--accent-color);
-  color: white;
 }
 .sidebar-container p.address, p.header-address {
   font-weight: 400;
@@ -341,7 +333,7 @@ hr {
 }
 h1{
   color: var(--primary-gray);
-  font-family: "Calibre";
+  font-family: "Neue Haas Grotesk";
   font-size: 72px;
   font-weight: 400;
   line-height: 64px;
@@ -349,30 +341,39 @@ h1{
 }
 h1.extra-big {
   color: var(--primary-color);
-  font-size: 180px;
-  line-height: 120px;
-  margin-bottom: 80px;
+  font-size: 186px;
+  line-height: 150px;
+  margin-bottom: 60px;
+}
+h1.extra-big span{
+  font-size: 160px;
 }
 .home h1.extra-big span, .mint h1.extra-big span{
   color: var(--primary-gray);
 }
 h2{
   color: var(--primary-gray);
-  font-family: "Calibre";
+  font-family: "Neue Haas Grotesk";
   font-size: 46px;
   font-weight: 400;
   line-height: 42px;
   margin-bottom: 20px;
 }
-.roadmap-container .h2-with-separator {
-  padding-top: 40px;
-  border-top: 1px solid var(--primary-gray);
+.roadmap-container ul.ant-timeline h2 {
+  margin-top: 40px;
+  color: var(--accent-color);
+}
+.ant-timeline-item-head {
+  border: 5px solid transparent;
 }
 h3 {
   font-size: 30px;
   line-height: 32px;
   font-weight: 400;
   margin: 0 0 20px;
+}
+h4 {
+  font-size: 20px;
 }
 p{
   font-size: 16px;
@@ -391,7 +392,6 @@ button.main-cta.button {
   cursor: pointer;
 }
 .home .ant-btn a, .main-cta a, .about-cta.button{
-  color: white;
   font-size: 14px;
   font-weight: bold;
   font-family: "Archivo";
@@ -483,12 +483,12 @@ span.anticon.anticon-warning {
 .minting-inputs button, button.ant-btn {
   width: 100%;
   background-color: var(--accent-color);
-  border-radius: 30px;
   color: white;
+  border-radius: 30px;
   border: none;
 }
 .minting-inputs > span {
-  color: #fff;
+  color: white;
   margin: 20px;
 }
 button.main-cta.button:hover, .ant-btn:hover, .ant-btn:focus, .ant-btn:active {
@@ -542,7 +542,7 @@ button.change-amount-button {
   width: 40px;
   height: 40px;
   font-size: 44px;
-  line-height: 48px;
+  line-height: 34px;
   color: white;
   cursor: pointer;
 }
@@ -677,16 +677,22 @@ button.change-amount-button {
   margin: 40px 0;
 }
 .about-block .content-wrapper .extra-big {
-  margin: 20px 0 0;
+  font-size: 180px;
+  margin: 20px 0 60px;
+}
+.about-block .content-wrapper{
+  width: 70%;
 }
 .about-block .content-wrapper p {
   padding-left: 110px;
+  font-size: 26px;
+  line-height: 30px;
 }
 .about-block .nfts-wrapper {
+  width: 30%;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
-  width: 60%;
 }
 .nft-wrapper {
   cursor: pointer;
@@ -700,7 +706,7 @@ button.change-amount-button {
 .team-block {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: row;
   gap: 20px;
 }
@@ -717,9 +723,15 @@ button.change-amount-button {
   font-size: 16px;
 }
 .team-block-image {
-  min-width: 40%;
-  border-radius: 50%;
+  width: 180px;
+  height: 260px;
+  border-radius: 100px;
   overflow: hidden;
+}
+.team-block-image img {
+  width: 260px;
+  max-width: 260px;
+  margin-left: -40px;
 }
 .roadmap-heading h2 {
   margin-bottom: 100px;
@@ -731,7 +743,7 @@ button.change-amount-button {
   text-align: center;
 }
 .pass-heading {
-  width: 500px;
+  width: 75%;
   margin: 0 auto 60px;
   text-align: center;
 }
@@ -740,7 +752,7 @@ button.change-amount-button {
   width: 320px;
 }
 .pass-heading img.xc-pass-logo{
-  width: 220px;
+  width: 260px;
   margin: 0 auto;
 }
 .pass-heading img.xc-pass-token{
@@ -753,10 +765,11 @@ button.change-amount-button {
 }
 .pass-heading h3 {
   font-size: 20px;
-  margin: 20px;
+  margin: 0 0 20px;
 }
 .pass-container p, .about-container p {
-  font-size: 22px;
+  font-size: 32px;
+  line-height: 40px;
   font-weight: 400;
 }
 .pass-container .reasons-container .reason p {
@@ -777,13 +790,34 @@ button.change-amount-button {
 .reason-container > h1.extra-big {
   min-width: 40%;
   font-size: 144px;
+  margin-bottom: 0;
 }
 .reason {
   text-align: left;
 }
+.ant-collapse > .ant-collapse-item > .ant-collapse-header {
+  font-size: 38px;
+  padding: 20px 16px;
+  margin-left: -40px;
+}
+.ant-collapse-content > .ant-collapse-content-box {
+  padding: 0;
+}
 .how-to-container p{
-  font-size: 18px;
-  font-weight: 100;
+  font-size: 24px;
+  font-weight: 400;
+  margin: 0 0 40px;
+}
+.how-to-container p.address {
+  margin: 0;
+  font-size: 13px;
+}
+.how-to-container p.address::before{
+  content: unset;
+}
+.how-to-container .ant-card-meta-title {
+  font-size: 26px;
+  text-decoration: underline;
 }
 span.project-separator {
   font-size: 22px;
@@ -796,6 +830,7 @@ span.project-separator {
   flex-wrap: wrap;
   flex-direction: row;
   gap: 10px;
+  margin-bottom: 40px;
 }
 .project-images img {
   width: 240px;
@@ -950,9 +985,6 @@ span.sc-stats-value {
   border-radius: 0 0 4px 4px;
 }
 
-
-
-
 @media screen and (max-width: 768px) {
   .content-wrap.home .home, .how-to-container, .roadmap-container, .pass-container, .pass-heading, .about-container, .team-container,.whitelist-container, .minter-container, .collections-container, .gallery-container, button.main-cta.button, a.secondary-cta, .pass-heading button.main-cta.button {
     width: 100%;
@@ -1028,36 +1060,60 @@ span.sc-stats-value {
   .home h1.extra-big {
     text-align: center;
   }
+  h1.extra-big span {
+      font-size: 54px;
+  }
+  .about-block .content-wrapper h1.extra-big {
+      font-size: 88px;
+      margin-left: -20px;
+  }
   h2 {
       color: var(--primary-gray);
-      font-family: "Calibre";
+      font-family: "Neue Haas Grotesk";
       font-size: 26px;
       font-weight: 400;
       line-height: 30px;
       margin-bottom: 20px;
   }
+  h3 {
+    font-size: 26px;
+  }
   button.main-cta.button {
     padding: 10px 20px;
-}
+  }
   .pass-container p, .about-container p {
-      font-size: 16px;
+      font-size: 20px;
+      line-height: 24px;
+  }
+  .pass-container .reasons-container .reason p{
+    font-size: 16px;
+    line-height: 20px;
   }
   .project-images {
       justify-content: center;
   }
   .reason-container > h1.extra-big {
-      min-width: 30%;
-      font-size: 100px;
+    min-width: 25%;
+    padding-right: 20px;
+    font-size: 100px;
   }
   .about-block {
       gap: 10px;
   }
   .about-block .content-wrapper p {
+      font-size: 14px;
+      line-height: 20px;
       padding-left: 20px;
   }
   .about-block .nfts-wrapper {
-      width: 200%;
+      width: 40%;
       gap: 10px;
+  }
+  .about-block .content-wrapper {
+      width: 60%;
+  }
+  .about-block .content-wrapper.right h1.extra-big {
+      margin-left: -80px;
   }
   .team-block {
       flex-direction: column;
@@ -1068,6 +1124,33 @@ span.sc-stats-value {
   .team-block-container {
       grid-template-columns: 1fr 1fr;
       gap: 20px;
+  }
+  .team-block-image {
+      width: 120px;
+      height: 160px;
+  }
+  .team-block-image img {
+      width: 160px;
+      max-width: 160px;
+      margin-left: -20px;
+  }
+  .team-block-info h4 {
+      font-size: 16px;
+  }
+  .team-block-info h5 {
+      font-size: 11px;
+  }
+  .team-block-info p {
+      font-size: 14px;
+  }
+  .how-to-container .ant-collapse > .ant-collapse-item > .ant-collapse-header {
+      font-size: 26px;
+  }
+  .how-to-container p {
+      font-size: 16px;
+  }
+  .whitelist-active, .wrong-network, .minting-paused {
+      font-size: 12px;
   }
   .minter-left-side {
       max-width: 100%;

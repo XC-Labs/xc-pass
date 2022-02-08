@@ -21,9 +21,9 @@ const Team = () => {
                     <img src={joxx} alt="Bio" />
                 </div>
                 <div className="team-block-info">
-                    <h4>joxx</h4>
+                    <h4>Joxx</h4>
                     <h5>joxx | xc labs | symbiotik#8416</h5>
-                    <p>gm</p>
+                    <p>CEO</p>
                 </div>
             </div>
             <div className="team-block">
@@ -31,9 +31,9 @@ const Team = () => {
                     <img src={bio} alt="Bio" />
                 </div>
                 <div className="team-block-info">
-                    <h4>alex</h4>
+                    <h4>Alex</h4>
                     <h5>errederruiz#8614</h5>
-                    <p>creative chief</p>
+                    <p>Creative Chief</p>
                 </div>
             </div>
             <div className="team-block">
@@ -41,9 +41,9 @@ const Team = () => {
                     <img src={maw} alt="Bio" />
                 </div>
                 <div className="team-block-info">
-                    <h4>maw</h4>
+                    <h4>Maw</h4>
                     <h5>mawmawmaw#0600</h5>
-                    <p>head of tech</p>
+                    <p>Head of Tech</p>
                 </div>
             </div>
             <div className="team-block">
@@ -51,9 +51,9 @@ const Team = () => {
                     <img src={rox} alt="Bio" />
                 </div>
                 <div className="team-block-info">
-                    <h4>rox</h4>
+                    <h4>Rox</h4>
                     <h5>roxpi122#2979</h5>
-                    <p>head of research</p>
+                    <p>Head of Research</p>
                 </div>
             </div>
             <div className="team-block">
@@ -61,9 +61,9 @@ const Team = () => {
                     <img src={bio} alt="Bio" />
                 </div>
                 <div className="team-block-info">
-                    <h4>ram&oacute;n</h4>
+                    <h4>Ram&oacute;n</h4>
                     <h5>Roma / XC-Labs#6488</h5>
-                    <p>counseling & advisory</p>
+                    <p>Strategy & Advisory</p>
                 </div>
             </div>
             <div className="team-block">
@@ -71,9 +71,9 @@ const Team = () => {
                     <img src={cheko} alt="Bio" />
                 </div>
                 <div className="team-block-info">
-                    <h4>cheko</h4>
+                    <h4>Cheko</h4>
                     <h5>Chekov#8800</h5>
-                    <p>counseling & advisory</p>
+                    <p>Strategy & Advisory</p>
                 </div>
             </div>
             <div className="team-block">
@@ -91,9 +91,9 @@ const Team = () => {
                     <img src={bio} alt="Bio" />
                 </div>
                 <div className="team-block-info">
-                    <h4>alex</h4>
+                    <h4>Alex</h4>
                     <h5>luis96pack#0810</h5>
-                    <p>community builder</p>
+                    <p>Community Builder</p>
                 </div>
             </div>
         </div>
