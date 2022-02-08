@@ -30,8 +30,8 @@ const renderedMainCta = (props) => {
 const Home = (props) => {
     return <div className="home">
         <h1 className="extra-big"><span>We're</span><br/><img src={logo} alt="XC Pass logo" /></h1>
-        <h2>A chain-agnostic NFT laboratory.<br/>
-            Let’s build and scale together the next generation of phygital assets.</h2>
+        <h2>A chain-agnostic NFT laboratory.<br/>Let’s build and scale together the next generation of phygital assets.</h2>
+        <br/><br/>
         {renderedMainCta(props)}
         <NavLink to="/xc-pass" className="secondary-cta" title="5 reasons to mint a XC Pass">5 reasons to mint a XC Pass</NavLink>
     </div>
