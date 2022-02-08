@@ -1041,6 +1041,9 @@ span.sc-stats-value {
   .header-wallet.not-logged {
       padding: 0 !important;
   }
+  .home .header-wallet.not-logged {
+    width: 100% !important;
+  }
   p.auth-button {
     color: white !important;
     font-size: 10px;

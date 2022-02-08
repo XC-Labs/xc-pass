@@ -12,6 +12,7 @@ export default function XCPass(props) {
                     <img src={xcpass} className="xc-pass-token" alt="XC Pass"/>
 
                     <p>Unlocks access to our community, early investment opportunities, whitelist for our NFTs, and a spot in our trading desk to earn additional yield on your investments. Buy more passes to leverage your governance power in our future DAO and increase your benefits in our community.</p>
+                    <br/>
 
                     {isWhitelistRegActive &&
                         <Button
@@ -79,6 +80,7 @@ export default function XCPass(props) {
                 <hr/>
                 <br/><br/>
                 <h2>Ready for the future?</h2>
+                <br/>
                 {isWhitelistRegActive &&
                     <Button
                         className="main-cta button"
