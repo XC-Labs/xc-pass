@@ -98,6 +98,7 @@ const Team = () => {
             </div>
         </div>
         <h2>We’re building our team and would love to hear from you. Contact us and let’s make some history. </h2>
+        <br/><br/>
         <Button
             className="about-cta button"
             size="large"

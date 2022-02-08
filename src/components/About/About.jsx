@@ -123,6 +123,7 @@ const About = () => {
     </div>
     <br/><br/><br/><br/>
     <h3>We’re always open to meet and partner with forward-thinking individuals and collectives. Contact us and let’s make some history. </h3>
+    <br/><br/>
     <Button
         className="about-cta button"
         size="large"
