@@ -6,7 +6,7 @@ import { useMoralis } from "react-moralis";
 import nft from '../../assets/xcpass.png';
 import mintingBg from '../../assets/minting.png';
 import successfulBg from '../../assets/successful.png';
-import logo from '../../assets/xcpass-logo-big.png';
+import logo from '../../assets/xcpass-logo_big.png';
 
 export default function Minter(props) {
   const nftPrice = "1";

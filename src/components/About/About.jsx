@@ -9,8 +9,12 @@ import decentraland from '../../assets/nfts/decentraland53,-2.png';
 import fancybear from '../../assets/nfts/fancy_bear_6776.jpg';
 import gojira from '../../assets/nfts/gojira.gif';
 import moon from '../../assets/nfts/moon-52,17.png';
-import moonie from '../../assets/nfts/moonie-130610.png';
-
+import moonie from '../../assets/nfts/moonie-130610.jpg';
+import adidas from '../../assets/nfts/adidas-nft.jpg';
+import apecoin from '../../assets/nfts/elite-ape-entry-coin.jpg';
+import moodroller from '../../assets/nfts/moodroller2094.jpg';
+import slimhood from '../../assets/nfts/slimhood_3083.jpg';
+import superplastic from '../../assets/nfts/superplastic-106.jpg';
 
 
 const About = () => {
@@ -91,22 +95,22 @@ const About = () => {
     <div className="about-block">
         <div className="nfts-wrapper">
             <div className="nft-wrapper">
-                <img src={azuki} alt="" onClick={()=>showModal({title: "", collection: "", number: "#", image: ""})}/>
+                <img src={adidas} alt="" onClick={()=>showModal({title: "Adidas NFT", collection: "Adidas", number: "N/A", image: adidas, chain: "Ethereum", contract: "", owner: ""})}/>
             </div>
             <div className="nft-wrapper">
                 &nbsp;
             </div>
             <div className="nft-wrapper">
-                <img src={azuki} alt="" onClick={()=>showModal({title: "", collection: "", number: "#", image: ""})}/>
+                <img src={apecoin} alt="" onClick={()=>showModal({title: "", collection: "", number: "#", image: apecoin, chain: "Ethereum", contract: "", owner: ""})}/>
             </div>
             <div className="nft-wrapper">
-                <img src={azuki} alt="" onClick={()=>showModal({title: "", collection: "", number: "#", image: ""})}/>
+                <img src={moodroller} alt="" onClick={()=>showModal({title: "", collection: "", number: "#", image: moodroller, chain: "Ethereum", contract: "", owner: ""})}/>
             </div>
             <div className="nft-wrapper">
-                <img src={azuki} alt="" onClick={()=>showModal({title: "", collection: "", number: "#", image: ""})}/>
+                <img src={slimhood} alt="" onClick={()=>showModal({title: "", collection: "", number: "#", image: slimhood, chain: "Ethereum", contract: "", owner: ""})}/>
             </div>
             <div className="nft-wrapper">
-                <img src={azuki} alt="" onClick={()=>showModal({title: "", collection: "", number: "#", image: ""})}/>
+                <img src={superplastic} alt="" onClick={()=>showModal({title: "", collection: "", number: "#", image: superplastic, chain: "Ethereum", contract: "", owner: ""})}/>
             </div>
         </div>
         <div className="content-wrapper">

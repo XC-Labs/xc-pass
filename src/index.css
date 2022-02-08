@@ -264,6 +264,9 @@ p.auth-button {
   height: 10px;
   color: limegreen;
 }
+.home .header-wallet.not-logged {
+  width: 40%;
+}
 .logo-container {
   width: 80px;
 }
@@ -701,8 +704,22 @@ button.change-amount-button {
   flex-direction: row;
   gap: 20px;
 }
+.team-block-info h4 {
+  font-size: 18px;
+  font-weight: bold;
+}
+.team-block-info h5 {
+  font-size: 12px;
+  margin-bottom: 0;
+}
+.team-block-info p {
+  margin: 0;
+  font-size: 16px;
+}
 .team-block-image {
   min-width: 40%;
+  border-radius: 50%;
+  overflow: hidden;
 }
 .roadmap-heading h2 {
   margin-bottom: 100px;
@@ -825,7 +842,7 @@ form#mint {
 }
 .minter-modal {
   background: #72727299;
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: 100vh;
   inset: 0;
@@ -955,7 +972,7 @@ span.sc-stats-value {
   .main-header .ant-menu-submenu-popup > .ant-menu {
     background-color: var(--accent-color);
   } 
-  .ant-menu-submenu-popup > .ant-menu .ant-menu-item a{  
+  .ant-menu-submenu-popup > .ant-menu .ant-menu-item a:hover{  
     font-size: 12px;
     color: white;
   }
@@ -1043,6 +1060,8 @@ span.sc-stats-value {
       gap: 10px;
   }
   .team-block {
+      flex-direction: column;
+      align-items: flex-start;
       justify-content: flex-start;
       gap: 6px;
   }
@@ -1052,11 +1071,14 @@ span.sc-stats-value {
   }
   .minter-left-side {
       max-width: 100%;
-      margin-right: 20px;
+      width: 100%;
+      margin-right: 0px;
       flex: auto;
   }
   .minter-right-side {
       max-width: 100%;
+      width: 100%;
+      flex: auto;
   }
   .minter-right-side h3 {
       font-size: 15px;
