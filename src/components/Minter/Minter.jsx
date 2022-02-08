@@ -221,9 +221,9 @@ export default function Minter(props) {
                 </Form>
             </Form.Provider>
             <div className="minting-info">
-              <span>XC-Pass unlocks access to our community. <NavLink to="/xc-pass">Learn more.</NavLink></span><br/>
-              <span>XC-Pass price: 1 AVAX (<a href="https://coinmarketcap.com/currencies/avalanche/" rel="noreferrer" target="_blank">Check price</a>) + Gas</span><br/>
-              <span>Max. per wallet: 50 XC-Passes</span>
+              <span>- XC-Pass unlocks access to our community. <NavLink to="/xc-pass">Learn more.</NavLink></span><br/><br/>
+              <span>- XC-Pass price: 1 AVAX (<a href="https://coinmarketcap.com/currencies/avalanche/" rel="noreferrer" target="_blank">Check price</a>) + Gas</span><br/><br/>
+              <span>- Max. per wallet: 50 XC-Passes</span>
             </div>
         </Col>
       </Row>

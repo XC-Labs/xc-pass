@@ -519,7 +519,6 @@ button.main-cta.button:hover, .ant-btn:hover, .ant-btn:focus, .ant-btn:active {
   background-color: transparent;
   width: 100px;
   height: 80px;
-  padding: 20px 0 0;
 }
 .mint-amount .ant-input-number {
   border: none !important;
@@ -550,7 +549,7 @@ button.change-amount-button {
   font-size: 14px;
   font-weight: 400;
   text-align: left;
-  padding: 20px;
+  padding: 40px;
 }
 .successfulMint{
   text-align: center;
@@ -872,7 +871,7 @@ span.project-separator {
 form#mint {
   background-color: var(--primary-color);
   border-radius: 20px;
-  padding: 40px;
+  padding: 20px 40px;
   margin-top: 40px;
 }
 .minter-modal {
