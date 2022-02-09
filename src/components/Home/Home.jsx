@@ -12,7 +12,7 @@ const renderedMainCta = (props) => {
                         size="large"
                         disabled={isAuthenticated ? false : true}
                     >
-                    <NavLink to="/whitelist">Register in the Whitelist</NavLink>
+                    <NavLink to="/whitelist">Whitelist Your Wallet!</NavLink>
                     </Button>
         }else{
             return <Button

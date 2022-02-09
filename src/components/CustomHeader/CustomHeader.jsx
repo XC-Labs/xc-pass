@@ -24,7 +24,6 @@ export default function Roadmap(props) {
         }
     }
     const mintButton = () => {
-        if(!isMintingPaused){
             if(isWhitelistRegActive){
                 return <Menu>
                         <Menu.Item  
@@ -36,18 +35,18 @@ export default function Roadmap(props) {
                         </Menu.Item>
                     </Menu>
             }else{
-                return <Menu>
-                        <Menu.Item  
-                            key="mint"
-                            className="mint-header-button"
-                            disabled={isAuthenticated && !isMintingPaused ? false : true}
-                        >
-                            <NavLink to="/mint">Mint your XC Pass</NavLink>
-                        </Menu.Item>
-                    </Menu>
+                if(!isMintingPaused){
+                    return <Menu>
+                            <Menu.Item  
+                                key="mint"
+                                className="mint-header-button"
+                                disabled={isAuthenticated && !isMintingPaused ? false : true}
+                            >
+                                <NavLink to="/mint">Mint your XC Pass</NavLink>
+                            </Menu.Item>
+                        </Menu>
+                }
             }
-                
-        }
     }
     return <>
             <Header className="main-header">

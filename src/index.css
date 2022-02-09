@@ -92,7 +92,7 @@ div#loading-app {
   position: absolute;
   inset: 0;
   background: white;
-  z-index: 10;
+  z-index: 99999;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -409,10 +409,11 @@ a.secondary-cta {
 }
 .ant-btn[disabled], .ant-btn[disabled]:hover, .ant-btn[disabled]:focus, .ant-btn[disabled]:active {
   color: white;
-  border-color: var(--secondary-gray);
-  background: var(--secondary-gray);
+  border-color: var(--secondary-gray) !important;
+  background: var(--secondary-gray) !important;
   text-shadow: none;
   box-shadow: none;
+  cursor: not-allowed;
 }
 .ant-collapse {
   background: none;
@@ -460,12 +461,15 @@ span.anticon.anticon-warning {
   left: 0;
   top: 64px;
 }
-.whitelist-active, .wrong-network, .minting-paused {
+.whitelist-active, .wrong-network, .minting-paused, .no-wallet {
   text-align: center;
   padding: 10px;
   background-color: #c2c2c2;
   color: white;
   font-weight: 400;
+}
+.wrong-network {
+  z-index: 99;
 }
 .minting-inputs{
   display: flex;
@@ -814,9 +818,13 @@ button.change-amount-button {
 .how-to-container p.address::before{
   content: unset;
 }
-.how-to-container .ant-card-meta-title {
-  font-size: 26px;
+.ant-steps-item-title {
+  font-size: 30px;
   text-decoration: underline;
+}
+.ant-steps-item-process > .ant-steps-item-container > .ant-steps-item-icon{
+  background: var(--accent-color);
+  border: none;
 }
 span.project-separator {
   font-size: 22px;
@@ -991,6 +999,9 @@ span.sc-stats-value {
   .how-to-container, .roadmap-container, .pass-container, .about-container, .team-container, .whitelist-container, .minter-container, .collections-container, .gallery-container{
       margin: 0;
   }
+  .home {
+      text-align: center;
+  }
   .main-header {
     position: relative;
     padding: 0px 20px;
@@ -1151,7 +1162,7 @@ span.sc-stats-value {
   .how-to-container p {
       font-size: 16px;
   }
-  .whitelist-active, .wrong-network, .minting-paused {
+  .whitelist-active, .wrong-network, .minting-paused, .no-wallet {
       font-size: 12px;
   }
   .minter-left-side {

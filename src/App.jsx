@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { useMoralisDapp } from "providers/MoralisDappProvider/MoralisDappProvider";
 import { useMoralis } from "react-moralis";
-import { HashRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import { HashRouter as Router, Switch, Route, Redirect, NavLink } from "react-router-dom";
 import { Layout } from "antd";
-import {
-  WarningFilled
-} from '@ant-design/icons';
+import { WarningFilled } from '@ant-design/icons';
+import "antd/dist/antd.css";
+import "./style.css";
+import abi from "contracts/abi.json";
 
 import Home from "components/Home/Home";
 import CustomHeader from "components/CustomHeader/CustomHeader";
@@ -20,13 +21,9 @@ import Collections from "components/Collections/Collections";
 import Whitelist from "components/Whitelist/Whitelist";
 import Admin from "components/Admin/Admin";
 import Footer from "components/Footer/Footer";
-import abi from "contracts/abi.json";
-
-import "antd/dist/antd.css";
-import "./style.css";
 
 const App = () => {
-    const contractAddress = "0x2C8e71aBF007e5286057612d365F661e8069492d"; //Fuji
+    const contractAddress = "0x16D57E27504BF2B00e6A550231ABaf0E68D280cD"; //Fuji
     const { Moralis, isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading } = useMoralis();
     const { walletAddress, chainId } = useMoralisDapp();
     const [contractOwnerAddress, setContractOwnerAddress] = useState("");
@@ -47,7 +44,6 @@ const App = () => {
         getWhitelistRegActive();
         getWhitelistSaleActive();
       }
-      // eslint-disable-next-line
     });
 
     const getMintingPaused = async () => {
@@ -87,12 +83,19 @@ const App = () => {
       setContractOwnerAddress(response);
     }
 
-    const renderedWarning = () => {
+    
+    const renderedGeneralWarning = () => {
+      if(!window.ethereum){
+        return <div className="no-wallet"><WarningFilled/> You need a wallet to be able to get whitelisted or mint an XC-Pass. Check our FAQs <NavLink to="/faq">here.</NavLink></div>
+      }
+      if(chainId!=="0xa86a"){
+        return <div className="wrong-network"><WarningFilled/> Please connect to the Avalanche Mainnet Network</div>
+      }
+    }
+
+    const renderedMinterWarning = () => {
       if(isMintingPaused){
         return <div className="minting-paused"><WarningFilled/> Minting is not active at the moment.</div>
-      }
-      if(chainId===43113){
-        return <div className="wrong-network"><WarningFilled/> To be able to mint, please connect to <strong>Fuji Testnet</strong>.</div>
       }
       if(isWhitelistSaleActive===true){
         return <div className="whitelist-active"><WarningFilled/> Whitelist sale is Live. Only whitelisted wallets will be able to buy. Be sure to interact with our real contract: {contractAddress}</div>
@@ -100,8 +103,7 @@ const App = () => {
     }
 
     useEffect(()=>{
-      // eslint-disable-next-line
-      if(contractOwnerAddress?.toLowerCase() == walletAddress?.toLowerCase()){
+      if(contractOwnerAddress?.toLowerCase() === walletAddress?.toLowerCase()){
         setIsOwner(true);
       }else{
         setIsOwner(false);
@@ -117,6 +119,7 @@ const App = () => {
             isMintingPaused={isMintingPaused}
             isWhitelistRegActive={isWhitelistRegActive}
           />
+          {renderedGeneralWarning()}
             <Switch>
 
               <Route path="/" exact>
@@ -172,7 +175,7 @@ const App = () => {
               <Route path="/mint">
                 <>
                 <div className="minter-announcement">
-                  {renderedWarning()}
+                  {renderedMinterWarning()}
                 </div>
                 <div className="content-wrap mint">
                   {!isMintingPaused || <Redirect to="/" /> }

@@ -171,18 +171,17 @@ export default function Minter(props) {
                         message: "Transaction Successful",
                         description: `${receipt.transactionHash}`,
                       });
-                      console.log(receipt);
                       setTxId(receipt.transactionHash);
                       setMintOn(false);
                       setMintSuccess(true);
                     })
                     .on("error", (error) => {
                       setResponses({ ...responses, [name]: { result: null, isLoading: false } });
-                      setMintOn(false);
                       openNotification({
                         message: "Transaction Error",
                         description: "Something went wrong with the transaction. Feel free to try again.",
                       });
+                      setMintOn(false);
                       setMintSuccess(false);
                       setMintError(true);
                     });

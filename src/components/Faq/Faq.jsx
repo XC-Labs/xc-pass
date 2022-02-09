@@ -1,12 +1,9 @@
-import { Card, Row, Col, Collapse } from "antd";
+import { Steps, Collapse } from "antd";
 import { NavLink } from "react-router-dom";
-import metamask from '../../assets/metamask.png';
-import avalanche from '../../assets/avalanche.png';
-import authenticate from '../../assets/authenticate.png';
 import Address from "components/Address/Address";
 
 const Faq = (props) => {
-    const { Meta } = Card;
+    const { Step } = Steps;
     const { Panel } = Collapse;
     const {contractAddress} = props;
 
@@ -41,28 +38,17 @@ return <div className="how-to-container">
                     <p>We define phygital assets as the kind that lives both in the physical space that we all share and the digital worlds and metaverses that we are building. As an example, tokenizing nature or debt from IRL and transfering this value to the blockchain.</p>
                 </Panel>
                 <Panel header="How to Mint a NFT" key="9">
-                    <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-                        <Col className="gutter-row" span={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-                        <Card bordered={false} cover={<img alt="metamask" src={metamask} />}>
-                            <Meta title="1. Install Metamask" />
-                            <p>If you don't have <a href="https://metamask.io/" target="_blank" rel="noreferrer">Metamask</a> installed, first <a href="https://metamask.io/" target="_blank" rel="noreferrer">download it</a> and create an account. Be sure to keep your keys safe!</p>
-                        </Card>
-                        </Col>
-                        <Col className="gutter-row" span={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-                        <Card bordered={false} cover={<img alt="avalanche" src={avalanche} />}>
-                            <Meta title="2. Switch to Fuji Testnet" />
-                            <p>Switch to Fuji (Avalanche Testnet) and be sure to have some Test AVAX. If you need some, please visit an AVAX Faucet like: <a href="https://faucet.avax-test.network/" target="_blank" rel="noreferrer">Fuji Avalanche Testnet Faucet</a></p>
-                        </Card>
-                        </Col>
-                        <Col className="gutter-row" span={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-                        <Card bordered={false} cover={<img alt="authenticate" src={authenticate} />}>
-                            <Meta title="3. Authenticate" />
-                            <p>Authenticate with Metamask using the button in the top right of the site. Once you've done so, go to the <NavLink to="/mint">Minting Page</NavLink>.</p>
-                        </Card>
-                        </Col>
-                    </Row>
+                    <Steps direction="vertical">
+                        <Step status="process" title="Install a Wallet" description={<p>If you don't have a wallet, we recommend <a href="https://metamask.io/" target="_blank" rel="noreferrer">Metamask</a>. You can  <a href="https://metamask.io/" target="_blank" rel="noreferrer">download it here</a> and create an account. Be sure to keep your keys safe!</p>}/>
+                        <Step status="process" title="Switch to Avalanche Mainnet Network" description={<p>Switch to Avalanche Mainnet Network. If you don't have the Avalanche Mainnet Network on your wallet, you can add it on this website: <a href="https://chainlist.org/" target="_blank" rel="noreferrer">Chainlist.org</a></p>}/>
+                        <Step status="process" title="Authenticate" description={<p>Authenticate with your wallet using the button in the top right of the site (we currently support Metamask and WalletConnect). Once you've done so, go to the <NavLink to="/mint">Minting Page</NavLink>.</p>}/>
+                        <Step status="process" title="Mint your XC Pass" description={<p>First, be sure to have at least 1 AVAX (+gas) to be able to mint 1 XC Pass. You can buy a maximum of 50 passes.</p>} />
+                    </Steps>
                 </Panel>
-                <Panel header="What is the Contract Address?" key="10">
+                <Panel header="How does the Whitelist work?" key="10">
+                    <p>The Whitelist registration will be open for a short period of time. Wallets registered in the Whitelist will be able to mint their XC Passes in a date prior to the public sale. There is no current limit to the amount of wallets that can be registered in the Whitelist, which means that if enough people register, all the XC Passes passes could be sold during pre-sale.</p>
+                </Panel>
+                <Panel header="What is the Contract Address?" key="11">
                     <Address copyable address={contractAddress}  />
                 </Panel>
             </Collapse>

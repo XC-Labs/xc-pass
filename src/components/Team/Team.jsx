@@ -1,10 +1,13 @@
 import {Button} from 'antd';
-import bio from '../../assets/bio.png';
 import joxx from '../../assets/team/joxx.jpg';
+import alex from '../../assets/team/alex.jpg';
 import maw from '../../assets/team/maw.jpg';
 import rox from '../../assets/team/rox.jpg';
 import cheko from '../../assets/team/cheko.jpg';
+import roma from '../../assets/team/roma.gif';
+import luis from '../../assets/team/luisvega.jpg';
 import antonio from '../../assets/team/antonio.jpg';
+import chainz from '../../assets/team/chainz.jpg';
 
 const Team = () => {
     return <div className="team-container">
@@ -28,7 +31,7 @@ const Team = () => {
             </div>
             <div className="team-block">
                 <div className="team-block-image">
-                    <img src={bio} alt="Bio" />
+                    <img src={alex} alt="Bio" />
                 </div>
                 <div className="team-block-info">
                     <h4>Alex</h4>
@@ -58,7 +61,7 @@ const Team = () => {
             </div>
             <div className="team-block">
                 <div className="team-block-image">
-                    <img src={bio} alt="Bio" />
+                    <img src={roma} alt="Bio" />
                 </div>
                 <div className="team-block-info">
                     <h4>Ram&oacute;n</h4>
@@ -88,11 +91,31 @@ const Team = () => {
             </div>
             <div className="team-block">
                 <div className="team-block-image">
-                    <img src={bio} alt="Bio" />
+                    <img src={chainz} alt="Bio" />
                 </div>
                 <div className="team-block-info">
-                    <h4>Alex</h4>
+                    <h4>Chainz</h4>
+                    <h5>#</h5>
+                    <p>Trading Desk</p>
+                </div>
+            </div>
+            <div className="team-block">
+                <div className="team-block-image">
+                    <img src={luis} alt="Bio" />
+                </div>
+                <div className="team-block-info">
+                    <h4>Luis</h4>
                     <h5>luis96pack#0810</h5>
+                    <p>Community Builder</p>
+                </div>
+            </div>
+            <div className="team-block">
+                <div className="team-block-image">
+                    <img src={luis} alt="Bio" />
+                </div>
+                <div className="team-block-info">
+                    <h4>Juvenal</h4>
+                    <h5>Juvencrypto#2835</h5>
                     <p>Community Builder</p>
                 </div>
             </div>

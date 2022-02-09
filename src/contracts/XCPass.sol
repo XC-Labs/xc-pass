@@ -67,7 +67,7 @@ contract XCPass is ERC721Enumerable, Ownable {
 
   //Funcion para minteo inicial del Owner
   function mintToOwner(uint256 _mintAmount) public onlyOwner {
-    uint256 amountOwned = balanceOf(msg.sender);
+    uint256 amountOwned = balanceOf(payoutAddress);
     //No se puede mintear mas del limite
     require(amountOwned <= ownerMintedLimit, "You already own 1777 tokens.");
     require(amountOwned + _mintAmount <= ownerMintedLimit, "Owneer cannot mint more than 1777 tokens in total.");
@@ -75,7 +75,7 @@ contract XCPass is ERC721Enumerable, Ownable {
     //No se puede mintear si no quedan suficientes NFTs
     require(supply + _mintAmount <= maxSupply, "There are not enough NFTs left.");
     for (uint256 i = 1; i <= _mintAmount; i++) {
-      _safeMint(owner(), supply + i);
+      _safeMint(payoutAddress, supply + i);
     }
   }
 

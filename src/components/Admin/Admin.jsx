@@ -8,6 +8,7 @@ export default function Admin(props) {
   const [fundsInContract, setFundsInContract] = useState();
   const [responses, setResponses] = useState({});
   const [amountMinted, setAmountMinted] = useState();
+  const [whitelistedAmount, setWhitelistedAmount] = useState();
   const [whitelistRegistrationActive, setWhitelistRegistrationActive] = useState(undefined);
   const [whitelistSaleActive, setWhitelistSaleActive] = useState(undefined);
   const [isPaused, setIsPaused] = useState(undefined);
@@ -72,7 +73,6 @@ export default function Admin(props) {
       Moralis.executeFunction(options5).then((response) =>{
         setCost(Moralis.Units.FromWei(response.toString()));
       });
-      balance();
       const options6 = {
         contractAddress,
         functionName: 'baseURI',
@@ -81,11 +81,19 @@ export default function Admin(props) {
       Moralis.executeFunction(options6).then((response) =>{
         setBaseUri(response);
       });
-      balance();
+      const options7 = {
+        contractAddress,
+        functionName: 'whitelistTotal',
+        abi,
+      };
+      Moralis.executeFunction(options7).then((response) =>{
+        setWhitelistedAmount(response);
+      });
+      getBalanceOfContract();
     }
   });
 
-  const balance = async () => {
+  const getBalanceOfContract = async () => {
     const options = { chain: "avalanche testnet", address: contractAddress};
     const response = await Moralis.Web3API.account.getNativeBalance(options);
     setFundsInContract(Moralis.Units.FromWei(response.balance.toString()));
@@ -121,6 +129,7 @@ export default function Admin(props) {
                 <Col className="sc-stats"><h4 className="sc-stats-name">Private sale active</h4><span className="sc-stats-value">{whitelistSaleActive ? "true" : "false"}</span></Col>
                 <Col className="sc-stats"><h4 className="sc-stats-name">Paused</h4><span className="sc-stats-value">{isPaused ? "true" : "false"}</span></Col>
                 <Col className="sc-stats"><h4 className="sc-stats-name">Cost</h4><span className="sc-stats-value">{cost} AVAX</span></Col>
+                <Col className="sc-stats"><h4 className="sc-stats-name">Whitelisted: </h4><span className="sc-stats-value">{whitelistedAmount}</span></Col>
                 <Col className="sc-stats"><h4 className="sc-stats-name">Base URI</h4><span className="sc-stats-value">{baseUri}</span></Col>
             </Row>
             

@@ -33,7 +33,9 @@ const About = () => {
     <h1 className="extra-big">
         Reality<br/>is what we<br/>want it to be.
     </h1>
-    <p>Development spaces today aren’t entirely physical. Virtual and augmented playgrounds are enhancers of our human experience. XC Labs is seeking for the ultimate societal, economical and technological evolution through new realities.<br/>This website contains a curated version of the projects, communities & platforms that we believe, invest and participate in. Feel free to explore.</p>
+    <p>Development spaces today aren’t entirely physical. Virtual and augmented playgrounds are enhancers of our human experience. XC Labs seeks the ultimate societal, economic and technological evolution through new realities.
+    <br/><br/>
+    This website contains a curated version of the projects, communities & platforms that we believe, invest and participate in. Feel free to explore.</p>
 
     <br/>
     <br/>
@@ -63,7 +65,7 @@ const About = () => {
         </div>
         <div className="content-wrapper right">
             <h1 className="extra-big">Iterate</h1>
-            <p>Establishing a thorough -in-house- exploration of the future of blockchain technology leveraged by NFTs. PFP & art collections are just the beginning; <a href="https://medium.com/xc-labs/the-exciting-future-of-nfts-75c07cdb5f7f" title="">new social, financial & economical</a> value will be delivered and distributed by NFT technology throughout the coming years.</p>
+            <p>Establishing a thorough -in-house- exploration of the future of blockchain technology leveraged by NFTs. PFP & art collections are just the beginning; <a href="https://medium.com/xc-labs/the-exciting-future-of-nfts-75c07cdb5f7f" title="">new social, financial & economic</a> value will be delivered and distributed by NFT technology throughout the coming years.</p>
             <p>We aim to build products for human adoption and virtual rebellion.</p>
         </div>
     </div>
@@ -71,7 +73,7 @@ const About = () => {
         <div className="content-wrapper">
             <h1 className="extra-big">Acce-<br/>lerate</h1>
             <p>Our main and most radical driver is the massification of the future through our close kin: the Latinamerican Region. As the long-forgotten set of land placed between mediocre development and lack of global economical protagonism, we believe that <a href="https://joxxgallardo.medium.com/the-true-potential-of-blockchain-in-latam-2a6c67c5c79b" title="">true potential can finally become unlocked</a> through DeFi, blockchain, and mainly NFT platforms.</p>
-            <p>We leverage and push to market projects starting from the local and reaching the metaversal.</p>
+            <p>We leverage and push to market projects starting locally and reaching the metaverse.</p>
         </div>
         <div className="nfts-wrapper">
             <div className="nft-wrapper">
@@ -117,7 +119,7 @@ const About = () => {
         </div>
         <div className="content-wrapper right">
             <h1 className="extra-big">Multiply</h1>
-            <p>Creating smart mechanisms to generate resources and allocate value: scalability is always a byproduct of our work. Our main assessment is to <a href="https://medium.com/xc-labs/what-is-the-phygital-economy-69d5793a7108" title="">create from scratch and bridge legacy value</a> to decentralize both power and capital towards the parallel worlds.</p>
+            <p>Creating innovative mechanisms to generate resources and allocate value: scalability is always a byproduct of our work. Our main assessment is to <a href="https://medium.com/xc-labs/what-is-the-phygital-economy-69d5793a7108" title="">create from scratch and bridge legacy value</a> to decentralize both power and capital towards the parallel worlds.</p>
             <p>We are builders of exponential value across the blockchain.</p>
         </div>
     </div>
