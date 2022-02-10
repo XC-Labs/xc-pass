@@ -95,14 +95,14 @@ export default function Minter(props) {
     if(isAuthenticated){
       const options1 = {
         contractAddress,
-        functionName: 'walletOfOwner',
+        functionName: 'balanceOf',
         abi,
         params: {
-          "_owner": walletAddress
+          "account": walletAddress, "id": "0"
         }
       };
       Moralis.executeFunction(options1).then((response) =>{
-        setAmountMinted(response.length);
+        setAmountMinted(response);
       });
     }
   });

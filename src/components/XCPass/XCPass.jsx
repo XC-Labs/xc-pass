@@ -11,7 +11,7 @@ export default function XCPass(props) {
                     <h3>by XC-LABS</h3>
                     <img src={xcpass} className="xc-pass-token" alt="XC Pass"/>
 
-                    <p>Unlocks access to our community, early investment opportunities, whitelist for our NFTs, and a spot in our trading desk to earn additional yield on your investments. Buy more passes to leverage your governance power in our future DAO and increase your benefits in our community.</p>
+                    <p>Unlocks access to our community, early alpha investment calls, the possibility to get whitelisted for the XCVerse drops from our network, and diverse options to get a passive income from our operations desk. Buy more passes to leverage your governance power in our future DAO and increase your benefits in our community.</p>
                     <br/>
 
                     {isWhitelistRegActive &&

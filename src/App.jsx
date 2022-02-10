@@ -6,7 +6,7 @@ import { Layout } from "antd";
 import { WarningFilled } from '@ant-design/icons';
 import "antd/dist/antd.css";
 import "./style.css";
-import abi from "contracts/abi.json";
+import abi from "contracts/abi1155.json";
 
 import Home from "components/Home/Home";
 import CustomHeader from "components/CustomHeader/CustomHeader";
@@ -23,7 +23,8 @@ import Admin from "components/Admin/Admin";
 import Footer from "components/Footer/Footer";
 
 const App = () => {
-    const contractAddress = "0x16D57E27504BF2B00e6A550231ABaf0E68D280cD"; //Fuji
+    //const contractAddress = "0x16D57E27504BF2B00e6A550231ABaf0E68D280cD"; //Fuji 721
+    const contractAddress = "0x69307302616D145c4Da651bfBFC4CB62E4860802"; //Fuji 1155
     const { Moralis, isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading } = useMoralis();
     const { walletAddress, chainId } = useMoralisDapp();
     const [contractOwnerAddress, setContractOwnerAddress] = useState("");

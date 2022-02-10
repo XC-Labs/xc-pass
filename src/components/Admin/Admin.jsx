@@ -37,6 +37,7 @@ export default function Admin(props) {
         contractAddress,
         functionName: 'totalSupply',
         abi,
+        params: {"id":"0"}
       };
       Moralis.executeFunction(options1).then((response) =>{
         setAmountMinted(response);
@@ -75,8 +76,9 @@ export default function Admin(props) {
       });
       const options6 = {
         contractAddress,
-        functionName: 'baseURI',
+        functionName: 'uri',
         abi,
+        params: {"":"0"}
       };
       Moralis.executeFunction(options6).then((response) =>{
         setBaseUri(response);
@@ -245,7 +247,7 @@ export default function Admin(props) {
                   functionName: 'balanceOf',
                   abi,
                   params: {
-                      "owner": addressToCheck
+                      "account": addressToCheck, "id":"0"
                   }
                 };
                 setResponses({ ...responses, "balanceOf": { result: null, isLoading: true } });

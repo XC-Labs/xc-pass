@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useMoralis } from "react-moralis";
 import {Row, Col, Button, Progress } from "antd";
 import { NavLink } from "react-router-dom";
-import nft from '../../assets/nft.jpg';
+import nft from '../../assets/xc-pass.mp4';
 import xcpasslogo from '../../assets/xcpass-logo-black.png';
 
 export default function Gallery(props) {
@@ -11,22 +11,37 @@ export default function Gallery(props) {
     const { Moralis } = useMoralis();
     const { isAuthenticated, contractAddress, abi } = props;
     const { walletAddress } = useMoralisDapp();
-    const [nftList, setNftList] = useState([]);
-    const percentage = Math.floor((nftList[0]?.length / 50) * 100);
+    const [passesAmount, setPassesAmount] = useState();
+    //const [ xcPassAsset, setXcPassAsset ] = useState();
+    const percentage = Math.floor((passesAmount / 50) * 100);
+
+    /*
+    const getUserNFTs = async () => {
+        const options = { chain: "0xa869", format: 'hex', address: walletAddress, token_address: contractAddress };
+        await Moralis.Web3API.account.getNFTsForContract(options).then(userNFTs=>{
+            fetch(userNFTs.result[0]?.token_uri.replace("https://ipfs.moralis.io:2053/","https://gateway.pinata.cloud/")).then(res => res.json()).then(res=>{
+                let img = res.image.replace("ipfs://","https://gateway.pinata.cloud/");
+                setXcPassAsset(img);
+                console.log(xcPassAsset);
+            });
+        });        
+    }
+    */
 
     useEffect(()=>{
         if(isAuthenticated){
             const options = {
                 contractAddress,
-                functionName: 'walletOfOwner',
+                functionName: 'balanceOf',
                 abi,
                 params: {
-                    "_owner": walletAddress
+                    "account": walletAddress, "id": "0"
                 }
               };
               Moralis.executeFunction(options).then((response) =>{
-                setNftList([...nftList, response])
+                setPassesAmount(response)
               });
+            //getUserNFTs();
         }
     // eslint-disable-next-line
     },[walletAddress])
@@ -35,20 +50,20 @@ export default function Gallery(props) {
             <div className="gallery-container">
                 <Row>
                     <Col span={12} className="gallery-left-side">
-                        <img src={nft} alt="NFT Preview" />
+                        <video src={nft} muted={true} autoPlay={true} loop={true} controls={false}></video>
                     </Col>
                     <Col span={12} className="gallery-right-side">
                         <img src={xcpasslogo} className="xc-pass-logo" alt="XC Pass Logo"/>
                         <h4>XC-Pass unlocks access to our community, early investment opportunities, whitelist for our NFTs, and a spot in our trading desk to earn 30% on your investment. Buy more passes to increase your level and benefits in our community. <NavLink to="/xc-pass">Learn more.</NavLink></h4>
                         <br/>
                         <Progress percent={percentage} status="active" />
-                        <div className="gallery-user-amount">Minted: {nftList[0]?.length}/50</div>
+                        <div className="gallery-user-amount">Minted: {passesAmount}/50</div>
                         <br/>
                         <Button>
                             <NavLink to="/mint">Mint a XC Pass</NavLink>
                         </Button>
                     </Col>
-                    </Row>
+                </Row>
             </div>
     )
 }

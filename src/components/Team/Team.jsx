@@ -8,6 +8,7 @@ import roma from '../../assets/team/roma.gif';
 import luis from '../../assets/team/luisvega.jpg';
 import antonio from '../../assets/team/antonio.jpg';
 import chainz from '../../assets/team/chainz.jpg';
+import juvenal from '../../assets/team/juvenal.jpg';
 
 const Team = () => {
     return <div className="team-container">
@@ -111,7 +112,7 @@ const Team = () => {
             </div>
             <div className="team-block">
                 <div className="team-block-image">
-                    <img src={luis} alt="Bio" />
+                    <img src={juvenal} alt="Bio" />
                 </div>
                 <div className="team-block-info">
                     <h4>Juvenal</h4>

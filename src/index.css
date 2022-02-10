@@ -4,6 +4,7 @@
   --accent-color: #FF7C11;
   --primary-gray: #241f20;
   --secondary-gray: #3c3c3c;
+  --light-gray: #afafaf;
   --bg-color: #ffffff;
 }
 
@@ -410,7 +411,7 @@ a.secondary-cta {
 .ant-btn[disabled], .ant-btn[disabled]:hover, .ant-btn[disabled]:focus, .ant-btn[disabled]:active {
   color: white;
   border-color: var(--secondary-gray) !important;
-  background: var(--secondary-gray) !important;
+  background: var(--light-gray) !important;
   text-shadow: none;
   box-shadow: none;
   cursor: not-allowed;
@@ -464,9 +465,10 @@ span.anticon.anticon-warning {
 .whitelist-active, .wrong-network, .minting-paused, .no-wallet {
   text-align: center;
   padding: 10px;
-  background-color: #c2c2c2;
+  background-color: var(--secondary-color);
   color: white;
-  font-weight: 400;
+  font-weight: bold;
+  letter-spacing: 1.5px;
 }
 .wrong-network {
   z-index: 99;
@@ -848,6 +850,9 @@ span.project-separator {
   background-color: black;
   border-radius: 10px 0 0 10px;
   overflow: hidden;
+}
+.gallery-left-side video{
+  width: 100%;
 }
 .gallery-right-side {
   background-color: white;
