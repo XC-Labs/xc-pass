@@ -3,15 +3,12 @@ import { useState, useEffect } from "react";
 import { useMoralis } from "react-moralis";
 
 export default function Admin(props) {
-  const { isAuthenticated, contractAddress, isOwner, abi } = props;
+  const { isMintingPaused, isAuthenticated, isWhitelistSaleActive, isWhitelistRegActive, contractAddress, appChainIdHex, isOwner, abi } = props;
   const { Moralis } = useMoralis();
-  const [fundsInContract, setFundsInContract] = useState();
   const [responses, setResponses] = useState({});
+  const [fundsInContract, setFundsInContract] = useState();
   const [totalAmountMinted, setTotalAmountMinted] = useState();
   const [whitelistedAmount, setWhitelistedAmount] = useState();
-  const [whitelistRegistrationActive, setWhitelistRegistrationActive] = useState(undefined);
-  const [whitelistSaleActive, setWhitelistSaleActive] = useState(undefined);
-  const [isPaused, setIsPaused] = useState(undefined);
   const [cost, setCost] = useState(undefined);
   const [baseUri, setBaseUri] = useState(undefined);
   const [addressToCheck, setAddressToCheck] = useState("");
@@ -22,14 +19,6 @@ export default function Admin(props) {
   const [ownerOfToken, setOwnerOfToken] = useState("");
   const [ownerOfContract, setOwnerOfContract] = useState("");
   const [ownerAmountToMint, setOwnerAmountToMint] = useState("");
-
-  const styles = {
-      admin_title: {
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-      }
-  }
   
   useEffect(()=>{
     if(isAuthenticated){
@@ -44,51 +33,27 @@ export default function Admin(props) {
       });
       const options2 = {
         contractAddress,
-        functionName: 'whitelistRegistrationActive',
-        abi,
-      };
-      Moralis.executeFunction(options2).then((response) =>{
-        setWhitelistRegistrationActive(response);
-      });
-      const options3 = {
-        contractAddress,
-        functionName: 'whitelistSale',
-        abi,
-      };
-      Moralis.executeFunction(options3).then((response) =>{
-        setWhitelistSaleActive(response);
-      });
-      const options4 = {
-        contractAddress,
-        functionName: 'paused',
-        abi,
-      };
-      Moralis.executeFunction(options4).then((response) =>{
-        setIsPaused(response);
-      });
-      const options5 = {
-        contractAddress,
         functionName: 'cost',
         abi,
       };
-      Moralis.executeFunction(options5).then((response) =>{
+      Moralis.executeFunction(options2).then((response) =>{
         setCost(Moralis.Units.FromWei(response.toString()));
       });
-      const options6 = {
+      const options3 = {
         contractAddress,
         functionName: 'uri',
         abi,
         params: {"":"0"}
       };
-      Moralis.executeFunction(options6).then((response) =>{
+      Moralis.executeFunction(options3).then((response) =>{
         setBaseUri(response);
       });
-      const options7 = {
+      const options4 = {
         contractAddress,
         functionName: 'whitelistTotal',
         abi,
       };
-      Moralis.executeFunction(options7).then((response) =>{
+      Moralis.executeFunction(options4).then((response) =>{
         setWhitelistedAmount(response);
       });
       getBalanceOfContract();
@@ -96,10 +61,21 @@ export default function Admin(props) {
   });
 
   const getBalanceOfContract = async () => {
-    const options = { chain: "avalanche testnet", address: contractAddress};
+    const options = { chain: appChainIdHex, address: contractAddress};
     const response = await Moralis.Web3API.account.getNativeBalance(options);
     setFundsInContract(Moralis.Units.FromWei(response.balance.toString()));
   }
+
+  const openNotification = ({ message, description }) => {
+    notification.open({
+      placement: "bottomRight",
+      message,
+      description,
+      onClick: () => {
+        console.log("Notification Clicked!");
+      },
+    });
+  };
 
    const ifIsOwner = () => {
     // eslint-disable-next-line
@@ -109,7 +85,7 @@ export default function Admin(props) {
       return <div id="admin-panel">
         <Card
           title={
-                <div style={styles.admin_title}>
+                <div style={{display: "flex",justifyContent: "space-between",alignItems: "center",}}>
                     <h3>Manage Smart Contract</h3>
                     <div>
                         <a href={`https://testnet.snowtrace.io/address/${contractAddress}`} title="See Contract on Snowtrace" target="_blank" rel="noreferrer">See Contract on Snowtrace</a>
@@ -127,9 +103,9 @@ export default function Admin(props) {
             <Row className="sc-stats-container">
                 <Col className="sc-stats"><h4 className="sc-stats-name">Funds in contract</h4><span className="sc-stats-value"> { fundsInContract } AVAX</span></Col>
                 <Col className="sc-stats"><h4 className="sc-stats-name">Amount minted</h4><span className="sc-stats-value">{totalAmountMinted}</span></Col>
-                <Col className="sc-stats"><h4 className="sc-stats-name">Registration active</h4><span className="sc-stats-value">{whitelistRegistrationActive ? "true" : "false"}</span></Col>
-                <Col className="sc-stats"><h4 className="sc-stats-name">Private sale active</h4><span className="sc-stats-value">{whitelistSaleActive ? "true" : "false"}</span></Col>
-                <Col className="sc-stats"><h4 className="sc-stats-name">Paused</h4><span className="sc-stats-value">{isPaused ? "true" : "false"}</span></Col>
+                <Col className="sc-stats"><h4 className="sc-stats-name">Registration active</h4><span className="sc-stats-value">{isWhitelistRegActive ? "true" : "false"}</span></Col>
+                <Col className="sc-stats"><h4 className="sc-stats-name">Private sale active</h4><span className="sc-stats-value">{isWhitelistSaleActive ? "true" : "false"}</span></Col>
+                <Col className="sc-stats"><h4 className="sc-stats-name">Paused</h4><span className="sc-stats-value">{isMintingPaused ? "true" : "false"}</span></Col>
                 <Col className="sc-stats"><h4 className="sc-stats-name">Cost</h4><span className="sc-stats-value">{cost} AVAX</span></Col>
                 <Col className="sc-stats"><h4 className="sc-stats-name">Whitelisted: </h4><span className="sc-stats-value">{whitelistedAmount}</span></Col>
                 <Col className="sc-stats"><h4 className="sc-stats-name">Base URI</h4><span className="sc-stats-value">{baseUri}</span></Col>
@@ -597,17 +573,6 @@ export default function Admin(props) {
       </div>
     }
   }
-
-  const openNotification = ({ message, description }) => {
-    notification.open({
-      placement: "bottomRight",
-      message,
-      description,
-      onClick: () => {
-        console.log("Notification Clicked!");
-      },
-    });
-  };
   
   return (
     <>

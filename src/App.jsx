@@ -23,8 +23,16 @@ import Admin from "components/Admin/Admin";
 import Footer from "components/Footer/Footer";
 
 const App = () => {
+
+    /*///////////////////
+    //CONFIG VARIABLES//
+    //////////////////*/
     //const contractAddress = "0x16D57E27504BF2B00e6A550231ABaf0E68D280cD"; //Fuji 721
     const contractAddress = "0x69307302616D145c4Da651bfBFC4CB62E4860802"; //Fuji 1155
+    const appChainId = 43113; //Fuji (Avalanche mainnet 43114)
+    const appChainIdHex = "0xa869"; // Fuji (Avalanche mainnet 0xa86a)
+    const chainName = "Avalanche Fuji Testnet"; //Avalanche Mainnet Network
+
     const { Moralis, isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading } = useMoralis();
     const { walletAddress, chainId } = useMoralisDapp();
     const [contractOwnerAddress, setContractOwnerAddress] = useState("");
@@ -89,8 +97,8 @@ const App = () => {
       if(!window.ethereum){
         return <div className="no-wallet"><WarningFilled/> You need a wallet to be able to get whitelisted or mint an XC-Pass. Check our FAQs <NavLink to="/faq">here.</NavLink></div>
       }
-      if(chainId!=="0xa86a"){
-        return <div className="wrong-network"><WarningFilled/> Please connect to the Avalanche Mainnet Network</div>
+      if(chainId!==appChainIdHex){
+        return <div className="wrong-network"><WarningFilled/> Please connect to the {chainName}</div>
       }
     }
 
@@ -115,6 +123,7 @@ const App = () => {
       <Layout style={{ height: "100vh", overflow: "auto" }}>
         <Router>
           <CustomHeader
+            appChainId={appChainId}
             isAuthenticated={isAuthenticated}
             isOwner={isOwner}
             isMintingPaused={isMintingPaused}
@@ -224,11 +233,15 @@ const App = () => {
 
               <Route path="/xc-labs-admin">
                 <div className="content-wrap admin">
-                  {isAuthenticated || <Redirect to="/" /> }
+                  {(isAuthenticated&&isOwner) || <Redirect to="/" /> }
                   <Admin
+                    isMintingPaused={isMintingPaused}
                     isAuthenticated={isAuthenticated}
+                    isWhitelistRegActive={isWhitelistRegActive}
+                    isWhitelistSaleActive={isWhitelistSaleActive}
                     isOwner={isOwner}
                     contractAddress={contractAddress}
+                    appChainIdHex={appChainIdHex}
                     abi={abi}
                   />
                 </div>

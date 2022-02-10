@@ -14,7 +14,7 @@ export const Logo = () => (
   );
 
 export default function Roadmap(props) {
-    const { isAuthenticated, isOwner, isMintingPaused, isWhitelistRegActive } = props;
+    const { appChainId, isAuthenticated, isOwner, isMintingPaused, isWhitelistRegActive } = props;
 
     const adminMenuLink = () => {
         if(isOwner){
@@ -86,7 +86,7 @@ export default function Roadmap(props) {
 
                 <div className="main-header-right">
                     {!isAuthenticated || mintButton() }      
-                    <Account isMintingPaused={isMintingPaused}/>
+                    <Account isMintingPaused={isMintingPaused} appChainId={appChainId}/>
                 </div>
 
             </Header>

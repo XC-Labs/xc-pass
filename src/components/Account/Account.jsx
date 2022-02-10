@@ -9,7 +9,7 @@ import Address from "../Address/Address";
 import { connectors } from "./config";
 
 function Account(props) {
-  const { isMintingPaused } = props;
+  const { isMintingPaused, appChainId } = props;
   const { authenticate, isAuthenticated, logout } = useMoralis();
   const { walletAddress } = useMoralisDapp();
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -57,7 +57,7 @@ function Account(props) {
                   key={key}
                   onClick={async () => {
                     try {
-                      await authenticate({ provider: connectorId, signingMessage: "Welcome to XC Pass!" });
+                      await authenticate({ provider: connectorId, chainId: appChainId, signingMessage: "Welcome to XC Pass!" });
                       window.localStorage.setItem("connectorId", connectorId);
                     } catch (e) {
                       console.error(e);
