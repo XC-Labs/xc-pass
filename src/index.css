@@ -1033,6 +1033,25 @@ span.sc-stats-value {
   .home {
       text-align: center;
   }
+  .content-wrap.admin {
+      margin: 10px !important;
+  }
+  .admin .minter-wrapper {
+      width: 100% !important;
+  }
+  .admin .ant-card-head-title > div {
+      flex-wrap: wrap;
+      font-size: 20px;
+  }
+  .admin h3 {
+      font-size: 22px;
+  }
+  .admin .sc-function-box {
+      flex-direction: column;
+  }
+  .admin h4.sc-function-name, .admin .sc-function-box button,.sc-function-box input {
+      width: 100% !important;
+  }
   .main-header {
     position: relative;
     padding: 0px 20px;
