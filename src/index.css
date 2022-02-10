@@ -760,9 +760,9 @@ button.change-amount-button {
   width: 260px;
   margin: 0 auto;
 }
-.pass-heading img.xc-pass-token{
-  width: 340px;
-  margin: 0 auto;
+.pass-heading img.xc-pass-token {
+  width: 540px;
+  margin: 0px auto ;
 }
 .pass-heading h2 {
   color: var(--accent-color);
@@ -846,6 +846,9 @@ span.project-separator {
   margin-right: 10px;
   border-radius: 10px;
 }
+.gallery-container .ant-row {
+  box-shadow: 2px 4px 30px -8px #c2c2c2;
+}
 .gallery-left-side {
   background-color: black;
   border-radius: 10px 0 0 10px;
@@ -860,11 +863,34 @@ span.project-separator {
   border-radius: 0 10px 10px 0;
 }
 .minter-left-side {
-  max-width: 320px;
+  max-width: 360px;
+  margin-left: -60px;
   margin-right: 40px;
 }
 .minter-right-side {
   max-width: 360px;
+}
+div.total-supply-minted {
+  color: white;
+  font-size: 16px;
+  letter-spacing: 1px;
+  width: 100%;
+  text-align: center;
+  margin: 20px;
+}
+div.user-minted-amount {
+  color: white;
+  font-size: 12px;
+  letter-spacing: .6px;
+  width: 100%;
+  text-align: center;
+  padding: 20px 0 0px;
+}
+div.total-supply-minted span, .user-minted-amount span {
+  color: var(--accent-color);
+}
+.minting-inputs .ant-row.ant-form-item {
+  width: 100%;
 }
 .gallery-right-side img.xc-pass-logo {
   margin: 40px 0;

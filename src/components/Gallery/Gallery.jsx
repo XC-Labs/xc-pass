@@ -9,13 +9,14 @@ import xcpasslogo from '../../assets/xcpass-logo-black.png';
 export default function Gallery(props) {
     
     const { Moralis } = useMoralis();
-    const { isAuthenticated, contractAddress, abi } = props;
+    const { isAuthenticated, contractAddress, isMintingPaused, abi } = props;
     const { walletAddress } = useMoralisDapp();
-    const [passesAmount, setPassesAmount] = useState();
-    //const [ xcPassAsset, setXcPassAsset ] = useState();
+    const [ passesAmount, setPassesAmount ] = useState();
     const percentage = Math.floor((passesAmount / 50) * 100);
 
     /*
+    const [ xcPassAsset, setXcPassAsset ] = useState();
+
     const getUserNFTs = async () => {
         const options = { chain: "0xa869", format: 'hex', address: walletAddress, token_address: contractAddress };
         await Moralis.Web3API.account.getNFTsForContract(options).then(userNFTs=>{
@@ -59,7 +60,9 @@ export default function Gallery(props) {
                         <Progress percent={percentage} status="active" />
                         <div className="gallery-user-amount">Minted: {passesAmount}/50</div>
                         <br/>
-                        <Button>
+                        <Button
+                            disabled={isAuthenticated && !isMintingPaused ? false : true}
+                        >
                             <NavLink to="/mint">Mint a XC Pass</NavLink>
                         </Button>
                     </Col>

@@ -138,6 +138,7 @@ const App = () => {
                   <XCPass
                     isAuthenticated={isAuthenticated}
                     isWhitelistRegActive={isWhitelistRegActive}
+                    isMintingPaused={isMintingPaused}
                   />
                 </div>
               </Route>
@@ -197,6 +198,7 @@ const App = () => {
                   <Gallery
                     isAuthenticated={isAuthenticated}
                     contractAddress={contractAddress}
+                    isMintingPaused={isMintingPaused}
                     abi={abi}
                   />
                 </div>

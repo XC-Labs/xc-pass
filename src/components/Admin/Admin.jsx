@@ -7,7 +7,7 @@ export default function Admin(props) {
   const { Moralis } = useMoralis();
   const [fundsInContract, setFundsInContract] = useState();
   const [responses, setResponses] = useState({});
-  const [amountMinted, setAmountMinted] = useState();
+  const [totalAmountMinted, setTotalAmountMinted] = useState();
   const [whitelistedAmount, setWhitelistedAmount] = useState();
   const [whitelistRegistrationActive, setWhitelistRegistrationActive] = useState(undefined);
   const [whitelistSaleActive, setWhitelistSaleActive] = useState(undefined);
@@ -40,7 +40,7 @@ export default function Admin(props) {
         params: {"id":"0"}
       };
       Moralis.executeFunction(options1).then((response) =>{
-        setAmountMinted(response);
+        setTotalAmountMinted(response);
       });
       const options2 = {
         contractAddress,
@@ -126,7 +126,7 @@ export default function Admin(props) {
 
             <Row className="sc-stats-container">
                 <Col className="sc-stats"><h4 className="sc-stats-name">Funds in contract</h4><span className="sc-stats-value"> { fundsInContract } AVAX</span></Col>
-                <Col className="sc-stats"><h4 className="sc-stats-name">Amount minted</h4><span className="sc-stats-value">{amountMinted}</span></Col>
+                <Col className="sc-stats"><h4 className="sc-stats-name">Amount minted</h4><span className="sc-stats-value">{totalAmountMinted}</span></Col>
                 <Col className="sc-stats"><h4 className="sc-stats-name">Registration active</h4><span className="sc-stats-value">{whitelistRegistrationActive ? "true" : "false"}</span></Col>
                 <Col className="sc-stats"><h4 className="sc-stats-name">Private sale active</h4><span className="sc-stats-value">{whitelistSaleActive ? "true" : "false"}</span></Col>
                 <Col className="sc-stats"><h4 className="sc-stats-name">Paused</h4><span className="sc-stats-value">{isPaused ? "true" : "false"}</span></Col>
@@ -215,7 +215,7 @@ export default function Admin(props) {
                 setResponses({ ...responses, "pause": { result: null, isLoading: true } });
                 Moralis.executeFunction(options).then((response) =>{
                     openNotification({
-                        message: "Toogle Pause Successful",
+                        message: "Contract Pause Successful",
                         description: response.transactionHash,
                       });
                     setResponses({ ...responses, "pause": { result: response, isLoading: false } });
@@ -226,14 +226,49 @@ export default function Admin(props) {
                 <Form layout="vertical" name="pause">
                     <Row>
                     <Col className="sc-function-box">
-                        <h4 className="sc-function-name">Toogle Pause</h4>
+                        <h4 className="sc-function-name">Pause</h4>
                         <Button
                         type="primary"
                         size="large"
                         htmlType="submit"
                         loading={responses["pause"]?.isLoading}
                         >
-                        Toggle
+                        Pause
+                        </Button>
+                    </Col>
+                    </Row>
+                </Form>
+            </Form.Provider>
+
+            <Form.Provider
+              onFormFinish={async () => {
+                const options = {
+                  contractAddress,
+                  functionName: 'unpause',
+                  abi
+                };
+                setResponses({ ...responses, "unpause": { result: null, isLoading: true } });
+                Moralis.executeFunction(options).then((response) =>{
+                    openNotification({
+                        message: "Contract Unpause Successful",
+                        description: response.transactionHash,
+                      });
+                    setResponses({ ...responses, "unpause": { result: response, isLoading: false } });
+                });
+
+              }}
+            >
+                <Form layout="vertical" name="unpause">
+                    <Row>
+                    <Col className="sc-function-box">
+                        <h4 className="sc-function-name">Unpause</h4>
+                        <Button
+                        type="primary"
+                        size="large"
+                        htmlType="submit"
+                        loading={responses["unpause"]?.isLoading}
+                        >
+                        Unpause
                         </Button>
                     </Col>
                     </Row>

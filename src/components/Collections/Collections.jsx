@@ -1,6 +1,6 @@
 import { Card } from 'antd';
 import { NavLink } from "react-router-dom";
-import nft from '../../assets/nft.jpg';
+import nft from '../../assets/xc-pass.mp4';
 
 const Collections = () => {
     const { Meta } = Card;
@@ -11,7 +11,7 @@ const Collections = () => {
                 <Card
                     hoverable
                     style={{ width: 240 }}
-                    cover={<img alt="example" src={nft} />}
+                    cover={<video src={nft} muted={true} autoPlay={true} loop={true} controls={false}></video>}
                 >
                     <Meta title="XC Pass" />
                 </Card>

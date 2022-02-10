@@ -1,9 +1,8 @@
 import { Timeline, Button } from 'antd';
 import { NavLink } from "react-router-dom";
 
-import xcpass1 from '../../assets/roadmap/xc_pass_2.jpg';
-import xcpass2 from '../../assets/roadmap/xc_pass_5.jpg';
-import xcpass3 from '../../assets/roadmap/xc_pass_6.jpg';
+import xcpass1 from '../../assets/roadmap/xc_pass_1.jpg';
+import xcpass2 from '../../assets/roadmap/xc_pass_2.jpg';
 import axo01 from '../../assets/roadmap/axo01.jpg';
 import axo02 from '../../assets/roadmap/axo02.jpg';
 import axo03 from '../../assets/roadmap/axo03.jpg';
@@ -30,7 +29,6 @@ export default function Roadmap(props) {
                         <div className='project-images'>
                             <img src={xcpass1} alt="NFT Collection: XC Pass by XC Labs Drop"/>
                             <img src={xcpass2} alt="NFT Collection: XC Pass by XC Labs Drop"/>
-                            <img src={xcpass3} alt="NFT Collection: XC Pass by XC Labs Drop"/>
                         </div>
                     </Timeline.Item>
                     

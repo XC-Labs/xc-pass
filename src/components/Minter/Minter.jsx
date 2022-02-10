@@ -13,8 +13,9 @@ export default function Minter(props) {
   const { isAuthenticated, contractAddress, isMintingPaused, abi } = props;
   const { Moralis } = useMoralis();
   const { walletAddress, chainId } = useMoralisDapp();
-  const [amountMinted, setAmountMinted] = useState(0);
+  const [userAmountMinted, setUserAmountMinted] = useState(0);
   const [amountToMint, setAmountToMint] = useState(1);
+  const [totalAmountMinted, setTotalAmountMinted] = useState();
   const [userAddress, setUserAddress] = useState("");
   const [txId, setTxId] = useState("");
   const [responses, setResponses] = useState({});
@@ -51,7 +52,7 @@ export default function Minter(props) {
         <Button
           type="primary"
         >
-          <NavLink to="/collections/gallery">See my XC Pass</NavLink>
+          <NavLink to="/collections/gallery">Check my XC Passes</NavLink>
         </Button>
         <br/>
         <a className="see-transaction" href={`https://testnet.snowtrace.io/tx/${txId}`} target="_blank" rel="noreferrer">
@@ -102,7 +103,16 @@ export default function Minter(props) {
         }
       };
       Moralis.executeFunction(options1).then((response) =>{
-        setAmountMinted(response);
+        setUserAmountMinted(response);
+      });
+      const options2 = {
+        contractAddress,
+        functionName: 'totalSupply',
+        abi,
+        params: {"id":"0"}
+      };
+      Moralis.executeFunction(options2).then((response) =>{
+        setTotalAmountMinted(response);
       });
     }
   });
@@ -189,7 +199,6 @@ export default function Minter(props) {
               }}
             >
                 <Form layout="vertical" name="mint" initialValues={{_mintAmount: '0'}}>
-
                   <div className="minting-inputs">
                     <Form.Item
                       className="mint-amount"
@@ -202,7 +211,7 @@ export default function Minter(props) {
                       <button className="change-amount-button" onClick={(e)=>addAmount(e)}>+</button>
                       
                     </Form.Item>
-                    <span>XP Passes minted: {amountMinted}/50</span>
+                    <div className="total-supply-minted">Total minted: <span>{totalAmountMinted}</span> / 7777</div>
                     <Form.Item style={{ marginBottom: "5px" }}>
                       <Button
                         className="mint-button"
@@ -215,6 +224,7 @@ export default function Minter(props) {
                       >
                         {mintOn ? "Minting..." : "Mint a XC Pass"}
                       </Button>
+                      <div className="user-minted-amount">Minted from this wallet: <span>{userAmountMinted}</span> / 50</div>
                     </Form.Item>
                   </div>
                 </Form>

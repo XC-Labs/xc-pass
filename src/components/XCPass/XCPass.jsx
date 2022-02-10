@@ -4,7 +4,7 @@ import xcpass from '../../assets/xcpass.png';
 import xcpasslogo from '../../assets/xcpass-logo.png';
 
 export default function XCPass(props) {
-    const { isAuthenticated, isWhitelistRegActive } = props;
+    const { isAuthenticated, isWhitelistRegActive, isMintingPaused } = props;
     return <div className="pass-container">
                 <div className="pass-heading">
                     <img src={xcpasslogo} className="xc-pass-logo" alt="XC Pass Logo"/>
@@ -27,7 +27,7 @@ export default function XCPass(props) {
                         <Button
                             className="main-cta button"
                             size="large"
-                            disabled={isAuthenticated ? false : true}
+                            disabled={isAuthenticated && !isMintingPaused ? false : true}
                         >
                             <NavLink to="/mint">Mint your XC Pass</NavLink>
                         </Button>
@@ -94,7 +94,7 @@ export default function XCPass(props) {
                     <Button
                         className="main-cta button"
                         size="large"
-                        disabled={isAuthenticated ? false : true}
+                        disabled={isAuthenticated && !isMintingPaused ? false : true}
                     >
                         <NavLink to="/mint">Mint your XC Pass</NavLink>
                     </Button>
