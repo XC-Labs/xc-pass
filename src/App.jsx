@@ -28,7 +28,7 @@ const App = () => {
     //CONFIG VARIABLES//
     //////////////////*/
     //const contractAddress = "0x16D57E27504BF2B00e6A550231ABaf0E68D280cD"; //Fuji 721
-    const contractAddress = "0x69307302616D145c4Da651bfBFC4CB62E4860802"; //Fuji 1155
+    const contractAddress = "0xCBE5BcF63dB3DE196bDF342Ad688b719C28E0408"; //Fuji 1155
     const appChainId = 43113; //Fuji (Avalanche mainnet 43114)
     const appChainIdHex = "0xa869"; // Fuji (Avalanche mainnet 0xa86a)
     const chainName = "Avalanche Fuji Testnet"; //Avalanche Mainnet Network
@@ -67,7 +67,7 @@ const App = () => {
     const getWhitelistRegActive = async () => {
       const options = {
         contractAddress,
-        functionName: 'whitelistRegistrationActive',
+        functionName: 'whitelistRegistration',
         abi,
       };
       const response = await Moralis.executeFunction(options);
@@ -94,7 +94,7 @@ const App = () => {
 
     
     const renderedGeneralWarning = () => {
-      if(!window.ethereum){
+      if(!window.ethereum || !isAuthenticated){
         return <div className="no-wallet"><WarningFilled/> You need a wallet to be able to get whitelisted or mint an XC-Pass. Check our FAQs <NavLink to="/faq">here.</NavLink></div>
       }
       if(chainId!==appChainIdHex){
@@ -195,6 +195,7 @@ const App = () => {
                     isAuthenticated={isAuthenticated}
                     contractAddress={contractAddress}
                     isMintingPaused={isMintingPaused}
+                    appChainId={appChainId}
                     abi={abi}
                   />
                 </div>
@@ -208,6 +209,7 @@ const App = () => {
                     isAuthenticated={isAuthenticated}
                     contractAddress={contractAddress}
                     isMintingPaused={isMintingPaused}
+                    appChainIdHex={appChainIdHex}
                     abi={abi}
                   />
                 </div>

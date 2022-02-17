@@ -10,7 +10,7 @@ import logo from '../../assets/xcpass-logo_big.png';
 
 export default function Minter(props) {
   const nftPrice = "1";
-  const { isAuthenticated, contractAddress, isMintingPaused, abi } = props;
+  const { isAuthenticated, contractAddress, isMintingPaused, appChainId, abi } = props;
   const { Moralis } = useMoralis();
   const { walletAddress, chainId } = useMoralisDapp();
   const [userAmountMinted, setUserAmountMinted] = useState(0);
@@ -219,7 +219,7 @@ export default function Minter(props) {
                         htmlType="submit"
                         loading={responses["mint"]?.isLoading}
                         disabled={// eslint-disable-next-line
-                          !mintOn&&chainId==43113&&!isMintingPaused?false:true
+                          !mintOn && chainId==appChainId && !isMintingPaused && userAmountMinted<50 ? false : true
                         }
                       >
                         {mintOn ? "Minting..." : "Mint a XC Pass"}

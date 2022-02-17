@@ -1,5 +1,4 @@
 import { Timeline, Button } from 'antd';
-import { NavLink } from "react-router-dom";
 
 import xcpass1 from '../../assets/roadmap/xc_pass_1.jpg';
 import xcpass2 from '../../assets/roadmap/xc_pass_2.jpg';
@@ -141,7 +140,7 @@ export default function Roadmap(props) {
                     className="main-cta button"
                     size="large"
                 >
-                    <NavLink to="https://discord.com/invite/mTYgkkeA28">Join Us on Discord</NavLink>
+                    <a href="https://discord.com/invite/mTYgkkeA28" title="Join Us on Discord" target="_blank" rel="noreferrer">Join Us on Discord</a>
                 </Button>
             </div>
 }

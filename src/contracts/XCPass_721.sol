@@ -14,7 +14,7 @@ contract XCPass is ERC721Enumerable, Ownable {
   uint256 public maxSupply = 7777;
   uint256 public maxMintAmount = 50;
   uint256 private ownerMintedLimit = 1777;
-  address private payoutAddress = 0x6458a79Eb4EF3F6982FF4Fe270F43fD6ec9F30c1;
+  address private payoutAddress = 0x2fc09613d640E34054f3f0D6e0e37ef36F569653;
   uint256 public whitelistTotal = 0;
   bool public whitelistSale = false;
   bool public whitelistRegistrationActive = false;

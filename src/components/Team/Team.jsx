@@ -127,7 +127,7 @@ const Team = () => {
             className="about-cta button"
             size="large"
         >
-            Apply Now
+            <a href="https://2s51z649e1o.typeform.com/to/DtsvcixQ" title="Apply Now" target="_blank" rel="noreferrer">Apply Now</a>
         </Button>
     </div>
 }

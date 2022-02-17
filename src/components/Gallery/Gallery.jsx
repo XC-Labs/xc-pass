@@ -15,15 +15,14 @@ export default function Gallery(props) {
     const percentage = Math.floor((passesAmount / 50) * 100);
 
     /*
+    const { appChainIdHex } = props;
     const [ xcPassAsset, setXcPassAsset ] = useState();
-
     const getUserNFTs = async () => {
-        const options = { chain: "0xa869", format: 'hex', address: walletAddress, token_address: contractAddress };
+        const options = { chain: appChainIdHex, format: 'hex', address: walletAddress, token_address: contractAddress };
         await Moralis.Web3API.account.getNFTsForContract(options).then(userNFTs=>{
-            fetch(userNFTs.result[0]?.token_uri.replace("https://ipfs.moralis.io:2053/","https://gateway.pinata.cloud/")).then(res => res.json()).then(res=>{
-                let img = res.image.replace("ipfs://","https://gateway.pinata.cloud/");
+            fetch(userNFTs.result[0]?.token_uri).then(res => res.json()).then(res=>{
+                let img = res.image.replace("ipfs://","https://ipfs.io/ipfs/");
                 setXcPassAsset(img);
-                console.log(xcPassAsset);
             });
         });        
     }
@@ -55,7 +54,7 @@ export default function Gallery(props) {
                     </Col>
                     <Col span={12} className="gallery-right-side">
                         <img src={xcpasslogo} className="xc-pass-logo" alt="XC Pass Logo"/>
-                        <h4>XC-Pass unlocks access to our community, early investment opportunities, whitelist for our NFTs, and a spot in our trading desk to earn 30% on your investment. Buy more passes to increase your level and benefits in our community. <NavLink to="/xc-pass">Learn more.</NavLink></h4>
+                        <h4>XC-Pass unlocks access to our community, early investment opportunities, whitelist for our NFTs, and a spot in our trading desk. Buy more passes to increase your level and benefits in our community. <NavLink to="/xc-pass">Learn more.</NavLink></h4>
                         <br/>
                         <Progress percent={percentage} status="active" />
                         <div className="gallery-user-amount">Minted: {passesAmount}/50</div>

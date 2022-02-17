@@ -9,23 +9,34 @@ import "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Supply.sol";
 
 contract XCPass is ERC1155, Ownable, Pausable, ERC1155Burnable, ERC1155Supply {
 
-    uint256 public constant XCPasses = 0;
-    uint256 public cost = 1 ether;
+    //Variables
+    uint256 private constant XCPasses = 0; //ID del token
+    uint256 public cost = 1 ether; 
     uint256 public maxSupply = 7777;
     uint256 public maxMintAmount = 50;
     uint256 private ownerMint = 1777;
-    address private payoutAddress = 0x6458a79Eb4EF3F6982FF4Fe270F43fD6ec9F30c1;
+    address private payoutAddress = 0x2fc09613d640E34054f3f0D6e0e37ef36F569653;
     uint256 public whitelistTotal = 0;
     bool public whitelistSale = false;
-    bool public whitelistRegistrationActive = false;
+    bool public whitelistRegistration = false;
     mapping(address => bool) public whitelisted;
 
+    //Evento para registrar cada minteo
+    event xcPassMinted(address indexed xcPassBuyer, uint256 xcPassesAmount);
+    //Evento para registrar cambios al contrato
+    event configChanges(address indexed configChangedBy, string configChange);
+    //Evento para cambios en el whitelist
+    event userWasWhitelisted(address indexed whitelistedUser, string status);
+    //Evento para registrar cambios al contrato
+    event registerWithdrawal(address indexed withdrawRequester, address withdrawReceiver, uint256 withdrawAmount);
+
+    //Constructor del contracto
     constructor(string memory _initBaseURI) ERC1155(_initBaseURI) {
         _mint(payoutAddress, XCPasses, ownerMint, "");
     }
-    
+
     //Funcion para Mintear un token
-    function mint(address _to, uint256 _mintAmount) public payable {
+    function mint(address _to, uint256 _mintAmount) public payable whenNotPaused {
         //La venta no esta activa
         require(!paused(), "Sale is not active at the moment.");
         //No se puede mintear menos de 1
@@ -49,52 +60,68 @@ contract XCPass is ERC1155, Ownable, Pausable, ERC1155Burnable, ERC1155Supply {
         }
         //Si se envio el monto correcto se mintean los NFTs
         _mint(_to, XCPasses, _mintAmount, "");
+        //Se emite el evento para registrar la venta en BD
+        emit xcPassMinted(_to, _mintAmount);
     }
+
 
     function setURI(string memory newuri) public onlyOwner {
         _setURI(newuri);
+        //Se emite el evento para el cambio
+        emit configChanges(msg.sender, "URI Changed");
     }
 
       //Funcion para cambiar el precio de venta
     function setCost(uint256 _newCost) public onlyOwner {
         cost = _newCost;
+        //Se emite el evento para el cambio
+        emit configChanges(msg.sender, "Cost changed");
     }
 
     //Funcion para definir el supply maximo
     function setmaxSupply(uint256 _newmaxSupply) public onlyOwner {
         maxSupply = _newmaxSupply;
+        //Se emite el evento para el cambio
+        emit configChanges(msg.sender, "Max Supply changed");
     }
 
     //Funcion para definir el maximo numero de minteos por wallet
     function setmaxMintAmount(uint256 _newmaxMintAmount) public onlyOwner {
         maxMintAmount = _newmaxMintAmount;
+        //Se emite el evento para el cambio
+        emit configChanges(msg.sender, "Max Mint Amount changed");
     }
 
     function pause() public onlyOwner {
         _pause();
+        //Se emite el evento para el cambio
+        emit configChanges(msg.sender, "Minting Paused");
     }
 
     function unpause() public onlyOwner {
         _unpause();
+        //Se emite el evento para el cambio
+        emit configChanges(msg.sender, "Minting Resumed");
     }
 
-        //Funcion para activar/desactivar la venta con whitelist
+    //Funcion para activar/desactivar la venta con whitelist
     function toggleWhitelistSale() public onlyOwner {
         whitelistSale = !whitelistSale;
+        //Se emite el evento para el cambio
+        emit configChanges(msg.sender, "Whitelist Sale toggled");
     }
 
     //Funcion para activar/desactivar el registro al whitelist
     function toggleWhitelistRegistration() public onlyOwner {
-        whitelistRegistrationActive = !whitelistRegistrationActive;
+        whitelistRegistration = !whitelistRegistration;
+        //Se emite el evento para el cambio
+        emit configChanges(msg.sender, "Whitelist Registration toggled");
     }
 
-    //Evento para cambios en el whitelist
-    event userWasWhitelisted(address indexed whitelistedUser, string status);
-    
     //Function para agregar una direccion al whitelist
     function whitelistUser(address _user) public {
-        require(whitelistRegistrationActive == true, "Whitelist registration is not active.");
-        if(whitelistRegistrationActive == true){
+        require(whitelistRegistration == true, "Whitelist registration is not active.");
+        if(whitelistRegistration == true){
             whitelisted[_user] = true;
             whitelistTotal++;
             emit userWasWhitelisted(_user, "Added");
@@ -109,12 +136,14 @@ contract XCPass is ERC1155, Ownable, Pausable, ERC1155Burnable, ERC1155Supply {
     }
 
     //Funcion para retirar fondos del contrato
-    function withdraw() public payable onlyOwner {   
+    function withdraw() public payable onlyOwner {
+        uint256 currentBalance = address(this).balance;
         // This will payout the contract balance to the contract owner.
         // =============================================================================
         (bool os, ) = payable(payoutAddress).call{value: address(this).balance}("");
         require(os);
         // =============================================================================
+        emit registerWithdrawal(msg.sender, payoutAddress, currentBalance);
     }
 
     function _beforeTokenTransfer(address operator, address from, address to, uint256[] memory ids, uint256[] memory amounts, bytes memory data)

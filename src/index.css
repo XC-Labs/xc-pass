@@ -470,6 +470,10 @@ span.anticon.anticon-warning {
   font-weight: bold;
   letter-spacing: 1.5px;
 }
+.whitelist-active a, .wrong-network a, .minting-paused a, .no-wallet a{
+  color: white;
+  text-decoration: underline;
+}
 .wrong-network {
   z-index: 99;
 }

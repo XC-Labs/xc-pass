@@ -130,7 +130,7 @@ const About = () => {
         className="about-cta button"
         size="large"
     >
-        Apply Now
+        <a href="https://2s51z649e1o.typeform.com/to/DtsvcixQ" title="Apply Now" target="_blank" rel="noreferrer">Apply Now</a>
     </Button>
     <Modal maskClosable centered className='nft-viewer-modal' visible={isModalVisible} onOk={hideModal} closable={false} cancelButtonProps={{className: "cancel-button-modal"}}>
         <img src={nftInView.image} alt={nftInView.title}/>
