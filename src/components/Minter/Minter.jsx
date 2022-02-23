@@ -85,11 +85,11 @@ export default function Minter(props) {
 
   const subAmount = (e) => {
     e.preventDefault();
-    setAmountToMint(amountToMint-1)
+    if(amountToMint > 0) setAmountToMint(amountToMint-1);
   }
   const addAmount = (e) => {
     e.preventDefault();
-    setAmountToMint(amountToMint+1)
+    if(amountToMint < 50) setAmountToMint(amountToMint+1);
   }
   
   useEffect(()=>{

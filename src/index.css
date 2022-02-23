@@ -1266,3 +1266,18 @@ span.sc-stats-value {
       font-size: 12px;
   }
 }
+
+@media (prefers-color-scheme: dark) {
+    h1,h2{
+      color: var(--accent-color) !important;
+    }
+    .home h2, .roadmap-heading h2, .team-container h2 {
+        color: white !important;
+    }
+    .gallery-container .ant-row {
+      box-shadow: 0px 0px 30px -2px #222222;
+    }
+    .gallery-right-side img.xc-pass-logo {
+        filter: invert(1);
+    }
+}

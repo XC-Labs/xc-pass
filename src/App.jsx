@@ -28,10 +28,11 @@ const App = () => {
     //CONFIG VARIABLES//
     //////////////////*/
     //const contractAddress = "0x16D57E27504BF2B00e6A550231ABaf0E68D280cD"; //Fuji 721
-    const contractAddress = "0xCBE5BcF63dB3DE196bDF342Ad688b719C28E0408"; //Fuji 1155
-    const appChainId = 43113; //Fuji (Avalanche mainnet 43114)
-    const appChainIdHex = "0xa869"; // Fuji (Avalanche mainnet 0xa86a)
-    const chainName = "Avalanche Fuji Testnet"; //Avalanche Mainnet Network
+    //const contractAddress = "0xCBE5BcF63dB3DE196bDF342Ad688b719C28E0408"; //Fuji 1155
+    const contractAddress = "0xCC1900C310be8177f2850Fe3f8A93B1a74A9c886"; //Mainnet 1155
+    const appChainId = 43114; //Fuji: 43113 - Mainnet: 43114
+    const appChainIdHex = "0xa86a"; // Fuji: 0xa869 - Mainnet: 0xa86a)
+    const chainName = "Avalanche Mainnet"; //Avalanche Fuji Testnet - Avalanche Mainnet Network
 
     const { Moralis, isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading } = useMoralis();
     const { walletAddress, chainId } = useMoralisDapp();
