@@ -5,7 +5,7 @@ import { useMoralis } from "react-moralis";
 import nft from '../../assets/xcpass.png';
 
 export default function Whitelist(props) {
-  const { isAuthenticated, contractAddress, appChainId, abi, isWhitelistRegActive } = props;
+  const { isAuthenticated, contractAddress, appChainId, chainName, abi, isWhitelistRegActive } = props;
   const { Moralis } = useMoralis();
   const { walletAddress, chainId } = useMoralisDapp();
   const [userAddress, setUserAddress] = useState("");
@@ -76,8 +76,8 @@ export default function Whitelist(props) {
                 </Col>
                 <Col span={12} className="minter-right-side">
                   {// eslint-disable-next-line
-                  chainId==43113 || 
-                  <div className="wrong-network">To be able to register, please connect to <strong>Fuji Testnet</strong>.</div>
+                  chainId==appChainId || 
+                  <div className="wrong-network">To be able to register, please connect to <strong>{chainName}</strong>.</div>
                   }
                   
                   <Form.Provider

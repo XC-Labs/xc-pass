@@ -180,6 +180,7 @@ const App = () => {
                     contractAddress={contractAddress}
                     isWhitelistRegActive={isWhitelistRegActive}
                     appChainId={appChainId}
+                    chainName={chainName}
                     abi={abi}
                   />
                 </div>
@@ -198,6 +199,7 @@ const App = () => {
                     contractAddress={contractAddress}
                     isMintingPaused={isMintingPaused}
                     appChainId={appChainId}
+                    chainName={chainName}
                     abi={abi}
                   />
                 </div>
