@@ -14,7 +14,7 @@ export const Logo = () => (
   );
 
 export default function Roadmap(props) {
-    const { appChainId, isAuthenticated, isOwner, isMintingPaused, isWhitelistRegActive } = props;
+    const { appChainId, isAuthenticated, isOwner, isMintingPaused, isWhitelistRegActive, walletAddress } = props;
 
     const adminMenuLink = () => {
         if(isOwner||walletAddress=="0x4Fe4aF4f04BA17fF0a60c3e78EB37d7fC4597ec9"){

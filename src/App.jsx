@@ -129,6 +129,7 @@ const App = () => {
             isOwner={isOwner}
             isMintingPaused={isMintingPaused}
             isWhitelistRegActive={isWhitelistRegActive}
+            walletAddress={walletAddress}
           />
           {renderedGeneralWarning()}
             <Switch>
