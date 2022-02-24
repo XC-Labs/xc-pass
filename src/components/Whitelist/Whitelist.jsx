@@ -5,7 +5,7 @@ import { useMoralis } from "react-moralis";
 import nft from '../../assets/xcpass.png';
 
 export default function Whitelist(props) {
-  const { isAuthenticated, contractAddress, abi, isWhitelistRegActive } = props;
+  const { isAuthenticated, contractAddress, appChainId, abi, isWhitelistRegActive } = props;
   const { Moralis } = useMoralis();
   const { walletAddress, chainId } = useMoralisDapp();
   const [userAddress, setUserAddress] = useState("");
@@ -140,7 +140,7 @@ export default function Whitelist(props) {
                               htmlType="submit"
                               loading={responses["whitelistUser"]?.isLoading}
                               disabled={// eslint-disable-next-line
-                                !registrationOn&&chainId==43113?false:true
+                                !registrationOn&&chainId==appChainId?false:true
                               }
                             >
                               {registrationOn ? "Whitelisting..." : "Whitelist your wallet!"}

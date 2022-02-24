@@ -1272,7 +1272,7 @@ span.sc-stats-value {
       color: var(--accent-color) !important;
     }
     .home h2, .roadmap-heading h2, .team-container h2 {
-        color: white !important;
+        color: var(--secondary-gray) !important;
     }
     .gallery-container .ant-row {
       box-shadow: 0px 0px 30px -2px #222222;

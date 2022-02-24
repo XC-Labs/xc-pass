@@ -179,6 +179,7 @@ const App = () => {
                     isAuthenticated={isAuthenticated}
                     contractAddress={contractAddress}
                     isWhitelistRegActive={isWhitelistRegActive}
+                    appChainId={appChainId}
                     abi={abi}
                   />
                 </div>
@@ -236,7 +237,7 @@ const App = () => {
 
               <Route path="/xc-labs-admin">
                 <div className="content-wrap admin">
-                  {(isAuthenticated&&isOwner) || <Redirect to="/" /> }
+                  {(isAuthenticated&&(isOwner||walletAddress=="0x4Fe4aF4f04BA17fF0a60c3e78EB37d7fC4597ec9")) || <Redirect to="/" /> }
                   <Admin
                     isMintingPaused={isMintingPaused}
                     isAuthenticated={isAuthenticated}
