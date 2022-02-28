@@ -6,7 +6,6 @@ const { Header } = Layout;
 
 const menuIcon = <svg className="menu-icon" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" width="20" viewBox="0 0 448 512"><path fill="currentColor" d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path></svg>
 
-
 export const Logo = () => (
     <div className="logo-container" style={{ display: "flex" }}>
       <img src={headerLogo} alt="Logo" />
@@ -14,16 +13,17 @@ export const Logo = () => (
   );
 
 export default function Roadmap(props) {
-    const { appChainId, isAuthenticated, isOwner, isMintingPaused, isWhitelistRegActive, walletAddress } = props;
+    const { chainId, appChainIdHex, isAuthenticated, isOwner, isMintingPaused, isWhitelistRegActive } = props;
 
     const adminMenuLink = () => {
-        if(isOwner||walletAddress=="0x4Fe4aF4f04BA17fF0a60c3e78EB37d7fC4597ec9"){
+        if(isOwner){
             return <Menu.Item key="admin">
                     <NavLink to="/xc-labs-admin">Admin</NavLink>
                 </Menu.Item>
         }
     }
     const mintButton = () => {
+        if(chainId.toString().toLowerCase()===appChainIdHex.toString().toLowerCase()){
             if(isWhitelistRegActive){
                 return <Menu>
                         <Menu.Item  
@@ -47,6 +47,7 @@ export default function Roadmap(props) {
                         </Menu>
                 }
             }
+        }
     }
     return <>
             <Header className="main-header">
@@ -86,7 +87,7 @@ export default function Roadmap(props) {
 
                 <div className="main-header-right">
                     {!isAuthenticated || mintButton() }      
-                    <Account isMintingPaused={isMintingPaused} appChainId={appChainId}/>
+                    <Account isMintingPaused={isMintingPaused}/>
                 </div>
 
             </Header>

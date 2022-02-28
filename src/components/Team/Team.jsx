@@ -26,8 +26,8 @@ const Team = () => {
                 </div>
                 <div className="team-block-info">
                     <h4>Joxx</h4>
-                    <h5>joxx | xc labs | symbiotik#8416</h5>
                     <p>CEO</p>
+                    <a href="https://www.linkedin.com/in/joxgallardo/" title="About" target="_blank" rel="noreferrer" className='team-about-button'>About Me</a>
                 </div>
             </div>
             <div className="team-block">
@@ -36,8 +36,8 @@ const Team = () => {
                 </div>
                 <div className="team-block-info">
                     <h4>Alex</h4>
-                    <h5>errederruiz#8614</h5>
                     <p>Creative Chief</p>
+                    <a href="https://xc-labs.com/#/meet-the-team" title="About" target="_blank" rel="noreferrer" className='team-about-button'>About Me</a>
                 </div>
             </div>
             <div className="team-block">
@@ -46,8 +46,8 @@ const Team = () => {
                 </div>
                 <div className="team-block-info">
                     <h4>Maw</h4>
-                    <h5>mawmawmaw#0600</h5>
                     <p>Head of Tech</p>
+                    <a href="https://maw.dev/" title="About" target="_blank" rel="noreferrer" className='team-about-button'>About Me</a>
                 </div>
             </div>
             <div className="team-block">
@@ -56,8 +56,8 @@ const Team = () => {
                 </div>
                 <div className="team-block-info">
                     <h4>Rox</h4>
-                    <h5>roxpi122#2979</h5>
                     <p>Head of Research</p>
+                    <a href="https://xc-labs.com/#/meet-the-team" title="About" target="_blank" rel="noreferrer" className='team-about-button'>About Me</a>
                 </div>
             </div>
             <div className="team-block">
@@ -66,8 +66,8 @@ const Team = () => {
                 </div>
                 <div className="team-block-info">
                     <h4>Ram&oacute;n</h4>
-                    <h5>Roma / XC-Labs#6488</h5>
                     <p>Strategy & Advisory</p>
+                    <a href="https://www.linkedin.com/in/rmnescobar/" title="About" target="_blank" rel="noreferrer" className='team-about-button'>About Me</a>
                 </div>
             </div>
             <div className="team-block">
@@ -76,8 +76,8 @@ const Team = () => {
                 </div>
                 <div className="team-block-info">
                     <h4>Cheko</h4>
-                    <h5>Chekov#8800</h5>
                     <p>Strategy & Advisory</p>
+                    <a href="https://xc-labs.com/#/meet-the-team" title="About" target="_blank" rel="noreferrer" className='team-about-button'>About Me</a>
                 </div>
             </div>
             <div className="team-block">
@@ -86,8 +86,8 @@ const Team = () => {
                 </div>
                 <div className="team-block-info">
                     <h4>Antonio</h4>
-                    <h5>antoniohdz90#3861</h5>
                     <p>Trading Desk</p>
+                    <a href="https://xc-labs.com/#/meet-the-team" title="About" target="_blank" rel="noreferrer" className='team-about-button'>About Me</a>
                 </div>
             </div>
             <div className="team-block">
@@ -96,8 +96,8 @@ const Team = () => {
                 </div>
                 <div className="team-block-info">
                     <h4>Chainz</h4>
-                    <h5>#</h5>
                     <p>Trading Desk</p>
+                    <a href="https://xc-labs.com/#/meet-the-team" title="About" target="_blank" rel="noreferrer" className='team-about-button'>About Me</a>
                 </div>
             </div>
             <div className="team-block">
@@ -106,8 +106,8 @@ const Team = () => {
                 </div>
                 <div className="team-block-info">
                     <h4>Luis</h4>
-                    <h5>luis96pack#0810</h5>
                     <p>Community Builder</p>
+                    <a href="https://xc-labs.com/#/meet-the-team" title="About" target="_blank" rel="noreferrer" className='team-about-button'>About Me</a>
                 </div>
             </div>
             <div className="team-block">
@@ -116,8 +116,8 @@ const Team = () => {
                 </div>
                 <div className="team-block-info">
                     <h4>Juvenal</h4>
-                    <h5>Juvencrypto#2835</h5>
                     <p>Community Builder</p>
+                    <a href="https://xc-labs.com/#/meet-the-team" title="About" target="_blank" rel="noreferrer" className='team-about-button'>About Me</a>
                 </div>
             </div>
         </div>

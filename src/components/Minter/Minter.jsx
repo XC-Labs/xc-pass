@@ -99,7 +99,7 @@ export default function Minter(props) {
         functionName: 'balanceOf',
         abi,
         params: {
-          "account": walletAddress, "id": "0"
+          "owner": walletAddress
         }
       };
       Moralis.executeFunction(options1).then((response) =>{
@@ -108,8 +108,7 @@ export default function Minter(props) {
       const options2 = {
         contractAddress,
         functionName: 'totalSupply',
-        abi,
-        params: {"id":"0"}
+        abi
       };
       Moralis.executeFunction(options2).then((response) =>{
         setTotalAmountMinted(response);

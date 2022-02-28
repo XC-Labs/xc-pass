@@ -58,8 +58,18 @@ export default function Whitelist(props) {
                 <Col span={12} className="minter-left-side">
                   <img src={nft} alt="NFT Preview" />
                 </Col>
-                <Col span={12} className="minter-right-side">
-                    <h1>Your address is whitelisted!</h1>
+                <Col span={12} className="minter-right-side whitelisted">
+                    <h2>Your address is whitelisted!</h2>
+                    <p>Be sure to follow us on any of our announcement channels to tune into the mint date!</p>
+                    <Button>
+                      <a href="https://t.me/+RnEQT6GjAS43YzA5" title="Telegram" target="_blank" rel="noreferrer">Telegram</a>
+                    </Button>
+                    <Button>
+                      <a href="https://chat.whatsapp.com/DdvXXkKD8M78VAfs8dqIVV" title="Whatsapp" target="_blank" rel="noreferrer">Whatsapp</a>
+                    </Button>
+                    <Button>
+                      <a href="https://discord.gg/ZEPFcNxHwC" title="Discord" target="_blank" rel="noreferrer">Discord</a>
+                    </Button>
                     <div className="successfulMint">
                       <svg aria-hidden="true" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100"><path d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg>
                     </div>

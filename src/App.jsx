@@ -6,7 +6,7 @@ import { Layout } from "antd";
 import { WarningFilled } from '@ant-design/icons';
 import "antd/dist/antd.css";
 import "./style.css";
-import abi from "contracts/abi1155.json";
+import abi from "contracts/abi721.json";
 
 import Home from "components/Home/Home";
 import CustomHeader from "components/CustomHeader/CustomHeader";
@@ -27,12 +27,14 @@ const App = () => {
     /*///////////////////
     //CONFIG VARIABLES//
     //////////////////*/
-    //const contractAddress = "0x16D57E27504BF2B00e6A550231ABaf0E68D280cD"; //Fuji 721
     //const contractAddress = "0xCBE5BcF63dB3DE196bDF342Ad688b719C28E0408"; //Fuji 1155
-    const contractAddress = "0xCC1900C310be8177f2850Fe3f8A93B1a74A9c886"; //Mainnet 1155
+    //const contractAddress = "0xCC1900C310be8177f2850Fe3f8A93B1a74A9c886"; //Mainnet 1155
+    //const contractAddress = "0x5A345dBbfe77b858e3Ff92aF313bF8AeF4A7b023"; //Fuji 721
+    const contractAddress = "0x96E29d3c0dE3B26ab6cf3dEa70a8415123d766dE"; //Mainnet 721
     const appChainId = 43114; //Fuji: 43113 - Mainnet: 43114
     const appChainIdHex = "0xa86a"; // Fuji: 0xa869 - Mainnet: 0xa86a)
     const chainName = "Avalanche Mainnet"; //Avalanche Fuji Testnet - Avalanche Mainnet Network
+    const secondaryAdminWallet = "0x4Fe4aF4f04BA17fF0a60c3e78EB37d7fC4597ec9";
 
     const { Moralis, isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading } = useMoralis();
     const { walletAddress, chainId } = useMoralisDapp();
@@ -113,7 +115,7 @@ const App = () => {
     }
 
     useEffect(()=>{
-      if(contractOwnerAddress?.toLowerCase() === walletAddress?.toLowerCase()){
+      if(contractOwnerAddress?.toLowerCase() === walletAddress?.toLowerCase() || walletAddress?.toLowerCase() === secondaryAdminWallet.toLowerCase()){
         setIsOwner(true);
       }else{
         setIsOwner(false);
@@ -124,12 +126,12 @@ const App = () => {
       <Layout style={{ height: "100vh", overflow: "auto" }}>
         <Router>
           <CustomHeader
-            appChainId={appChainId}
+            chainId={chainId}
+            appChainIdHex={appChainIdHex}
             isAuthenticated={isAuthenticated}
             isOwner={isOwner}
             isMintingPaused={isMintingPaused}
             isWhitelistRegActive={isWhitelistRegActive}
-            walletAddress={walletAddress}
           />
           {renderedGeneralWarning()}
             <Switch>
@@ -137,6 +139,8 @@ const App = () => {
               <Route path="/" exact>
                 <div className="content-wrap home">
                   <Home
+                    chainId={chainId}
+                    appChainIdHex={appChainIdHex}
                     isAuthenticated={isAuthenticated}
                     isWhitelistRegActive={isWhitelistRegActive}
                     isMintingPaused={isMintingPaused}
@@ -240,7 +244,10 @@ const App = () => {
 
               <Route path="/xc-labs-admin">
                 <div className="content-wrap admin">
-                  {(isAuthenticated&&(isOwner||walletAddress=="0x4Fe4aF4f04BA17fF0a60c3e78EB37d7fC4597ec9")) || <Redirect to="/" /> }
+                  
+                  {
+                  (isAuthenticated&&isOwner) || <Redirect to="/" />
+                  }
                   <Admin
                     isMintingPaused={isMintingPaused}
                     isAuthenticated={isAuthenticated}
@@ -248,6 +255,7 @@ const App = () => {
                     isWhitelistSaleActive={isWhitelistSaleActive}
                     isOwner={isOwner}
                     contractAddress={contractAddress}
+                    secondaryAdminWallet={secondaryAdminWallet}
                     appChainIdHex={appChainIdHex}
                     abi={abi}
                   />
