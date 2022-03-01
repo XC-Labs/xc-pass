@@ -701,7 +701,7 @@ export default function Admin(props) {
             <div style={{display: "flex",justifyContent: "space-between",alignItems: "center",}}>
                 <h3>Manage Smart Contract</h3>
                 <div>
-                    <a href={`https://testnet.snowtrace.io/address/${contractAddress}`} title="See Contract on Snowtrace" target="_blank" rel="noreferrer">See Contract on Snowtrace</a>
+                    <a href={`https://snowtrace.io/address/${contractAddress}`} title="See Contract on Snowtrace" target="_blank" rel="noreferrer">See Contract on Snowtrace</a>
                 </div>
             </div>
           }
