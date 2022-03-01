@@ -113,7 +113,7 @@ function Account(props) {
                 {isMintingPaused || <NavLink to="/mint" className="sidebar-inner-menu-element">Mint your XC Pass</NavLink>}
                 <NavLink to="/collections" className="sidebar-inner-menu-element">Collections</NavLink>
                 <a
-                  href={`https://testnet.snowtrace.io/address/${walletAddress}`}
+                  href={`https://snowtrace.io/address/${walletAddress}`}
                   target="_blank"
                   rel="noreferrer"
                   className="sidebar-inner-menu-element"
