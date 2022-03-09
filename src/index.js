@@ -4,11 +4,7 @@ import { MoralisProvider } from "react-moralis";
 import { MoralisDappProvider } from "./providers/MoralisDappProvider/MoralisDappProvider";
 import App from "./App";
 import "./index.css";
-import ReactGA from 'react-ga';
 import loaderLogo from './assets/header-logo.gif';
-
-ReactGA.initialize('G-JMBP4KTF8F');
-ReactGA.pageview(window.location.pathname + window.location.search);
 
 const APP_ID = process.env.REACT_APP_MORALIS_APPLICATION_ID;
 const SERVER_URL = process.env.REACT_APP_MORALIS_SERVER_URL;

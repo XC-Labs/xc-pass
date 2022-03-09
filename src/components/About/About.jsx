@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {Button, Modal} from 'antd';
+import { withRouter } from "react-router-dom";
 import azuki from '../../assets/nfts/azuki-2078.jpg';
 import bayc from '../../assets/nfts/bayc-7546.jpg';
 import clay from '../../assets/nfts/clay-nation-3030.jpg';
@@ -16,11 +17,14 @@ import moodroller from '../../assets/nfts/moodroller2094.jpg';
 import slimhood from '../../assets/nfts/slimhood_3083.jpg';
 import superplastic from '../../assets/nfts/superplastic-106.jpg';
 
-
-const About = () => {
+const About = (props) => {
+    const { registerPageView } = props;
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [nftInView, setNftInView] = useState({});
-
+    useEffect(() => {
+        document.title = "What We Do | XC Labs";  
+        registerPageView("/what-we-do" + window.location.search);
+    }, [registerPageView]);
     const showModal = (nft) => {
         setNftInView(nft);
         setIsModalVisible(true);
@@ -148,4 +152,4 @@ const About = () => {
 </div>
 }
 
-export default About;
+export default withRouter(About);

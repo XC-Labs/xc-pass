@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useMoralisDapp } from "providers/MoralisDappProvider/MoralisDappProvider";
 import { useMoralis } from "react-moralis";
-import { HashRouter as Router, Switch, Route, Redirect, NavLink } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect, NavLink } from "react-router-dom";
 import { Layout } from "antd";
 import { WarningFilled } from '@ant-design/icons';
 import "antd/dist/antd.css";
@@ -22,8 +22,30 @@ import Whitelist from "components/Whitelist/Whitelist";
 import Admin from "components/Admin/Admin";
 import Footer from "components/Footer/Footer";
 
-const App = () => {
+import ReactGA from 'react-ga';
 
+const registerPageView = (viewedPage) => {
+  if(!window.GA_INITIALIZED){
+    ReactGA.initialize('G-JMBP4KTF8F');
+    window.GA_INITIALIZED = true;
+  }
+  ReactGA.set({ page: viewedPage });
+  ReactGA.pageview(viewedPage);
+}
+
+const registerPageEvent = (category, action) => {
+  if(!window.GA_INITIALIZED){
+    ReactGA.initialize('G-JMBP4KTF8F');
+    window.GA_INITIALIZED = true;
+  }
+  ReactGA.event({
+    category: category,
+    action: action,
+    label: action
+  });
+}
+
+const App = () => {
     /*///////////////////
     //CONFIG VARIABLES//
     //////////////////*/
@@ -31,12 +53,12 @@ const App = () => {
     //const contractAddress = "0xCC1900C310be8177f2850Fe3f8A93B1a74A9c886"; //Mainnet 1155
     //const contractAddress = "0x5A345dBbfe77b858e3Ff92aF313bF8AeF4A7b023"; //Fuji 721
     const contractAddress = "0x96E29d3c0dE3B26ab6cf3dEa70a8415123d766dE"; //Mainnet 721
-    const appChainId = 43114; //Fuji: 43113 - Mainnet: 43114
-    const appChainIdHex = "0xa86a"; // Fuji: 0xa869 - Mainnet: 0xa86a)
+    const appChainIdHex = "0xa86a"; // Fuji: 0xa869 - Mainnet: 0xa86a) - Fuji: 43113 - Mainnet: 43114
     const chainName = "Avalanche Mainnet"; //Avalanche Fuji Testnet - Avalanche Mainnet Network
     const secondaryAdminWallet = "0x4Fe4aF4f04BA17fF0a60c3e78EB37d7fC4597ec9";
 
     const { Moralis, isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading } = useMoralis();
+
     const { walletAddress, chainId } = useMoralisDapp();
     const [contractOwnerAddress, setContractOwnerAddress] = useState("");
     const [isOwner, setIsOwner] = useState(undefined);
@@ -98,7 +120,8 @@ const App = () => {
     
     const renderedGeneralWarning = () => {
       if(!window.ethereum || !isAuthenticated){
-        return <div className="no-wallet"><WarningFilled/> You need a wallet to be able to get whitelisted or mint an XC-Pass. Check our FAQs <NavLink to="/faq">here.</NavLink></div>
+        return <div className="no-wallet"><WarningFilled/> You need a wallet to be able to get whitelisted or mint an XC-Pass. Check our FAQs <NavLink to="/faq">here.</NavLink>
+        <br/><small>Having troubles? Reach us on <a href="https://chat.whatsapp.com/DdvXXkKD8M78VAfs8dqIVV" title="Whatsapp" target="_blank" rel="noreferrer">Whatsapp</a> or Book some time with us.</small></div>
       }
       if(chainId!==appChainIdHex){
         return <div className="wrong-network"><WarningFilled/> Please connect to the {chainName}</div>
@@ -110,7 +133,7 @@ const App = () => {
         return <div className="minting-paused"><WarningFilled/> Minting is not active at the moment.</div>
       }
       if(isWhitelistSaleActive===true){
-        return <div className="whitelist-active"><WarningFilled/> Whitelist sale is Live. Only whitelisted wallets will be able to buy. Be sure to interact with our real contract: {contractAddress}</div>
+        return <div className="whitelist-active"><WarningFilled/> Whitelist sale is Live. Only whitelisted wallets will be able to buy.</div>
       }
     }
 
@@ -144,6 +167,7 @@ const App = () => {
                     isAuthenticated={isAuthenticated}
                     isWhitelistRegActive={isWhitelistRegActive}
                     isMintingPaused={isMintingPaused}
+                    registerPageView={registerPageView}
                   />
                 </div>
               </Route>
@@ -154,25 +178,32 @@ const App = () => {
                     isAuthenticated={isAuthenticated}
                     isWhitelistRegActive={isWhitelistRegActive}
                     isMintingPaused={isMintingPaused}
+                    registerPageView={registerPageView}
                   />
                 </div>
               </Route>
 
               <Route path="/roadmap">
                 <div className="content-wrap roadmap">
-                  <Roadmap />
+                  <Roadmap 
+                    registerPageView={registerPageView}
+                  />
                 </div>
               </Route>
 
               <Route path="/what-we-do">
                 <div className="content-wrap about">
-                  <About />
+                  <About 
+                    registerPageView={registerPageView}
+                  />
                 </div>
               </Route>
 
               <Route path="/meet-the-team">
                 <div className="content-wrap team">
-                  <Team />
+                  <Team 
+                    registerPageView={registerPageView}
+                  />
                 </div>
               </Route>
 
@@ -184,9 +215,11 @@ const App = () => {
                     isAuthenticated={isAuthenticated}
                     contractAddress={contractAddress}
                     isWhitelistRegActive={isWhitelistRegActive}
-                    appChainId={appChainId}
+                    appChainIdHex={appChainIdHex}
                     chainName={chainName}
                     abi={abi}
+                    registerPageView={registerPageView}
+                    registerPageEvent={registerPageEvent}
                   />
                 </div>
               </Route>
@@ -203,9 +236,10 @@ const App = () => {
                     isAuthenticated={isAuthenticated}
                     contractAddress={contractAddress}
                     isMintingPaused={isMintingPaused}
-                    appChainId={appChainId}
+                    appChainIdHex={appChainIdHex}
                     chainName={chainName}
                     abi={abi}
+                    registerPageView={registerPageView}
                   />
                 </div>
                 </>
@@ -220,6 +254,7 @@ const App = () => {
                     isMintingPaused={isMintingPaused}
                     appChainIdHex={appChainIdHex}
                     abi={abi}
+                    registerPageView={registerPageView}
                   />
                 </div>
               </Route>
@@ -230,6 +265,7 @@ const App = () => {
                     isAuthenticated={isAuthenticated}
                     contractAddress={contractAddress}
                     abi={abi}
+                    registerPageView={registerPageView}
                   />
                 </div>
               </Route>
@@ -238,6 +274,8 @@ const App = () => {
                 <div className="content-wrap faq">
                   <Faq
                     contractAddress={contractAddress}
+                    appChainIdHex={appChainIdHex}
+                    registerPageView={registerPageView}
                   />
                 </div>
               </Route>
@@ -258,6 +296,7 @@ const App = () => {
                     secondaryAdminWallet={secondaryAdminWallet}
                     appChainIdHex={appChainIdHex}
                     abi={abi}
+                    registerPageView={registerPageView}
                   />
                 </div>
               </Route>

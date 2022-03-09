@@ -1,5 +1,6 @@
-import { Menu, Layout } from "antd";
+import { Menu, Layout, Button } from "antd";
 import { NavLink } from "react-router-dom";
+import { useChain } from "react-moralis";
 import Account from "../Account/Account";
 import headerLogo from '../../assets/header-logo.png';
 const { Header } = Layout;
@@ -13,7 +14,16 @@ export const Logo = () => (
   );
 
 export default function Roadmap(props) {
+    const { switchNetwork } = useChain();
     const { chainId, appChainIdHex, isAuthenticated, isOwner, isMintingPaused, isWhitelistRegActive } = props;
+
+    const switchToAvalanche = async () => {
+        try {
+            await switchNetwork(appChainIdHex);
+        } catch (error) {
+            alert(error.message);
+        }
+    }
 
     const adminMenuLink = () => {
         if(isOwner){
@@ -23,7 +33,7 @@ export default function Roadmap(props) {
         }
     }
     const mintButton = () => {
-        if(chainId.toString().toLowerCase()===appChainIdHex.toString().toLowerCase()){
+        if(chainId?.toString().toLowerCase()===appChainIdHex?.toString().toLowerCase()){
             if(isWhitelistRegActive){
                 return <Menu>
                         <Menu.Item  
@@ -47,6 +57,8 @@ export default function Roadmap(props) {
                         </Menu>
                 }
             }
+        }else{
+            return <Button onClick={switchToAvalanche}>Switch to Avalanche Network</Button>
         }
     }
     return <>

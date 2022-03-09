@@ -1,8 +1,14 @@
+import { useEffect } from "react";
 import { Card } from 'antd';
-import { NavLink } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 import nft from '../../assets/xc-pass.mp4';
 
-const Collections = () => {
+const Collections = (props) => {
+    const { registerPageView } = props;
+    useEffect(() => {
+        document.title = "Collections | XC Labs";  
+        registerPageView("/collections" + window.location.search);
+    }, [registerPageView]);
     const { Meta } = Card;
     return <div className="collections-container">
         <h1 className="extra-big">Collections</h1>
@@ -35,4 +41,4 @@ const Collections = () => {
     </div>
 }
 
-export default Collections;
+export default withRouter(Collections);

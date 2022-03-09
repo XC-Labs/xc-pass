@@ -1,12 +1,18 @@
+import { useEffect} from "react";
 import { Timeline, Button } from 'antd';
-
+import { withRouter } from "react-router-dom";
 import xcpass1 from '../../assets/roadmap/xc_pass_1.jpg';
 import xcpass2 from '../../assets/roadmap/xc_pass_2.jpg';
 import axo01 from '../../assets/roadmap/axo01.jpg';
 import axo02 from '../../assets/roadmap/axo02.jpg';
 import axo03 from '../../assets/roadmap/axo03.jpg';
 
-export default function Roadmap(props) {
+const Roadmap = (props) => {
+    const { registerPageView } = props;
+    useEffect(() => {
+        document.title = "Roadmap | XC Labs";
+        registerPageView("/roadmap" + window.location.search);
+    }, [registerPageView]);
 
     return <div className="roadmap-container">
 
@@ -144,3 +150,5 @@ export default function Roadmap(props) {
                 </Button>
             </div>
 }
+
+export default withRouter(Roadmap);

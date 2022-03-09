@@ -1,11 +1,12 @@
 import { useMoralisDapp } from "providers/MoralisDappProvider/MoralisDappProvider";
 import { Button, Row, Col, Form, notification } from "antd";
 import { useState, useEffect } from "react";
+import { withRouter } from "react-router-dom";
 import { useMoralis } from "react-moralis";
 import nft from '../../assets/xcpass.png';
 
-export default function Whitelist(props) {
-  const { isAuthenticated, contractAddress, appChainId, chainName, abi, isWhitelistRegActive } = props;
+const Whitelist = (props) => {
+  const { isAuthenticated, contractAddress, appChainIdHex, chainName, abi, isWhitelistRegActive, registerPageView, registerPageEvent } = props;
   const { Moralis } = useMoralis();
   const { walletAddress, chainId } = useMoralisDapp();
   const [userAddress, setUserAddress] = useState("");
@@ -14,6 +15,11 @@ export default function Whitelist(props) {
   const [isWhitelisted, setIsWhitelisted] = useState(false);
   const [isChecked, setIschecked] = useState(false);
   
+  useEffect(() => {
+    document.title = "Whitelist for XC Pass | XC Labs";
+    registerPageView("/whitelist" + window.location.search);
+  }, [registerPageView]);
+
   const openNotification = ({ message, description }) => {
     notification.open({
       placement: "bottomRight",
@@ -85,15 +91,14 @@ export default function Whitelist(props) {
                   <img src={nft} alt="NFT Preview" />
                 </Col>
                 <Col span={12} className="minter-right-side">
-                  {// eslint-disable-next-line
-                  chainId==appChainId || 
+                  {
+                  chainId===appChainIdHex || 
                   <div className="wrong-network">To be able to register, please connect to <strong>{chainName}</strong>.</div>
                   }
                   
                   <Form.Provider
                     onFormFinish={async (name) => {
-                      setRegistrationOn(true);    
-        
+                      setRegistrationOn(true);
                       let isView = false;
 
                       for (let method of abi) {
@@ -126,6 +131,7 @@ export default function Whitelist(props) {
                               description: `${receipt.transactionHash}`,
                             });
                             setRegistrationOn(false);
+                            registerPageEvent("Whitelist","Whitelisted Wallet");
                           })
                           .on("error", (error) => {
                             setResponses({ ...responses, [name]: { result: null, isLoading: false } });
@@ -134,13 +140,14 @@ export default function Whitelist(props) {
                               description: "Something went wrong with the transaction. Feel free to try again.",
                             });
                             setRegistrationOn(false);
+                            registerPageEvent("Whitelist","Whitelist Error");
                           });
                       }
-                        
                     }}
                   >
                       <Form layout="vertical" name="whitelistUser">
-                        <h3>To be able to mint during the Pre-Sale, you have to register your Wallet Address in the Whitelist. Registration has no cost (only gas). </h3>
+                        <h4>To be able to mint during the Pre-Sale, you have to register your Wallet Address in the Whitelist.<br/><br/>Registration has no cost (only gas). </h4>
+                        <br/>
                         <div className="minting-inputs">
               
                           <Form.Item style={{ marginBottom: "5px" }}>
@@ -149,9 +156,10 @@ export default function Whitelist(props) {
                               size="large"
                               htmlType="submit"
                               loading={responses["whitelistUser"]?.isLoading}
-                              disabled={// eslint-disable-next-line
-                                !registrationOn&&chainId==appChainId?false:true
+                              disabled={
+                                !registrationOn&&chainId===appChainIdHex?false:true
                               }
+                              onClick={() => registerPageEvent("Whitelist","Whitelist Registration Attempt")}
                             >
                               {registrationOn ? "Whitelisting..." : "Whitelist your wallet!"}
                             </Button>
@@ -173,3 +181,4 @@ export default function Whitelist(props) {
     return <div className="whitelist-container">Whitelist registration is not active.</div>
   }
 }
+export default withRouter(Whitelist);

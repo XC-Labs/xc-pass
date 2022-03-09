@@ -1,4 +1,6 @@
+import { useEffect} from "react";
 import {Button} from 'antd';
+import { withRouter } from "react-router-dom";
 import joxx from '../../assets/team/joxx.jpg';
 import alex from '../../assets/team/alex.jpg';
 import maw from '../../assets/team/maw.jpg';
@@ -10,7 +12,13 @@ import antonio from '../../assets/team/antonio.jpg';
 import chainz from '../../assets/team/chainz.jpg';
 import juvenal from '../../assets/team/juvenal.jpg';
 
-const Team = () => {
+const Team = (props) => {
+    const { registerPageView } = props;
+    useEffect(() => {
+        document.title = "About Our Team | XC Labs";  
+        registerPageView("/meet-the-team" + window.location.search);
+    }, [registerPageView]);
+
     return <div className="team-container">
         <h1 className="extra-big">
             We are<br/>Dreamers
@@ -132,4 +140,4 @@ const Team = () => {
     </div>
 }
 
-export default Team;
+export default withRouter(Team);

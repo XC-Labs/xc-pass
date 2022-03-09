@@ -1,10 +1,17 @@
+import { useEffect } from "react";
 import { Button } from "antd";
-import { NavLink } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 import xcpass from '../../assets/xcpass.png';
 import xcpasslogo from '../../assets/xcpass-logo.png';
 
-export default function XCPass(props) {
-    const { isAuthenticated, isWhitelistRegActive, isMintingPaused } = props;
+const XCPass = (props) => {
+    const { isAuthenticated, isWhitelistRegActive, isMintingPaused, registerPageView } = props;
+
+    useEffect(() => {
+        document.title = "What is XC Pass? | XC Labs";  
+        registerPageView("/xc-pass" + window.location.search);
+    }, [registerPageView]);
+
     return <div className="pass-container">
                 <div className="pass-heading">
                     <img src={xcpasslogo} className="xc-pass-logo" alt="XC Pass Logo"/>
@@ -101,3 +108,4 @@ export default function XCPass(props) {
                 }
             </div>
 }
+export default withRouter(XCPass);

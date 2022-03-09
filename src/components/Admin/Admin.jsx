@@ -1,10 +1,14 @@
-import { Row, Col, Button, Card, Form, notification, Input } from "antd";
+import { Row, Col, Button, Card, Form, notification, Input, Collapse } from "antd";
 import { useState, useEffect } from "react";
-import { useMoralis } from "react-moralis";
+import { useMoralis, useMoralisQuery } from "react-moralis";
+import { withRouter } from "react-router-dom";
+import ReactGA from 'react-ga';
 
-export default function Admin(props) {
+const Admin = (props) => {
   const { isMintingPaused, isAuthenticated, isWhitelistSaleActive, isWhitelistRegActive, contractAddress, secondaryAdminWallet, appChainIdHex, isOwner, abi } = props;
+  const { data, error, isLoading } = useMoralisQuery("XCPassWhitelistEvents");
   const { Moralis } = useMoralis();
+  const { Panel } = Collapse;
   const [responses, setResponses] = useState({});
   const [fundsInContract, setFundsInContract] = useState();
   const [totalAmountMinted, setTotalAmountMinted] = useState();
@@ -25,6 +29,24 @@ export default function Admin(props) {
   const [tokensToTransfer, setTokensToTransfer] = useState("");
   const [walletForTransfer, setWalletForTransfer] = useState("");
   const [tokensToBurn, setTokensToBurn] = useState("");
+  useEffect(() => {
+      document.title = "Admin | XC Labs";  
+      ReactGA.pageview("/xc-labs-admin" + window.location.search);
+  }, []);
+
+  const whitelistedUsersList = () => {
+    if(!isLoading){
+      if(!error){
+        return data.map(user=>{
+          let u = JSON.stringify(user, null, 2);
+          u = JSON.parse(u);
+        return <tr><td>{u.whitelistedUser}</td><td>{u.status}</td></tr>
+        })
+      }else{
+        console.log(error);
+      }
+    }
+  }
   
   useEffect(()=>{
     if(isAuthenticated){
@@ -121,7 +143,12 @@ export default function Admin(props) {
                 <Col className="sc-stats"><h4 className="sc-stats-name">Secondary Admin Wallet</h4><span className="sc-stats-value nocaps">{secondaryAdminWallet}</span></Col>
                 <Col className="sc-stats"><h4 className="sc-stats-name">Gnosis Wallet</h4><span className="sc-stats-value nocaps">0x2fc09613d640E34054f3f0D6e0e37ef36F569653</span></Col>
             </Row>
-            
+            <Collapse accordion>
+                <Panel header="Check Whitelist" key="1">
+                  {whitelistedUsersList()}
+                  <br/>
+                </Panel>
+            </Collapse>
             <Form.Provider
               onFormFinish={async () => {
                 const options = {
@@ -719,3 +746,4 @@ export default function Admin(props) {
     </>
   );
 }
+export default withRouter(Admin);

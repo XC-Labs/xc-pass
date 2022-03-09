@@ -1,16 +1,16 @@
 import { useMoralisDapp } from "providers/MoralisDappProvider/MoralisDappProvider";
 import { Button, InputNumber, Form, notification, Row, Col } from "antd";
 import { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 import { useMoralis } from "react-moralis";
 import nft from '../../assets/xcpass.png';
 import mintingBg from '../../assets/minting.png';
 import successfulBg from '../../assets/successful.png';
 import logo from '../../assets/xcpass-logo_big.png';
 
-export default function Minter(props) {
+const Minter = (props) => {
   const nftPrice = "1";
-  const { isAuthenticated, contractAddress, isMintingPaused, appChainId, abi } = props;
+  const { isAuthenticated, contractAddress, isMintingPaused, appChainIdHex, abi, registerPageView } = props;
   const { Moralis } = useMoralis();
   const { walletAddress, chainId } = useMoralisDapp();
   const [userAmountMinted, setUserAmountMinted] = useState(0);
@@ -23,6 +23,11 @@ export default function Minter(props) {
   const [mintError, setMintError] = useState(false);
   const [mintOn, setMintOn] = useState(false);
   const [modalInView, setModalInView] = useState(false);
+
+  useEffect(() => {
+    document.title = "Mint your XC Pass | XC Labs";  
+    registerPageView("/mint" + window.location.search);
+  }, [registerPageView]);
 
   const renderedResult = () => {
     if(mintOn){
@@ -217,8 +222,8 @@ export default function Minter(props) {
                         size="large"
                         htmlType="submit"
                         loading={responses["mint"]?.isLoading}
-                        disabled={// eslint-disable-next-line
-                          !mintOn && chainId==appChainId && !isMintingPaused && userAmountMinted<50 ? false : true
+                        disabled={
+                          !mintOn && chainId===appChainIdHex && !isMintingPaused && userAmountMinted<50 ? false : true
                         }
                       >
                         {mintOn ? "Minting..." : "Mint a XC Pass"}
@@ -237,3 +242,4 @@ export default function Minter(props) {
       </Row>
     </div>
 }
+export default withRouter(Minter);

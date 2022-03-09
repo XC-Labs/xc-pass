@@ -7,6 +7,7 @@ import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import Address from "../Address/Address";
 import { connectors } from "./config";
+import ReactGA from 'react-ga';
 
 function Account(props) {
   const { isMintingPaused } = props;
@@ -21,6 +22,11 @@ function Account(props) {
       <div className="header-wallet not-logged"
         onClick={() => {
           setIsAuthModalVisible(true);
+          ReactGA.modalview('/connect-wallet-modal');
+          ReactGA.event({
+            category: 'User',
+            action: 'Connect Wallet Attempt'
+          });
         }}
       >
         <p className="auth-button">Connect Wallet</p>
@@ -59,6 +65,10 @@ function Account(props) {
                     try {
                       await authenticate({ provider: connectorId, signingMessage: "Welcome to XC Pass!" });
                       window.localStorage.setItem("connectorId", connectorId);
+                      ReactGA.event({
+                        category: 'User',
+                        action: 'Connected Wallet'
+                      });
                     } catch (e) {
                       console.error(e);
                     }

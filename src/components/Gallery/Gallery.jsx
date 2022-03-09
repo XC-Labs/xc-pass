@@ -1,19 +1,22 @@
 import { useMoralisDapp } from "providers/MoralisDappProvider/MoralisDappProvider";
 import { useEffect, useState } from "react";
+import { NavLink, withRouter } from "react-router-dom";
 import { useMoralis } from "react-moralis";
 import {Row, Col, Button, Progress } from "antd";
-import { NavLink } from "react-router-dom";
 import nft from '../../assets/xc-pass.mp4';
 import xcpasslogo from '../../assets/xcpass-logo-black.png';
 
-export default function Gallery(props) {
+const Gallery = (props) => {
     
     const { Moralis } = useMoralis();
-    const { isAuthenticated, contractAddress, isMintingPaused, abi } = props;
+    const { isAuthenticated, contractAddress, isMintingPaused, abi, registerPageView } = props;
     const { walletAddress } = useMoralisDapp();
     const [ passesAmount, setPassesAmount ] = useState();
     const percentage = Math.floor((passesAmount / 50) * 100);
-
+    useEffect(() => {
+        document.title = "Gallery | XC Labs";
+        registerPageView("/gallery" + window.location.search);
+    }, [registerPageView]);
     /*
     const { appChainIdHex } = props;
     const [ xcPassAsset, setXcPassAsset ] = useState();
@@ -69,3 +72,4 @@ export default function Gallery(props) {
             </div>
     )
 }
+export default withRouter(Gallery);
