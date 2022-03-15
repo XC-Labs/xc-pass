@@ -19,6 +19,7 @@ import Faq from "components/Faq/Faq";
 import Gallery from "components/Gallery/Gallery";
 import Collections from "components/Collections/Collections";
 import Whitelist from "components/Whitelist/Whitelist";
+import User from "components/User/User";
 import Admin from "components/Admin/Admin";
 import Footer from "components/Footer/Footer";
 
@@ -58,8 +59,8 @@ const App = () => {
     const secondaryAdminWallet = "0x4Fe4aF4f04BA17fF0a60c3e78EB37d7fC4597ec9";
 
     const { Moralis, isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading } = useMoralis();
-
     const { walletAddress, chainId } = useMoralisDapp();
+    const isWeb3Active = Moralis.ensureWeb3IsInstalled()
     const [contractOwnerAddress, setContractOwnerAddress] = useState("");
     const [isOwner, setIsOwner] = useState(undefined);
     const [isMintingPaused, setMintingPaused] = useState(null);
@@ -119,11 +120,12 @@ const App = () => {
 
     
     const renderedGeneralWarning = () => {
-      if(!window.ethereum || !isAuthenticated){
+      if(!isWeb3Active){
         return <div className="no-wallet"><WarningFilled/> You need a wallet to be able to get whitelisted or mint an XC-Pass. Check our FAQs <NavLink to="/faq">here.</NavLink>
-        <br/><small>Having troubles? Reach us on <a href="https://chat.whatsapp.com/DdvXXkKD8M78VAfs8dqIVV" title="Whatsapp" target="_blank" rel="noreferrer">Whatsapp</a> or Book some time with us.</small></div>
+        <br/><small>Having troubles? Reach us on <a href="https://chat.whatsapp.com/DdvXXkKD8M78VAfs8dqIVV" title="Whatsapp" target="_blank" rel="noreferrer">Whatsapp</a> or  <a href="https://calendly.com/joxx/30min" title="Calendly" target="_blank" rel="noreferrer">Book some time with us.</a></small></div>
       }
       if(chainId!==appChainIdHex){
+        console.log(chainId);
         return <div className="wrong-network"><WarningFilled/> Please connect to the {chainName}</div>
       }
     }
@@ -275,6 +277,19 @@ const App = () => {
                   <Faq
                     contractAddress={contractAddress}
                     appChainIdHex={appChainIdHex}
+                    registerPageView={registerPageView}
+                  />
+                </div>
+              </Route>
+              
+              <Route path="/user">
+                <div className="content-wrap user">
+                  {isAuthenticated || <Redirect to="/" /> }
+                  <User
+                    isAuthenticated={isAuthenticated}
+                    contractAddress={contractAddress}
+                    appChainIdHex={appChainIdHex}
+                    abi={abi}
                     registerPageView={registerPageView}
                   />
                 </div>

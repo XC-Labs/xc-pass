@@ -63,7 +63,7 @@ function Account(props) {
                   key={key}
                   onClick={async () => {
                     try {
-                      await authenticate({ provider: connectorId, signingMessage: "Welcome to XC Pass!" });
+                      await authenticate({ provider: connectorId, chainId: 43114, signingMessage: "Welcome to XC Pass!"});
                       window.localStorage.setItem("connectorId", connectorId);
                       ReactGA.event({
                         category: 'User',
@@ -120,6 +120,7 @@ function Account(props) {
                 style={{ fontSize: "16px", backgroundColor: "transparent", display: "flex", flexDirection: "column", height: "auto", paddingTop: "40px" }}
               />
               <div className="sidebar-inner-menu">
+                <NavLink to="/user" className="sidebar-inner-menu-element">My Account</NavLink>
                 {isMintingPaused || <NavLink to="/mint" className="sidebar-inner-menu-element">Mint your XC Pass</NavLink>}
                 <NavLink to="/collections" className="sidebar-inner-menu-element">Collections</NavLink>
                 <a

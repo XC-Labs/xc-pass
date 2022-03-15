@@ -441,8 +441,35 @@ a.secondary-cta {
 .ant-card-head-title .address {
   font-size: 14px;
 }
-.ant-col.ant-col-8 {
+.ant-col.ant-col-8:not(.user-box) {
   padding: 10px;
+}
+.user-box{
+  margin-right: 20px;
+}
+.user-passes-box {
+  display: flex;
+  align-content: center;
+  align-items: center;
+}
+img.user-passes {
+  width: 200px;
+}
+.user-pass-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f3f3f3;
+  padding: 6px 10px;
+  margin: 5px 0;
+  border-radius: 10px;
+}
+.user-actions-box {
+  width: 100%;
+}
+.user-pass-actions {
+  display: inline-flex;
+  gap: 10px;
 }
 .ant-card-cover {
   padding-top: 20px;
@@ -608,6 +635,7 @@ button.change-amount-button {
   justify-content: center;
   align-items: center;
   background-size: 100%;
+  margin: 0 auto 20px;
 }
 .progress-circle-animation, .mint-loading-content, .successful-circle {
   position: absolute;
@@ -654,7 +682,7 @@ button.change-amount-button {
 .nft-list > .nft {
   cursor: pointer;
 }
-.whitelist-container, .minter-container, .collections-container, .gallery-container, .team-container, .how-to-container, .roadmap-container, .pass-container, .about-container {
+.whitelist-container, .minter-container, .collections-container, .gallery-container, .team-container, .how-to-container, .roadmap-container, .pass-container, .about-container, .userDetails-container {
   width: 100%;
   max-width: 1168px;
   min-height: 60vh;
@@ -1048,7 +1076,7 @@ span.sc-stats-value.nocaps {
 }
 
 @media screen and (max-width: 768px) {
-  .content-wrap.home .home, .how-to-container, .roadmap-container, .pass-container, .pass-heading, .about-container, .team-container,.whitelist-container, .minter-container, .collections-container, .gallery-container, button.main-cta.button, a.secondary-cta, .pass-heading button.main-cta.button {
+  .content-wrap.home .home, .how-to-container, .roadmap-container, .pass-container, .pass-heading, .about-container, .team-container,.whitelist-container, .minter-container, .collections-container, .gallery-container, button.main-cta.button, a.secondary-cta, .pass-heading button.main-cta.button, .content-wrap.user {
     width: 100%;
   }
   .how-to-container, .roadmap-container, .pass-container, .about-container, .team-container, .whitelist-container, .minter-container, .collections-container, .gallery-container{
