@@ -39,11 +39,7 @@ const registerPageEvent = (category, action) => {
     ReactGA.initialize('G-JMBP4KTF8F');
     window.GA_INITIALIZED = true;
   }
-  ReactGA.event({
-    category: category,
-    action: action,
-    label: action
-  });
+  ReactGA.ga('event', category, {'action': action});
 }
 
 const App = () => {

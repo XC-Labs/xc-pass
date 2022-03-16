@@ -98,6 +98,7 @@ const Whitelist = (props) => {
                   
                   <Form.Provider
                     onFormFinish={async (name) => {
+                      registerPageEvent("Whitelist","Whitelist Attempt");
                       setRegistrationOn(true);
                       let isView = false;
 
