@@ -39,7 +39,7 @@ Web3 integration with the Avalanche network was done using Moralis SDK and Speed
 
 If everything is working fine you should see the website open without errors.
 
-5. By now, you should consider deploying your own contract. There are some example contracts in the ***/src/contracts/*** folder. Once your contract is deployed you have to change the contract address and some other values in ***/src/index.js***. 
+5. By now, you should consider deploying your own contract and assets. There are some example contracts in the ***/src/contracts/*** folder. Once your contract is deployed you have to change the contract address and some other values in ***/src/index.js***. 
 
 ## Components & Hooks
 Inside the ***/src/components/*** folder are all React components. The goal is to make them all as modular, reusable and independent as possible.
