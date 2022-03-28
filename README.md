@@ -1,5 +1,6 @@
-# XC Pass for XC Labs
 ![XC Labs](/src/assets/xclabs-logo.png)
+
+# XC Pass for XC Labs
 
 ## Overview
 
