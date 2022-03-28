@@ -6,15 +6,18 @@
 This is the repository for **XC Labs'** website, a chain-agnostic NFT laboratory. We want to build and scale the next generation of phygital assets.
 
 As part of this project, we released **XC Pass** which is our early access token to investors for our future projects. This token is an ERC-721 NFT on the Avalanche Network.
+
 You can check the live contract here: [XC Pass ERC-721 Contract](https://snowtrace.io/address/0x96E29d3c0dE3B26ab6cf3dEa70a8415123d766dE)
+
 ![XC Pass](/src/assets/xcpass-logo.png)
+
 ![XC Pass](/public/social.jpg)
 
 Web3 integration with the Avalanche network was done using Moralis SDK and Speedy Nodes.
 
 ## Setup & Deployment
 
-1. To be able to launch the project, first you need to create a Moralis account. In that account, create a new server (it can be testnet or mainnet on any EVM compatible blockchain). Once the server is created, access the server info and look for the following values: **SERVER URL** and **APP ID**. 
+1. To be able to launch the project, first you need to create a **Moralis** account. In that account, create a new server (it can be testnet or mainnet on any EVM compatible blockchain). Once the server is created, access the server info and look for the following values: **SERVER URL** and **APP ID**. 
 
 2. Create a ***.env*** file in the root of this folder with the following structure:
 
