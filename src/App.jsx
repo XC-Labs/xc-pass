@@ -42,18 +42,8 @@ const registerPageEvent = (category, action) => {
   ReactGA.ga('event', category, {'action': action});
 }
 
-const App = () => {
-    /*///////////////////
-    //CONFIG VARIABLES//
-    //////////////////*/
-    //const contractAddress = "0xCBE5BcF63dB3DE196bDF342Ad688b719C28E0408"; //Fuji 1155
-    //const contractAddress = "0xCC1900C310be8177f2850Fe3f8A93B1a74A9c886"; //Mainnet 1155
-    //const contractAddress = "0x5A345dBbfe77b858e3Ff92aF313bF8AeF4A7b023"; //Fuji 721
-    const contractAddress = "0x96E29d3c0dE3B26ab6cf3dEa70a8415123d766dE"; //Mainnet 721
-    const appChainIdHex = "0xa86a"; // Fuji: 0xa869 - Mainnet: 0xa86a) - Fuji: 43113 - Mainnet: 43114
-    const chainName = "Avalanche Mainnet"; //Avalanche Fuji Testnet - Avalanche Mainnet Network
-    const secondaryAdminWallet = "0x4Fe4aF4f04BA17fF0a60c3e78EB37d7fC4597ec9";
-
+const App = (props) => {
+    const { contractAddress, appChainIdHex , chainName, secondaryAdminWallet } = props;
     const { Moralis, isWeb3Enabled, enableWeb3, isAuthenticated, isWeb3EnableLoading } = useMoralis();
     const { walletAddress, chainId } = useMoralisDapp();
     const isWeb3Active = Moralis.ensureWeb3IsInstalled()
@@ -141,7 +131,7 @@ const App = () => {
       }else{
         setIsOwner(false);
       }
-    },[walletAddress, contractOwnerAddress])
+    },[walletAddress, contractOwnerAddress, secondaryAdminWallet])
 
     return (
       <Layout style={{ height: "100vh", overflow: "auto" }}>
